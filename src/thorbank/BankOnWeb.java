@@ -8,7 +8,7 @@ public class BankOnWeb {
     private String username;
     private List<Bill> billList;
     private double balance;
-    private double billAavailability;
+    private double billAvailability;
     private List<Transaction> transactionList;
     private List<Card> cardList;
     private List<Message> messagesWithTheBank;
