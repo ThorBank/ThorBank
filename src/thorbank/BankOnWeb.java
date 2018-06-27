@@ -12,4 +12,13 @@ public class BankOnWeb {
     private List<Transaction> transactionList;
     private List<Card> cardList;
     private List<Message> messagesWithTheBank;
+
+    public void changePassword(){
+
+    }
+
+    public void changeUsername(){
+
+    }
+    
 }
