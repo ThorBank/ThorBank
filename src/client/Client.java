@@ -48,7 +48,11 @@ public class Client {
         this.email = email;
     }
 
-    public void payCredit(Credit credit Bill bill){
+    public void payCredit(Credit credit, Bill bill){
+
+    }
+
+    public void payCredit(Credit credit, Card card){
 
     }
 
