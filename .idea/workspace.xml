@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abfe4dc9-76b4-4682-81cf-3c74bba74ca2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/thorbank/ConsumerCredit.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/thorbank/Credit.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/thorbank/CreditType.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/thorbank/ConsumerCredit.java" afterPath="$PROJECT_DIR$/src/thorbank/ConsumerCredit.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,13 +48,13 @@
         <entry file="file://$PROJECT_DIR$/src/thorbank/Credit.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+              <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreditType.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CreditType.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/thorbank/CreditType.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
@@ -67,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConsumerCredit.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConsumerCredit.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/thorbank/ConsumerCredit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="187">
+              <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -101,9 +98,9 @@
         <option value="$PROJECT_DIR$/.idea/misc.xml" />
         <option value="$PROJECT_DIR$/src/ThorBank.java" />
         <option value="$PROJECT_DIR$/src/thorbank/BankOnWeb.java" />
+        <option value="$PROJECT_DIR$/src/thorbank/CreditType.java" />
         <option value="$PROJECT_DIR$/src/thorbank/Credit.java" />
         <option value="$PROJECT_DIR$/src/thorbank/ConsumerCredit.java" />
-        <option value="$PROJECT_DIR$/src/thorbank/CreditType.java" />
       </list>
     </option>
   </component>
@@ -520,6 +517,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/thorbank/CreditType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/thorbank/BankOnWeb.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -528,26 +533,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/thorbank/ConsumerCredit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/thorbank/Credit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+          <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/thorbank/CreditType.java">
+    <entry file="file://$PROJECT_DIR$/src/thorbank/ConsumerCredit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        <state relative-caret-position="187">
+          <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
           <folding />
         </state>
       </provider>
