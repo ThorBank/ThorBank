@@ -1,4 +1,4 @@
-package thorbank;
+package credit;
 
 public enum CreditType {
     CONSUMER, // потребителски

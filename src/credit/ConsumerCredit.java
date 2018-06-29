@@ -1,4 +1,4 @@
-package thorbank;
+package credit;
 
 public class ConsumerCredit extends Credit {
     private String consumer;

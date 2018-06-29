@@ -1,4 +1,4 @@
-package thorbank;
+package credit;
 
 public abstract class Credit {
     private double amount;
