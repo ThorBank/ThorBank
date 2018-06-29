@@ -8,11 +8,12 @@ public class BankOnWeb {
     private String username;
     private List<Bill> billList;
     private double balance;
-    private double billAavailability;
+    private double billAvailability;
     private List<Transaction> transactionList;
     private List<Card> cardList;
     private List<Message> messagesWithTheBank;
 
+<<<<<<< HEAD
     public BankOnWeb(double balance) {
         this.balance = balance;
     }
@@ -22,6 +23,8 @@ public class BankOnWeb {
     }
 
 
+=======
+>>>>>>> 60ae47f63010431414a6f14a109e9225c26a8662
     public void changePassword(){
 
     }
@@ -29,6 +32,10 @@ public class BankOnWeb {
     public void changeUsername(){
 
     }
+<<<<<<< HEAD
 
 }
+=======
+    
+>>>>>>> 60ae47f63010431414a6f14a109e9225c26a8662
 }
