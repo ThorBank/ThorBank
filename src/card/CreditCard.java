@@ -1,7 +1,6 @@
 package card;
 
 import client.Client;
-import thorbank.Bill;
 
 import java.util.Date;
 

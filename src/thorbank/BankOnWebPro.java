@@ -1,6 +1,7 @@
 package thorbank;
 
 import client.Client;
+import housetaxes.Taxes;
 
 import java.util.List;
 

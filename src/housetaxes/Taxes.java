@@ -1,4 +1,4 @@
-package thorbank;
+package housetaxes;
 
 public enum Taxes {
     TAXES,

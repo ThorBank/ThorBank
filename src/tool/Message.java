@@ -1,4 +1,4 @@
-package thorbank;
+package tool;
 
 public class Message {
 }

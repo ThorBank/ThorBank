@@ -1,5 +1,8 @@
 package thorbank;
 
+import card.Card;
+import tool.Message;
+
 import java.util.List;
 
 public class BankOnWeb {
