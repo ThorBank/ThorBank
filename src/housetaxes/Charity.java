@@ -1,5 +1,5 @@
 package housetaxes;
 
-public enum CharityType {
+public enum Charity {
     SOS_CHILDREN_SETTLEMENTS_MONTHLY, SOS_CHILDREN_SETTLEMENTS_BULGARIA, VVF, UNICEF
 }
