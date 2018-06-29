@@ -1,5 +1,6 @@
 package client;
 
+import bank.GringottsBank;
 import card.Card;
 import credit.Credit;
 import db.DB;
@@ -68,20 +69,22 @@ public class Client {
     }
 
     public void payCredit(Credit credit, Bill bill){
-
+        //TODO: Need to calculate how much to pay every month
+        bill.setAvailability(bill.getAvailability() - credit.calculateCreditInterestRate());
     }
 
     public void payCredit(Credit credit, Card card){
-
+        //TODO: Need to calculate how much to pay every month
     }
 
     public void createBankOnWeb(){
+        //TODO: BankOnWeb remove balance from constructor
         if (bankOnWeb == null){
-
+            bankOnWeb = new BankOnWeb(0);
         }
     }
 
     public void applyingForACredit(){
-
+        //TODO: SingletonPattern - Gringotts Bank
     }
 }
