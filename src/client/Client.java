@@ -86,5 +86,6 @@ public class Client {
 
     public void applyingForACredit(){
         //TODO: SingletonPattern - Gringotts Bank
+        //TODO: The date on which we take the credit
     }
 }
