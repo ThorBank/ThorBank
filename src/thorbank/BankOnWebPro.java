@@ -1,5 +1,9 @@
 package thorbank;
 
+import client.Client;
+
+import java.util.List;
+
 public class BankOnWebPro extends BankOnWeb {
     private Bill currentBill;
 
@@ -18,9 +22,9 @@ public class BankOnWebPro extends BankOnWeb {
 
     public void payingTaxes(Taxes taxes) {
         switch (taxes) {
-            case TAXES: ...; break;
-            case HOUSEHOLD_BILLS: ...; break;
-            case FEES: ...; break;
+            case TAXES: ; break;
+            case HOUSEHOLD_BILLS: ; break;
+            case FEES: ; break;
         }
     }
 }

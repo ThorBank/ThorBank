@@ -1,6 +1,10 @@
 package thorbank;
 
+import client.IndividualClient;
+
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 public class FactorConnect extends BankOnWebPro {
 
@@ -8,8 +12,8 @@ public class FactorConnect extends BankOnWebPro {
         super(balance, currentBill);
     }
 
-    public void plaingSalary(HashMap<Workingmen> workingmenList) {
-        for (Object workingman : workingmenList.keySet()) {
+    public void payingSalary(LinkedList<IndividualClient> individualClients) {
+        for (Object individualClient : individualClients) {
 
         }
     }

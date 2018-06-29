@@ -1,9 +1,13 @@
 package client;
 
+import credit.Credit;
 import db.DB;
 import thorbank.BankOnWeb;
+import thorbank.Bill;
+import thorbank.Card;
 
 import java.net.PasswordAuthentication;
+import java.util.List;
 import java.util.UUID;
 
 public class Client {
