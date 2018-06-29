@@ -1,0 +1,5 @@
+package housetaxes;
+
+public enum CharityType {
+    SOS_CHILDREN_SETTLEMENTS_MONTHLY, SOS_CHILDREN_SETTLEMENTS_BULGARIA, VVF, UNICEF
+}
