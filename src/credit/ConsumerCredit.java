@@ -14,6 +14,22 @@ public class ConsumerCredit extends Credit {
         setYearlyInterestRate(yearlyInterestRate);
     }
 
+    public String getConsumer() {
+        return consumer;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public int getCreditPeriodInMonths() {
+        return creditPeriodInMonths;
+    }
+
+    public double getYearlyInterestRate() {
+        return yearlyInterestRate;
+    }
+
     public void setConsumer(String consumer) {
         this.consumer = consumer;
     }
