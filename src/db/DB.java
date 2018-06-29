@@ -5,15 +5,21 @@ import client.Client;
 import java.util.LinkedList;
 import java.util.List;
 
-public final class DB {
+public class DB {
     private static final DB instance = new DB();
     List<Client> clientList;
 
-    private DB() {
-        this.clientList = new LinkedList<>();
+    {
+        clientList = new LinkedList<>();
     }
 
-    public DB getInstance(){
+    private DB() { }
+
+    public static DB getInstance(){
         return instance;
+    }
+
+    public List<Client> getClientList(){
+        return this.clientList;
     }
 }

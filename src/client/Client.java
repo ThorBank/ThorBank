@@ -1,5 +1,6 @@
 package client;
 
+import db.DB;
 import thorbank.BankOnWeb;
 
 import java.net.PasswordAuthentication;
@@ -12,10 +13,10 @@ public class Client {
     private UUID id;
     private PasswordAuthentication passwordAuthentication;
     private String email;
-    List<Bill> billList;
-    List<Card> cardList;
-    List<Credit> creditList;
-    BankOnWeb bankOnWeb;
+    private List<Bill> billList;
+    private List<Card> cardList;
+    private List<Credit> creditList;
+    private BankOnWeb bankOnWeb;
 
     public Client(PasswordAuthentication passwordAuthentication, String email) {
         this.id = UUID.randomUUID();
@@ -40,14 +41,25 @@ public class Client {
     }
 
     public void changeUsername(String username){
+        for (int i = 0; i < DB.getInstance().getClientList().size(); i++){
+            if (DB.getInstance().getClientList().get(i).toString() == username){
+
+            }
+        }
         this.passwordAuthentication = new PasswordAuthentication(username, this.passwordAuthentication.getPassword());
     }
 
     public void changePassword(String password){
+        if (!password.matches(PASSWORD_REGEX)){
+
+        }
         this.passwordAuthentication = new PasswordAuthentication(this.passwordAuthentication.getUserName(), password.toCharArray());
     }
 
     public void changeEmail(String email){
+        if (!email.matches(EMAIL_REGEX)){
+
+        }
         this.email = email;
     }
 
@@ -63,5 +75,9 @@ public class Client {
         if (bankOnWeb == null){
 
         }
+    }
+
+    public void applyingForACredit(){
+
     }
 }
