@@ -1,6 +1,9 @@
 package client;
 
+import thorbank.FactorConnect;
+
 import java.net.PasswordAuthentication;
+import java.util.List;
 
 public class BusinessClient extends Client {
     List<IndividualClient> individualClientList;
