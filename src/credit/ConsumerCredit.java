@@ -10,13 +10,30 @@ public class ConsumerCredit extends Credit {
 
     public ConsumerCredit(String consumer, double amount, int creditPeriodInMonths, double yearlyInterestRate) {
         super(amount, creditPeriodInMonths);
-        this.consumer = consumer;
-        this.yearlyInterestRate = yearlyInterestRate;
+        setConsumer(consumer);
+        setYearlyInterestRate(yearlyInterestRate);
     }
 
+    public void setConsumer(String consumer) {
+        this.consumer = consumer;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setCreditPeriodInMonths(int creditPeriodInMonths) {
+        this.creditPeriodInMonths = creditPeriodInMonths;
+    }
+
+    public void setYearlyInterestRate(double yearlyInterestRate) {
+        this.yearlyInterestRate = yearlyInterestRate;
+    }
 
     @Override
     public double calculateCreditInterestRate() {
         return (creditPeriodInMonths / MONTHS_PER_YEAR) * (yearlyInterestRate * PERCENT_TO_NUM) * amount;
     }
+
+
 }
