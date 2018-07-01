@@ -14,6 +14,10 @@ public abstract class Credit {
         this.creditPeriodInMonths = creditPeriodInMonths;
     }
 
+    public double getMonthlyPayment() {
+        return monthlyPayment;
+    }
+
     public abstract double calculateCreditInterestRate();
 
     public void payedcreditInstallment(double amount){

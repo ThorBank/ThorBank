@@ -64,7 +64,8 @@ public class Client implements CreditAppliable, CreditPayable, DebitPayable, Deb
 
     @Override
     public void payCredit(Credit credit, Bill bill) {
-
+        bill.setBalance(bill.getBalance() - credit.getMonthlyPayment());
+        credit.payedcreditInstallment(credit.getMonthlyPayment());
     }
 
     @Override
