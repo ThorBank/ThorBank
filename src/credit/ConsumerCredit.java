@@ -53,15 +53,4 @@ public class ConsumerCredit extends Credit {
     public double calculateCreditInterestRate() {
         return (creditPeriodInMonths / MONTHS_PER_YEAR) * (yearlyInterestRate * PERCENT_TO_NUM) * amount;
     }
-
-
-    public static interface CreditAppliable {
-
-        void applyingForACredit();
-    }
-
-    public static interface CreditPayable {
-        void payCredit(Credit credit, Bill bill);
-        void payCredit(Credit credit, Card card);
-    }
 }

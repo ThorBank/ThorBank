@@ -4,15 +4,15 @@ import bank.GringottsBank;
 import card.Card;
 import credit.ConsumerCredit;
 import credit.Credit;
-import debit.Debit;
-import debit.IndefiniteDebit;
-import debit.TermDebit;
+import credit.CreditAppliable;
+import credit.CreditPayable;
+import debit.*;
 import thorbank.BankOnWeb;
 import thorbank.Bill;
 
 import java.util.List;
 
-public class Client implements ConsumerCredit.CreditAppliable, ConsumerCredit.CreditPayable, Debit.DebitPayable, Debit.TermDebitAppliable, Debit.IndefiniteDebitAppliable {
+public class Client implements CreditAppliable, CreditPayable, DebitPayable, TermDebitAppliable, IndefiniteDebitAppliable {
     private String firstName;
     private String lastName;
     private String email;

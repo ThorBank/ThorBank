@@ -5,12 +5,12 @@ import card.Card;
 import client.*;
 import credit.ConsumerCredit;
 import credit.Credit;
-import debit.Debit;
-import debit.IndefiniteDebit;
-import debit.TermDebit;
+import credit.CreditAppliable;
+import credit.CreditPayable;
+import debit.*;
 import housetaxes.Taxes;
 
-public class BankOnWebPro extends BankOnWeb implements ConsumerCredit.CreditAppliable, ConsumerCredit.CreditPayable, Debit.DebitPayable, Debit.IndefiniteDebitAppliable, Debit.TermDebitAppliable {
+public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitPayable, IndefiniteDebitAppliable, TermDebitAppliable {
     private static final double ONLINE_DISCOUNT_PERCENT = 2;
 
     public BankOnWebPro(Client client) {
@@ -63,12 +63,12 @@ public class BankOnWebPro extends BankOnWeb implements ConsumerCredit.CreditAppl
     }
 
     @Override
-    public void applyingForADebit(IndefiniteDebit indefiniteDebit) {
-        GringottsBank.getInstance().approveIndefiniteDebit(this.getClient(), indefiniteDebit, ONLINE_DISCOUNT_PERCENT);
+    public void applyForATermDebit(TermDebit termDebit) {
+        GringottsBank.getInstance().approveTermDebit(this.getClient(), termDebit, ONLINE_DISCOUNT_PERCENT);
     }
 
     @Override
-    public void applyForATermDebit(TermDebit termDebit) {
-        GringottsBank.getInstance().approveTermDebit(this.getClient(), termDebit, ONLINE_DISCOUNT_PERCENT);
+    public void applyingForAIndefiniteDebit(IndefiniteDebit debit) {
+
     }
 }

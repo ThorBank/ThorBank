@@ -73,17 +73,4 @@ public class Debit {
     public String getIban() {
         return iban;
     }
-
-    public static interface DebitPayable {
-        void injectMoney(Credit credit, Bill bill);
-        void withdrawMoney(Credit credit, Card card);
-    }
-
-    public static interface IndefiniteDebitAppliable {
-        void applyingForAIndefiniteDebit(IndefiniteDebit debit);
-    }
-
-    public static interface TermDebitAppliable {
-        void applyForATermDebit(TermDebit termDebit);
-    }
 }
