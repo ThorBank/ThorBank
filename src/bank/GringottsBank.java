@@ -5,9 +5,19 @@ import card.CreditCard;
 import card.DebitCard;
 import client.Client;
 import credit.Credit;
+import debit.Debit;
+import debit.IndefiniteDebit;
+import debit.TermDebit;
 import thorbank.Bill;
 
 public class GringottsBank extends Bank {
+    private static final GringottsBank INSTANCE = new GringottsBank();
+
+    private GringottsBank() {}
+
+    public static GringottsBank getInstance() {
+        return INSTANCE;
+    }
     private static final double AVERAGE_INTEREST_RATE = 0.01d;
     private static final double ATTRACTED_RESOURCE = 0.03d;
     private static final double LOANS = 10.0d;
@@ -30,7 +40,14 @@ public class GringottsBank extends Bank {
         }
     }
 
-    public void issuanceAccount(Client client, String iban) {
+    public boolean approveIndefiniteDebit(Client client, IndefiniteDebit debit, double discount){
+        return true;
+    }
 
+    public boolean approveTermDebit(Client client, TermDebit debit, double discount){
+        if (debit.getBalance() < 100){
+            return false;
+        }
+        return true;
     }
 }

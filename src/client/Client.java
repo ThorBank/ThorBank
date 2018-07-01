@@ -2,16 +2,17 @@ package client;
 
 import bank.GringottsBank;
 import card.Card;
+import credit.ConsumerCredit;
 import credit.Credit;
-import db.DB;
+import debit.Debit;
+import debit.IndefiniteDebit;
+import debit.TermDebit;
 import thorbank.BankOnWeb;
 import thorbank.Bill;
 
-import java.net.PasswordAuthentication;
 import java.util.List;
-import java.util.UUID;
 
-public class Client implements CreditAppliable, CreditPayable {
+public class Client implements ConsumerCredit.CreditAppliable, ConsumerCredit.CreditPayable, Debit.DebitPayable, Debit.TermDebitAppliable, Debit.IndefiniteDebitAppliable {
     private String firstName;
     private String lastName;
     private String email;
@@ -59,15 +60,13 @@ public class Client implements CreditAppliable, CreditPayable {
 
 
     public void createBankOnWeb(){
-        //TODO: BankOnWeb remove balance from constructor
         if (bankOnWeb == null){
-            bankOnWeb = new BankOnWeb();
+            bankOnWeb = new BankOnWeb(this);
         }
     }
 
     @Override
     public void applyingForACredit() {
-        //TODO: SingletonPattern - Gringotts Bank
         //TODO: The date on which we take the credit
     }
 
@@ -79,5 +78,26 @@ public class Client implements CreditAppliable, CreditPayable {
     @Override
     public void payCredit(Credit credit, Card card) {
 
+    }
+
+
+    @Override
+    public void injectMoney(Credit credit, Bill bill) {
+
+    }
+
+    @Override
+    public void withdrawMoney(Credit credit, Card card) {
+
+    }
+
+    @Override
+    public void applyingForAIndefiniteDebit(IndefiniteDebit indefiniteDebit) {
+        GringottsBank.getInstance().approveIndefiniteDebit(this, indefiniteDebit, 0);
+    }
+
+    @Override
+    public void applyForATermDebit(TermDebit termDebit) {
+        GringottsBank.getInstance().approveTermDebit(this, termDebit, 0);
     }
 }

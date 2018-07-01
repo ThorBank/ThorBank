@@ -1,6 +1,7 @@
 package thorbank;
 
 import card.Card;
+import client.Client;
 import tool.Message;
 
 import java.net.PasswordAuthentication;
@@ -19,13 +20,19 @@ public class BankOnWeb {
     private List<Transaction> transactionList;
     private List<Card> cardList;
     private List<Message> messagesWithTheBank;
+    private Client client;
 
-    public BankOnWeb() {
+    public BankOnWeb(Client client) {
         this.balance = 0;
+        this.client = client;
     }
 
     public double getBalance() {
         return this.balance;
+    }
+
+    public Client getClient() {
+        return client;
     }
 
     public void changePassword(){

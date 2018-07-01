@@ -6,6 +6,8 @@ import card.DebitCard;
 
 import java.util.Currency;
 import java.util.List;
+import credit.Credit;
+import thorbank.Bill;
 
 public class Debit {
     private String name;
@@ -72,7 +74,16 @@ public class Debit {
         return iban;
     }
 
-    public void setIban(String iban) {
-        this.iban = iban;
+    public static interface DebitPayable {
+        void injectMoney(Credit credit, Bill bill);
+        void withdrawMoney(Credit credit, Card card);
+    }
+
+    public static interface IndefiniteDebitAppliable {
+        void applyingForAIndefiniteDebit(IndefiniteDebit debit);
+    }
+
+    public static interface TermDebitAppliable {
+        void applyForATermDebit(TermDebit termDebit);
     }
 }
