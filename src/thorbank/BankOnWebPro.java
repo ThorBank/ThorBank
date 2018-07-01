@@ -1,11 +1,12 @@
 package thorbank;
 
 import client.Client;
+import client.CreditAppliable;
 import housetaxes.Taxes;
 
 import java.util.List;
 
-public class BankOnWebPro extends BankOnWeb {
+public class BankOnWebPro extends BankOnWeb implements CreditAppliable {
     private Bill currentBill;
 
     public BankOnWebPro(double balance, Bill currentBill) {
@@ -33,5 +34,10 @@ public class BankOnWebPro extends BankOnWeb {
             case HOUSEHOLD_BILLS: break;
             case FEES: break;
         }
+    }
+
+    @Override
+    public void applyingForACredit() {
+
     }
 }
