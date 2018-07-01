@@ -1,5 +1,6 @@
 package credit;
 
 public interface CreditAppliable {
-    void applyingForACredit();
+    void applyingForAConsumerCredit(ConsumerCredit consumerCredit);
+    void applyingForAHousingCredit(HousingCredit housingCredit);
 }

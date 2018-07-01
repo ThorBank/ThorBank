@@ -2,17 +2,14 @@ package client;
 
 import bank.GringottsBank;
 import card.Card;
-import credit.ConsumerCredit;
-import credit.Credit;
-import credit.CreditAppliable;
-import credit.CreditPayable;
+import credit.*;
 import debit.*;
 import thorbank.BankOnWeb;
 import thorbank.Bill;
 
 import java.util.List;
 
-public class Client implements CreditAppliable, CreditPayable, DebitPayable, TermDebitAppliable, IndefiniteDebitAppliable {
+public class Client implements CreditAppliable, CreditPayable, DebitPayable, DebitAppliable {
     private String firstName;
     private String lastName;
     private String email;
@@ -66,13 +63,8 @@ public class Client implements CreditAppliable, CreditPayable, DebitPayable, Ter
     }
 
     @Override
-    public void applyingForACredit() {
-        //TODO: The date on which we take the credit
-    }
-
-    @Override
     public void payCredit(Credit credit, Bill bill) {
-
+        
     }
 
     @Override
@@ -82,12 +74,12 @@ public class Client implements CreditAppliable, CreditPayable, DebitPayable, Ter
 
 
     @Override
-    public void injectMoney(Credit credit, Bill bill) {
+    public void injectMoneyFromDebit(Credit credit, Bill bill) {
 
     }
 
     @Override
-    public void withdrawMoney(Credit credit, Card card) {
+    public void withdrawMoneyFromDebit(Credit credit, Card card) {
 
     }
 
@@ -97,7 +89,17 @@ public class Client implements CreditAppliable, CreditPayable, DebitPayable, Ter
     }
 
     @Override
-    public void applyForATermDebit(TermDebit termDebit) {
+    public void applyingForATermDebit(TermDebit termDebit) {
         GringottsBank.getInstance().approveTermDebit(this, termDebit, 0);
+    }
+
+    @Override
+    public void applyingForAConsumerCredit(ConsumerCredit consumerCredit) {
+
+    }
+
+    @Override
+    public void applyingForAHousingCredit(HousingCredit housingCredit) {
+
     }
 }
