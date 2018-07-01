@@ -70,7 +70,8 @@ public class Client implements CreditAppliable, CreditPayable, DebitPayable, Deb
 
     @Override
     public void payCredit(Credit credit, Card card) {
-
+        card.setBalance(card.getBalance() - credit.getMonthlyPayment());
+        credit.payedcreditInstallment(credit.getMonthlyPayment());
     }
 
 
