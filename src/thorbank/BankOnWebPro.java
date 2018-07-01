@@ -12,8 +12,8 @@ import java.util.List;
 public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable {
     private Bill currentBill;
 
-    public BankOnWebPro(double balance, Bill currentBill) {
-        super(balance);
+    public BankOnWebPro(Bill currentBill) {
+        super();
         this.currentBill = currentBill;
     }
 
@@ -46,7 +46,7 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
 
     @Override
     public void payCredit(Credit credit, Bill bill) {
-        
+
     }
 
     @Override

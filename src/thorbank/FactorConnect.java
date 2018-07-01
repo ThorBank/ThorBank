@@ -6,8 +6,8 @@ import java.util.LinkedList;
 
 public class FactorConnect extends BankOnWebPro {
 
-    public FactorConnect(double balance, Bill currentBill) {
-        super(balance, currentBill);
+    public FactorConnect(Bill currentBill) {
+        super(currentBill);
     }
 
     public void payingSalary(LinkedList<IndividualClient> individualClients) {
