@@ -5,6 +5,8 @@ import card.Card;
 import credit.Credit;
 import db.DB;
 import debit.Debit;
+import debit.IndefiniteDebit;
+import debit.TermDebit;
 import thorbank.BankOnWeb;
 import thorbank.Bill;
 
@@ -12,7 +14,7 @@ import java.net.PasswordAuthentication;
 import java.util.List;
 import java.util.UUID;
 
-public class Client implements CreditAppliable, CreditPayable, DebitPayable, DebitAppliable {
+public class Client implements CreditAppliable, CreditPayable, DebitPayable, TermDebitAppliable, IndefiniteDebitAppliable {
     private String firstName;
     private String lastName;
     private String email;
@@ -82,10 +84,6 @@ public class Client implements CreditAppliable, CreditPayable, DebitPayable, Deb
 
     }
 
-    @Override
-    public void applyingForADebit(Debit debit) {
-        GringottsBank.getInstance().approveDebit(this, debit);
-    }
 
     @Override
     public void injectMoney(Credit credit, Bill bill) {
@@ -95,5 +93,15 @@ public class Client implements CreditAppliable, CreditPayable, DebitPayable, Deb
     @Override
     public void withdrawMoney(Credit credit, Card card) {
 
+    }
+
+    @Override
+    public void applyingForADebit(IndefiniteDebit indefiniteDebit) {
+        GringottsBank.getInstance().approveIndefiniteDebit(this, indefiniteDebit, 0);
+    }
+
+    @Override
+    public void applyForATermDebit(TermDebit termDebit) {
+        GringottsBank.getInstance().approveTermDebit(this, termDebit, 0);
     }
 }

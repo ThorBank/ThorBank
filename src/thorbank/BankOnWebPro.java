@@ -13,18 +13,10 @@ import java.util.List;
 
 public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitPayable, IndefiniteDebitAppliable, TermDebitAppliable {
     private static final double ONLINE_DISCOUNT_PERCENT = 2;
-    private Bill currentBill;
 
-    public BankOnWebPro(Bill currentBill, Client client) {
+    public BankOnWebPro(Client client) {
         super(client);
-        this.currentBill = currentBill;
     }
-
-    public Bill getCurrentBill() {
-        return this.currentBill;
-    }
-
-
 
     public void transactionBetweenBills(Client client, Bill firstBill, Bill secondBill, double amount) {
         if (!client.getBillList().contains(firstBill) || !client.getBillList().contains(secondBill)) {
