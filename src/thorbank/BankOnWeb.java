@@ -20,8 +20,8 @@ public class BankOnWeb {
     private List<Card> cardList;
     private List<Message> messagesWithTheBank;
 
-    public BankOnWeb(double balance) {
-        this.balance = balance;
+    public BankOnWeb() {
+        this.balance = 0;
     }
 
     public double getBalance() {

@@ -11,7 +11,7 @@ import java.net.PasswordAuthentication;
 import java.util.List;
 import java.util.UUID;
 
-public class Client implements CreditAppliable {
+public class Client implements CreditAppliable, CreditPayable {
     private String firstName;
     private String lastName;
     private String email;
@@ -56,14 +56,7 @@ public class Client implements CreditAppliable {
         return cardList;
     }
 
-    public void payCredit(Credit credit, Bill bill){
-        //TODO: Need to calculate how much to pay every month
-        bill.setAvailability(bill.getAvailability() - credit.calculateCreditInterestRate());
-    }
 
-    public void payCredit(Credit credit, Card card){
-        //TODO: Need to calculate how much to pay every month
-    }
 
     public void createBankOnWeb(){
         //TODO: BankOnWeb remove balance from constructor
@@ -76,5 +69,15 @@ public class Client implements CreditAppliable {
     public void applyingForACredit() {
         //TODO: SingletonPattern - Gringotts Bank
         //TODO: The date on which we take the credit
+    }
+
+    @Override
+    public void payCredit(Credit credit, Bill bill) {
+
+    }
+
+    @Override
+    public void payCredit(Credit credit, Card card) {
+
     }
 }
