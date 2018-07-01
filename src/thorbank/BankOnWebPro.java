@@ -3,15 +3,14 @@ package thorbank;
 import bank.GringottsBank;
 import card.Card;
 import client.*;
+import credit.ConsumerCredit;
 import credit.Credit;
 import debit.Debit;
 import debit.IndefiniteDebit;
 import debit.TermDebit;
 import housetaxes.Taxes;
 
-import java.util.List;
-
-public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitPayable, IndefiniteDebitAppliable, TermDebitAppliable {
+public class BankOnWebPro extends BankOnWeb implements ConsumerCredit.CreditAppliable, ConsumerCredit.CreditPayable, Debit.DebitPayable, Debit.IndefiniteDebitAppliable, Debit.TermDebitAppliable {
     private static final double ONLINE_DISCOUNT_PERCENT = 2;
 
     public BankOnWebPro(Client client) {

@@ -1,5 +1,8 @@
 package credit;
 
+import card.Card;
+import thorbank.Bill;
+
 public class ConsumerCredit extends Credit {
     private String consumer;
     private double amount;
@@ -52,4 +55,13 @@ public class ConsumerCredit extends Credit {
     }
 
 
+    public static interface CreditAppliable {
+
+        void applyingForACredit();
+    }
+
+    public static interface CreditPayable {
+        void payCredit(Credit credit, Bill bill);
+        void payCredit(Credit credit, Card card);
+    }
 }
