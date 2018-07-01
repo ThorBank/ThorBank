@@ -24,10 +24,6 @@ public class GringottsBank extends Bank {
     private static final double OTHER_RECEIVABLES = 6.0d;
     private static final double DISCOUNTS = 2.0d;
 
-    public void changeCreditInterestRate(Credit credit) {
-//      SGEBBIR= (S*K1) + (R*K2) - D
-    }
-
     public void issuanceCard(CreditCard card, Client client) {
         client.getCardList().add(card);
     }
