@@ -4,7 +4,9 @@ import card.Card;
 import card.CreditCard;
 import card.DebitCard;
 import client.Client;
+import credit.ConsumerCredit;
 import credit.Credit;
+import credit.HousingCredit;
 import debit.Debit;
 import debit.IndefiniteDebit;
 import debit.TermDebit;
@@ -44,6 +46,17 @@ public class GringottsBank extends Bank {
         if (debit.getBalance() < 100){
             return false;
         }
+        return true;
+    }
+
+    public boolean approveConsumerCredit(Client client, ConsumerCredit consumerCredit, double discount){
+        if (consumerCredit.getAmount() > 5000){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean approveHousingCredit(Client client, HousingCredit housingCredit, double discount){
         return true;
     }
 }

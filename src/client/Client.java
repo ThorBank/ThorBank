@@ -76,23 +76,27 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
 
 
     @Override
-    public void injectMoneyInDebit(Debit debit, Bill bill) {
-
+    public void injectMoneyInDebit(Debit debit, Bill bill, double amount) {
+        bill.setBalance(bill.getBalance() - amount);
+        debit.injectMoney(amount);
     }
 
     @Override
-    public void injectMoneyInDebit(Debit debit, Card card) {
-
+    public void injectMoneyInDebit(Debit debit, Card card, double amount) {
+        card.setBalance(card.getBalance() - amount);
+        debit.injectMoney(amount);
     }
 
     @Override
-    public void withdrawMoneyFromDebit(Debit debit, Bill bill) {
-
+    public void withdrawMoneyFromDebit(Debit debit, Bill bill, double amount) {
+        bill.setBalance(bill.getBalance() - amount);
+        debit.withdrawMoney(amount);
     }
 
     @Override
-    public void withdrawMoneyFromDebit(Debit debit, Card card) {
-
+    public void withdrawMoneyFromDebit(Debit debit, Card card, double amount) {
+        card.setBalance(card.getBalance() - amount);
+        debit.withdrawMoney(amount);
     }
 
     @Override
@@ -107,11 +111,11 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
 
     @Override
     public void applyingForAConsumerCredit(ConsumerCredit consumerCredit) {
-
+        GringottsBank.getInstance().approveConsumerCredit(this, consumerCredit, 0);
     }
 
     @Override
     public void applyingForAHousingCredit(HousingCredit housingCredit) {
-
+        GringottsBank.getInstance().approveHousingCredit(this, housingCredit, 0);
     }
 }
