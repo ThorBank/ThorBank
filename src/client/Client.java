@@ -64,7 +64,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitPayable, Deb
 
     @Override
     public void payCredit(Credit credit, Bill bill) {
-        
+
     }
 
     @Override
@@ -74,12 +74,12 @@ public class Client implements CreditAppliable, CreditPayable, DebitPayable, Deb
 
 
     @Override
-    public void injectMoneyFromDebit(Credit credit, Bill bill) {
+    public void injectMoneyFromDebit(Debit credit, Bill bill) {
 
     }
 
     @Override
-    public void withdrawMoneyFromDebit(Credit credit, Card card) {
+    public void withdrawMoneyFromDebit(Debit credit, Card card) {
 
     }
 

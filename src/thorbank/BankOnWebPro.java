@@ -3,14 +3,11 @@ package thorbank;
 import bank.GringottsBank;
 import card.Card;
 import client.*;
-import credit.ConsumerCredit;
-import credit.Credit;
-import credit.CreditAppliable;
-import credit.CreditPayable;
+import credit.*;
 import debit.*;
 import housetaxes.Taxes;
 
-public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitPayable, IndefiniteDebitAppliable, TermDebitAppliable {
+public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitAppliable, DebitPayable  {
     private static final double ONLINE_DISCOUNT_PERCENT = 2;
 
     public BankOnWebPro(Client client) {
@@ -36,11 +33,6 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
     }
 
     @Override
-    public void applyingForACredit() {
-
-    }
-
-    @Override
     public void payCredit(Credit credit, Bill bill) {
 
     }
@@ -50,25 +42,33 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
 
     }
 
-
-
     @Override
-    public void injectMoney(Credit credit, Bill bill) {
-
-    }
-
-    @Override
-    public void withdrawMoney(Credit credit, Card card) {
-
-    }
-
-    @Override
-    public void applyForATermDebit(TermDebit termDebit) {
+    public void applyingForATermDebit(TermDebit termDebit) {
         GringottsBank.getInstance().approveTermDebit(this.getClient(), termDebit, ONLINE_DISCOUNT_PERCENT);
     }
 
     @Override
     public void applyingForAIndefiniteDebit(IndefiniteDebit debit) {
+
+    }
+
+    @Override
+    public void applyingForAConsumerCredit(ConsumerCredit consumerCredit) {
+
+    }
+
+    @Override
+    public void applyingForAHousingCredit(HousingCredit housingCredit) {
+
+    }
+
+    @Override
+    public void injectMoneyFromDebit(Debit credit, Bill bill) {
+
+    }
+
+    @Override
+    public void withdrawMoneyFromDebit(Debit credit, Card card) {
 
     }
 }
