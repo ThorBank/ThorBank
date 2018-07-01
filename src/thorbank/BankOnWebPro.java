@@ -7,7 +7,7 @@ import credit.*;
 import debit.*;
 import housetaxes.Taxes;
 
-public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitAppliable, DebitPayable  {
+public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable {
     private static final double ONLINE_DISCOUNT_PERCENT = 2;
 
     public BankOnWebPro(Client client) {
@@ -63,7 +63,17 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
     }
 
     @Override
-    public void injectMoneyFromDebit(Debit credit, Bill bill) {
+    public void injectMoneyInDebit(Debit credit, Bill bill) {
+
+    }
+
+    @Override
+    public void injectMoneyInDebit(Debit debit, Card card) {
+
+    }
+
+    @Override
+    public void withdrawMoneyFromDebit(Debit debit, Bill bill) {
 
     }
 

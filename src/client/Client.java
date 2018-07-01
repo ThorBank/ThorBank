@@ -9,7 +9,7 @@ import thorbank.Bill;
 
 import java.util.List;
 
-public class Client implements CreditAppliable, CreditPayable, DebitPayable, DebitAppliable {
+public class Client implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable {
     private String firstName;
     private String lastName;
     private String email;
@@ -76,7 +76,17 @@ public class Client implements CreditAppliable, CreditPayable, DebitPayable, Deb
 
 
     @Override
-    public void injectMoneyFromDebit(Debit debit, Bill bill) {
+    public void injectMoneyInDebit(Debit debit, Bill bill) {
+
+    }
+
+    @Override
+    public void injectMoneyInDebit(Debit debit, Card card) {
+
+    }
+
+    @Override
+    public void withdrawMoneyFromDebit(Debit debit, Bill bill) {
 
     }
 
