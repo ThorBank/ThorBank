@@ -8,11 +8,11 @@ import java.net.PasswordAuthentication;
 import java.util.List;
 
 public class BusinessClient extends Client {
-    List<IndividualClient> individualClientList;
+    List<IndividualClient> employeeList;
     FactorConnect factorConnect;
 
-    public BusinessClient(String firstName, String lastName, String email) {
-        super(firstName, lastName, email);
+    public BusinessClient(String CEOFirstName, String CEOLirstName, String CEOEmail) {
+        super(CEOFirstName, CEOLirstName, CEOEmail);
     }
 
 
@@ -23,6 +23,6 @@ public class BusinessClient extends Client {
     }
 
     public void addNewWorker(IndividualClient individualClient){
-        individualClientList.add(individualClient);
+        employeeList.add(individualClient);
     }
 }
