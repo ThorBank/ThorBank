@@ -1,5 +1,5 @@
 package debit;
 
-public class TermDeposit {
+public class TermDebit {
     private int time;
 }
