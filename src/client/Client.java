@@ -29,6 +29,14 @@ public class Client {
         setEmail(email);
     }
 
+    public List<Bill> getBillList() {
+        return billList;
+    }
+
+    public List<Card> getCardList() {
+        return cardList;
+    }
+
     private void setPasswordAuthentication(PasswordAuthentication passwordAuthentication) {
         if (!passwordAuthentication.getPassword().toString().matches(PASSWORD_REGEX)){
 
