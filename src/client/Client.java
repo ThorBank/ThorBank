@@ -60,7 +60,6 @@ public class Client implements ConsumerCredit.CreditAppliable, ConsumerCredit.Cr
 
 
     public void createBankOnWeb(){
-        //TODO: BankOnWeb remove balance from constructor
         if (bankOnWeb == null){
             bankOnWeb = new BankOnWeb(this);
         }
