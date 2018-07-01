@@ -4,7 +4,7 @@ import java.net.PasswordAuthentication;
 
 public class IndividualClient extends Client {
 
-    public IndividualClient(PasswordAuthentication passwordAuthentication, String email) {
-        super(passwordAuthentication, email);
+    public IndividualClient(String firstName, String lastName, String email) {
+        super(firstName, lastName, email);
     }
 }
