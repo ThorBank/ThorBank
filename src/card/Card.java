@@ -1,5 +1,8 @@
 package card;
 
+import client.Client;
+
+import java.util.Currency;
 import java.util.Date;
 
 public class Card {
@@ -10,14 +13,20 @@ public class Card {
     private Date expirationDate;
     private String CVV;
     private String CVV2;
+    private Client client;
+    private double balance;
+    private Currency currency;
 
-    public Card(String number, String firstName, String lastName, Date expirationDate, String CVV, String CVV2) {
+    public Card(String number, String firstName, String lastName, Date expirationDate, String CVV, String CVV2, Client client, double balance, Currency currency) {
         setNumber(number);
         setFirstName(firstName);
         setLastName(lastName);
         setExpirationDate(expirationDate);
         setCVV(CVV);
         setCVV2(CVV2);
+        setClient(client);
+        setBalance(balance);
+        setCurrency(currency);
     }
 
     public String getNumber() {
@@ -70,4 +79,29 @@ public class Card {
     public void setCVV2(String CVV2) {
         this.CVV2 = CVV2;
     }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
 }
