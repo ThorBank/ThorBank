@@ -61,7 +61,7 @@ public class Client implements CreditAppliable, CreditPayable {
     public void createBankOnWeb(){
         //TODO: BankOnWeb remove balance from constructor
         if (bankOnWeb == null){
-            bankOnWeb = new BankOnWeb(0);
+            bankOnWeb = new BankOnWeb();
         }
     }
 
