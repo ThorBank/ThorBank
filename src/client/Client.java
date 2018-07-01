@@ -4,6 +4,7 @@ import bank.GringottsBank;
 import card.Card;
 import credit.Credit;
 import db.DB;
+import debit.Debit;
 import thorbank.BankOnWeb;
 import thorbank.Bill;
 
@@ -11,7 +12,7 @@ import java.net.PasswordAuthentication;
 import java.util.List;
 import java.util.UUID;
 
-public class Client implements CreditAppliable, CreditPayable {
+public class Client implements CreditAppliable, CreditPayable, DebitPayable, DebitAppliable {
     private String firstName;
     private String lastName;
     private String email;
@@ -61,7 +62,7 @@ public class Client implements CreditAppliable, CreditPayable {
     public void createBankOnWeb(){
         //TODO: BankOnWeb remove balance from constructor
         if (bankOnWeb == null){
-            bankOnWeb = new BankOnWeb();
+            bankOnWeb = new BankOnWeb(this);
         }
     }
 
@@ -78,6 +79,21 @@ public class Client implements CreditAppliable, CreditPayable {
 
     @Override
     public void payCredit(Credit credit, Card card) {
+
+    }
+
+    @Override
+    public void applyingForADebit(Debit debit) {
+        GringottsBank.getInstance().approveDebit(this, debit);
+    }
+
+    @Override
+    public void injectMoney(Credit credit, Bill bill) {
+
+    }
+
+    @Override
+    public void withdrawMoney(Credit credit, Card card) {
 
     }
 }
