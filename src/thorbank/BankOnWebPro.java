@@ -17,15 +17,21 @@ public class BankOnWebPro extends BankOnWeb {
         return this.currentBill;
     }
 
-    public void transactionBetweenBills(Client client, List<Bill> billList, double amount) {
+    public void transactionBetweenBills(Client client, Bill firstBill, Bill secondBill, double amount) {
+        if (!client.getBillList().contains(firstBill) || !client.getBillList().contains(secondBill)) {
 
+        }
+
+        firstBill.setAvailability(firstBill.getAvailability()-amount);
+        secondBill.setAvailability(secondBill.getAvailability()+amount);
     }
+
 
     public void payingTaxes(Taxes taxes) {
         switch (taxes) {
-            case TAXES: ; break;
-            case HOUSEHOLD_BILLS: ; break;
-            case FEES: ; break;
+            case TAXES: break;
+            case HOUSEHOLD_BILLS: break;
+            case FEES: break;
         }
     }
 }
