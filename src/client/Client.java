@@ -16,6 +16,8 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     private List<Bill> billList;
     private List<Card> cardList;
     private List<Credit> creditList;
+    private double balance;
+    private double billAvailability;
     private BankOnWeb bankOnWeb;
 
     public Client(String firstName, String lastName, String email) {
@@ -44,7 +46,13 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         return lastName;
     }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 
+    public double getBalance() {
+        return balance;
+    }
 
     public List<Bill> getBillList() {
         return billList;
@@ -55,9 +63,8 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     }
 
 
-
-    public void createBankOnWeb(){
-        if (bankOnWeb == null){
+    public void createBankOnWeb() {
+        if (bankOnWeb == null) {
             bankOnWeb = new BankOnWeb(this);
         }
     }
