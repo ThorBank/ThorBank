@@ -63,9 +63,12 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     }
 
 
-    public void createBankOnWeb() {
+    public void createBankOnWeb() throws BankOnWebAlreadyExistsException {
         if (bankOnWeb == null) {
             bankOnWeb = new BankOnWeb(this);
+        }
+        else {
+            throw new BankOnWebAlreadyExistsException();
         }
     }
 

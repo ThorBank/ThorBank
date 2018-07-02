@@ -42,7 +42,7 @@ public class BankOnWeb {
         }
     }
 
-    public void changeUsername(String newUserName){
+    public void changeUsername(String newUserName) throws UsernameFormatException, TakenUsernameException {
         boolean isNewUserNameTaken = false;
         for (int i = 0; i < DB.getInstance().getBankOnWebList().size(); i++){
             if (DB.getInstance().getBankOnWebList().get(i).getPasswordAuthentication().getUserName() == newUserName){
@@ -50,7 +50,13 @@ public class BankOnWeb {
                 break;
             }
         }
-        if (newUserName.matches(USERNAME_REGEX) && !isNewUserNameTaken){
+        if (!newUserName.matches(USERNAME_REGEX)){
+            throw new UsernameFormatException();
+        }
+        else if (isNewUserNameTaken){
+            throw new TakenUsernameException();
+        }
+        else {
             this.setPasswordAuthentication(new PasswordAuthentication(newUserName, getPasswordAuthentication().getPassword()));
         }
     }
