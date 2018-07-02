@@ -22,4 +22,16 @@ public class Message {
     public void setValidityMessage(ValidityMessage validityMessage) {
         this.validityMessage = validityMessage;
     }
+
+    public StatusMessage getStatusMessage() {
+        return statusMessage;
+    }
+
+    public PriorityMessage getPriorityMessage() {
+        return priorityMessage;
+    }
+
+    public ValidityMessage getValidityMessage() {
+        return validityMessage;
+    }
 }
