@@ -68,10 +68,7 @@ public class BankOnWeb {
 
     public void printTransactionList(List<Transaction> transactionList){
         for (int i = 0; i < transactionList.size(); i++){
-            System.out.print(transactionList.get(i).getDate() + " " +
-                    transactionList.get(i).getEmail() + " " +
-                    transactionList.get(i).getTransactionAmount() + " " +
-                    transactionList.get(i).getTransactionType().toString());
+            System.out.print(transactionList.get(i).toString());
         }
     }
 }
