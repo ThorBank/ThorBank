@@ -1,24 +1,25 @@
 package thorbank;
 
+import java.util.Date;
+
 public class Transaction {
-    private String date;
+    private Date date;
     private double transactionAmount;
     private TransactionType transactionType;
     private String email;
 
-    public Transaction(String date, double transactionAmount, TransactionType transactionType, String email) {
+    public Transaction(Date date, double transactionAmount, TransactionType transactionType, String email) {
         setDate(date);
         setTransactionAmount(transactionAmount);
         setTransactionType(transactionType);
         setEmail(email);
     }
 
-
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

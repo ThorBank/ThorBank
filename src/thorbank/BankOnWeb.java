@@ -5,6 +5,8 @@ import db.DB;
 import message.Message;
 
 import java.net.PasswordAuthentication;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -50,6 +52,26 @@ public class BankOnWeb {
         }
         if (newUserName.matches(USERNAME_REGEX) && !isNewUserNameTaken){
             this.setPasswordAuthentication(new PasswordAuthentication(newUserName, getPasswordAuthentication().getPassword()));
+        }
+    }
+
+    public List<Transaction> searchInTransactionListByDate(Date startDate, Date endDate){
+        List<Transaction> resultTransactionsFromSearch = new LinkedList<>();
+        for (int i = 0; i < transactionList.size(); i++){
+            if (transactionList.get(i).getDate().compareTo(startDate) >= 0 && transactionList.get(i).getDate().compareTo(endDate) <= 0){
+                resultTransactionsFromSearch.add(transactionList.get(i));
+            }
+        }
+
+        return resultTransactionsFromSearch;
+    }
+
+    public void printTransactionList(List<Transaction> transactionList){
+        for (int i = 0; i < transactionList.size(); i++){
+            System.out.print(transactionList.get(i).getDate() + " " +
+                    transactionList.get(i).getEmail() + " " +
+                    transactionList.get(i).getTransactionAmount() + " " +
+                    transactionList.get(i).getTransactionType().toString());
         }
     }
 }
