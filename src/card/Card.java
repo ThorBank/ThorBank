@@ -33,9 +33,9 @@ public class Card {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(String number) throws CardNumberFormatException {
         if (!number.matches(NUMBER_REGEX)){
-
+            throw new CardNumberFormatException();
         }
         this.number = number;
     }
