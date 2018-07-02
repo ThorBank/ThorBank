@@ -6,6 +6,8 @@ import card.DebitCard;
 
 import java.util.Currency;
 import java.util.List;
+
+import card.NotEnoughMoneyInCardException;
 import credit.Credit;
 import thorbank.Bill;
 
@@ -25,10 +27,9 @@ public class Debit {
         return this.balance;
     }
 
-    public void withdrawMoney(CreditCard creditCard, double amount, Currency currency) {
+    public void withdrawMoney(CreditCard creditCard, double amount, Currency currency) throws NotEnoughMoneyInCardException {
         if (creditCard.getBalance() <= 0 || creditCard.getBalance() - amount < 0){
-            System.out.println("Cannot withdraw money! Not enough money.");
-            System.out.println("Your balance is: " + creditCard.getBalance() + " " + currency.toString());
+            throw new NotEnoughMoneyInCardException();
         }
         else {
             creditCard.setBalance(creditCard.getBalance() - amount);
@@ -37,10 +38,9 @@ public class Debit {
         }
     }
 
-    public void withdrawMoney(DebitCard debitCard, double amount, Currency currency) {
+    public void withdrawMoney(DebitCard debitCard, double amount, Currency currency) throws NotEnoughMoneyInCardException {
         if (debitCard.getBalance() <= 0 || debitCard.getBalance() - amount < 0){
-            System.out.println("Cannot withdraw money! Not enough money.");
-            System.out.println("Your balance is: " + debitCard.getBalance() + " " + currency.toString());
+            throw new NotEnoughMoneyInCardException();
         }
         else {
             debitCard.setBalance(debitCard.getBalance() - amount);
