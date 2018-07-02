@@ -17,7 +17,7 @@ public class Card {
     private double balance;
     private Currency currency;
 
-    public Card(String number, String firstName, String lastName, Date expirationDate, String CVV, String CVV2, Client client, double balance, Currency currency) {
+    public Card(String number, String firstName, String lastName, Date expirationDate, String CVV, String CVV2, Client client, double balance, Currency currency) throws CardNumberFormatException {
         setNumber(number);
         setFirstName(firstName);
         setLastName(lastName);
