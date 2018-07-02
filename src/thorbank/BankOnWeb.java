@@ -1,10 +1,8 @@
 package thorbank;
 
-import bank.GringottsBank;
-import card.Card;
 import client.Client;
 import db.DB;
-import tool.Message;
+import message.Message;
 
 import java.net.PasswordAuthentication;
 import java.util.List;
