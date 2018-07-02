@@ -34,12 +34,14 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
 
     @Override
     public void payCredit(Credit credit, Bill bill) {
-
+        bill.setBalance(bill.getBalance() - credit.getMonthlyPayment() + 2/100*credit.getMonthlyPayment());
+        credit.payedcreditInstallment(credit.getMonthlyPayment() - 2/100*credit.getMonthlyPayment());
     }
 
     @Override
     public void payCredit(Credit credit, Card card) {
-
+        card.setBalance(card.getBalance() - credit.getMonthlyPayment() + 2/100*credit.getMonthlyPayment());
+        credit.payedcreditInstallment(credit.getMonthlyPayment() - 2/100*credit.getMonthlyPayment());
     }
 
     @Override
@@ -48,37 +50,41 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
     }
 
     @Override
-    public void applyingForAIndefiniteDebit(IndefiniteDebit debit) {
-
+    public void applyingForAIndefiniteDebit(IndefiniteDebit indefiniteDebit) {
+        GringottsBank.getInstance().approveIndefiniteDebit(this.getClient(), indefiniteDebit, ONLINE_DISCOUNT_PERCENT);
     }
 
     @Override
     public void applyingForAConsumerCredit(ConsumerCredit consumerCredit) {
-
+        GringottsBank.getInstance().approveConsumerCredit(this.getClient(), consumerCredit, 0);
     }
 
     @Override
     public void applyingForAHousingCredit(HousingCredit housingCredit) {
-
+        GringottsBank.getInstance().approveHousingCredit(this.getClient(), housingCredit, 0);
     }
 
     @Override
-    public void injectMoneyInDebit(Debit credit, Bill bill) {
-
+    public void injectMoneyInDebit(Debit debit, Bill bill, double amount) {
+        bill.setBalance(bill.getBalance() - amount);
+        debit.injectMoney(amount);
     }
 
     @Override
-    public void injectMoneyInDebit(Debit debit, Card card) {
-
+    public void injectMoneyInDebit(Debit debit, Card card, double amount) {
+        card.setBalance(card.getBalance() - amount);
+        debit.injectMoney(amount);
     }
 
     @Override
-    public void withdrawMoneyFromDebit(Debit debit, Bill bill) {
-
+    public void withdrawMoneyFromDebit(Debit debit, Bill bill, double amount) {
+        bill.setBalance(bill.getBalance() - amount);
+        debit.withdrawMoney(amount);
     }
 
     @Override
-    public void withdrawMoneyFromDebit(Debit credit, Card card) {
-
+    public void withdrawMoneyFromDebit(Debit debit, Card card, double amount) {
+        card.setBalance(card.getBalance() - amount);
+        debit.withdrawMoney(amount);
     }
 }
