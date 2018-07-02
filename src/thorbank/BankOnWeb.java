@@ -1,7 +1,9 @@
 package thorbank;
 
+import bank.GringottsBank;
 import card.Card;
 import client.Client;
+import db.DB;
 import tool.Message;
 
 import java.net.PasswordAuthentication;
@@ -35,11 +37,30 @@ public class BankOnWeb {
         return client;
     }
 
-    public void changePassword(){
-
+    public void setPasswordAuthentication(PasswordAuthentication passwordAuthentication) {
+        this.passwordAuthentication = passwordAuthentication;
     }
 
-    public void changeUsername(){
+    public PasswordAuthentication getPasswordAuthentication() {
+        return passwordAuthentication;
+    }
 
+    public void changePassword(String newPassword){
+        if (newPassword.matches(PASSWORD_REGEX)){
+            this.setPasswordAuthentication(new PasswordAuthentication(getPasswordAuthentication().getUserName(), newPassword.toCharArray()));
+        }
+    }
+
+    public void changeUsername(String newUserName){
+        boolean isNewUserNameTaken = false;
+        for (int i = 0; i < DB.getInstance().getBankOnWebList().size(); i++){
+            if (DB.getInstance().getBankOnWebList().get(i).getPasswordAuthentication().getUserName() == newUserName){
+                isNewUserNameTaken = true;
+                break;
+            }
+        }
+        if (newUserName.matches(USERNAME_REGEX) && !isNewUserNameTaken){
+            this.setPasswordAuthentication(new PasswordAuthentication(newUserName, getPasswordAuthentication().getPassword()));
+        }
     }
 }
