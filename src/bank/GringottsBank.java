@@ -9,8 +9,6 @@ import debit.IndefiniteDebit;
 import debit.TermDebit;
 import thorbank.Bill;
 
-import java.util.List;
-
 /**
  *  GringottsBank is our bank.
  */
