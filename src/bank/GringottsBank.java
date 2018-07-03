@@ -12,11 +12,13 @@ import thorbank.Bill;
 /**
  *  GringottsBank is our bank.
  */
-public final class GringottsBank extends Bank {
+public final class GringottsBank {
     /**
      * Singleton pattern. The only instance of GringottsBank.
      */
     private static final GringottsBank INSTANCE = new GringottsBank();
+
+    private GringottsBank(){}
 
     /**
      * Getter for the only instance of GringottsBank.
