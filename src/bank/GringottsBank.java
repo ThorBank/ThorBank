@@ -9,6 +9,10 @@ import debit.IndefiniteDebit;
 import debit.TermDebit;
 import thorbank.Bill;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 /**
  *  GringottsBank is our bank.
  */
@@ -41,23 +45,8 @@ public final class GringottsBank {
      * The amount charged, expressed as a percentage of principal,
      * by a lender to a borrower for the use of assets.
      */
-    private static final double AVERAGE_INTEREST_RATE = 0.01d;
-    /**
-     *
-     */
-    private static final double ATTRACTED_RESOURCE = 0.03d;
-    /**
-     *
-     */
-    private static final double LOANS = 10.0d;
-    /**
-     *
-     */
-    private static final double OTHER_RECEIVABLES = 6.0d;
-    /**
-     *
-     */
-    private static final double DISCOUNTS = 2.0d;
+    private static final int MIN_YEARS_OWN_CREDIT_CARD = 23;
+    private static final int MAX_YEARS_OWN_CREDIT_CARD = 63;
 
     /**
      * This is for app.
@@ -65,8 +54,19 @@ public final class GringottsBank {
      * @param card **The cardgf gsdg dsg d**
      * @param client **The client dsg dsgds**
      */
-    public void approveCreditCard(final CreditCard card, final Client client) {
-        client.getCardList().add(card);
+    public boolean approveCreditCard(final CreditCard card, final Client client) {
+        Date date = new Date();
+        Calendar timeNow = new GregorianCalendar();
+        timeNow.setTime(date);
+        int clientYears = timeNow.get(Calendar.YEAR) - client.getDateofBirth().get(Calendar.YEAR);
+        if (!(clientYears >= MIN_YEARS_OWN_CREDIT_CARD && clientYears <= MAX_YEARS_OWN_CREDIT_CARD)){
+            return false;
+        }
+        else if (!client.isWorking())
+        {
+            return false;
+        }
+        return true;
     }
 
     /**

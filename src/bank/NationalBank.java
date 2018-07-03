@@ -2,8 +2,10 @@ package bank;
 
 import client.Client;
 
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * GringottsBank is our bank.
@@ -21,8 +23,8 @@ public final class NationalBank {
 
     {
         clientList = new HashSet<>();
-        clientList.add(new Client("Georgi", "Georgiev", "g.georgiev@gmail.com"));
-        clientList.add(new Client("Ivan", "Ivanov", "i.ivanov@gmail.com"));
-        clientList.add(new Client("Dimitur", "Dimitrov", "d.dimitrov@gmail.com"));
+        clientList.add(new Client("Georgi", "Georgiev", "g.georgiev@gmail.com", new GregorianCalendar(1990, 2,4), true));
+        clientList.add(new Client("Ivan", "Ivanov", "i.ivanov@gmail.com", new GregorianCalendar(2009, 3, 25), true));
+        clientList.add(new Client("Dimitur", "Dimitrov", "d.dimitrov@gmail.com", new GregorianCalendar(1950, 3,27), false));
     }
 }

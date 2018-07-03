@@ -7,12 +7,17 @@ import debit.*;
 import thorbank.BankOnWeb;
 import thorbank.Bill;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Client implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable {
     private String firstName;
     private String lastName;
     private String email;
+    private Calendar dateofBirth;
+    private boolean isWorking;
     private List<Bill> billList;
     private List<Card> cardList;
     private List<Credit> creditList;
@@ -20,10 +25,20 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     private double billAvailability;
     private BankOnWeb bankOnWeb;
 
-    public Client(String firstName, String lastName, String email) {
+    public Client(String firstName, String lastName, String email, GregorianCalendar dateofBirth, boolean isWorking) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
+        setDateofBirth(dateofBirth);
+        setWorking(isWorking);
+    }
+
+    public boolean isWorking() {
+        return isWorking;
+    }
+
+    public void setWorking(boolean working) {
+        isWorking = working;
     }
 
     public void setFirstName(String firstName) {
@@ -62,6 +77,13 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         return cardList;
     }
 
+    public Calendar getDateofBirth() {
+        return dateofBirth;
+    }
+
+    public void setDateofBirth(Calendar dateofBirth) {
+        this.dateofBirth = dateofBirth;
+    }
 
     public void createBankOnWeb() throws BankOnWebAlreadyExistsException {
         if (bankOnWeb == null) {

@@ -1,12 +1,13 @@
 package client;
 
 import java.net.PasswordAuthentication;
+import java.util.GregorianCalendar;
 
 public class IndividualClient extends Client {
     private double salary;
 
-    public IndividualClient(String firstName, String lastName, String email) {
-        super(firstName, lastName, email);
+    public IndividualClient(String firstName, String lastName, String email, GregorianCalendar dateofBirth, boolean isWorking) {
+        super(firstName, lastName, email, dateofBirth, isWorking);
     }
 
     public double getSalary() {
