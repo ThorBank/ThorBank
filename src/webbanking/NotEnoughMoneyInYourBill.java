@@ -1,4 +1,4 @@
-package thorbank;
+package webbanking;
 
 public class NotEnoughMoneyInYourBill extends Exception {
         public NotEnoughMoneyInYourBill(){

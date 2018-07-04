@@ -1,4 +1,4 @@
-package thorbank;
+package webbanking;
 
 public class Bill {
     private String iban;

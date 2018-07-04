@@ -1,10 +1,9 @@
 package housetaxes;
 
-import thorbank.Bill;
+import webbanking.Bill;
 
 public class HouseTax {
     //TODO: Add other enums
-    //TODO: Adding Supplier. If not delete GasCompany, Charity and WaterSupply
     private String subscriberNumber;
     private Bill bill;
     private String payName;

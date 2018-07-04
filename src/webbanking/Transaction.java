@@ -1,7 +1,6 @@
-package thorbank;
+package webbanking;
 
 import java.util.Date;
-import java.util.List;
 
 public class Transaction {
     private Date date;

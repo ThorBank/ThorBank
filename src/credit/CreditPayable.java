@@ -1,7 +1,7 @@
 package credit;
 
 import card.Card;
-import thorbank.Bill;
+import webbanking.Bill;
 
 public interface CreditPayable {
         void payCredit(Credit credit, Bill bill);

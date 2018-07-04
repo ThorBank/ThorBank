@@ -1,7 +1,7 @@
 package card;
 
 import client.Client;
-import thorbank.Currency;
+import webbanking.Currency;
 
 public class CreditCard extends Card {
 

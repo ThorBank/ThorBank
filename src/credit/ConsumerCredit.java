@@ -1,8 +1,6 @@
 package credit;
 
-import card.Card;
 import client.Client;
-import thorbank.Bill;
 
 public class ConsumerCredit extends Credit {
     private Client client;

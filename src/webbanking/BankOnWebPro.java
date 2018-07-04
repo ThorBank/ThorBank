@@ -1,4 +1,4 @@
-package thorbank;
+package webbanking;
 
 import bank.GringottsBank;
 import card.Card;

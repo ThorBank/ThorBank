@@ -1,8 +1,8 @@
 package card;
 
 import client.Client;
-import thorbank.Bill;
-import thorbank.Currency;
+import webbanking.Bill;
+import webbanking.Currency;
 
 public class DebitCard extends Card {
     private Bill bill;

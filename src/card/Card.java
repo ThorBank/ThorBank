@@ -1,7 +1,7 @@
 package card;
 
 import client.Client;
-import thorbank.Currency;
+import webbanking.Currency;
 
 import java.util.Calendar;
 import java.util.Date;

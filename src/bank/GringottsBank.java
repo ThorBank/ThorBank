@@ -10,8 +10,8 @@ import credit.HousingCredit;
 import credit.TaxAssessment;
 import debit.Debit;
 import debit.TermDebit;
-import thorbank.Bill;
-import thorbank.Currency;
+import webbanking.Bill;
+import webbanking.Currency;
 
 import java.util.Calendar;
 import java.util.Date;

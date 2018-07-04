@@ -1,4 +1,4 @@
-package thorbank;
+package webbanking;
 
 public class TakenUsernameException extends Exception {
     public TakenUsernameException(){

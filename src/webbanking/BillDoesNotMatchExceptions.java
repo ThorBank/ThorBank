@@ -1,4 +1,4 @@
-package thorbank;
+package webbanking;
 
 public class BillDoesNotMatchExceptions extends Exception {
     public BillDoesNotMatchExceptions(){

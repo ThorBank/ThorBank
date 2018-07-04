@@ -4,9 +4,9 @@ import bank.GringottsBank;
 import card.*;
 import credit.*;
 import debit.*;
-import thorbank.BankOnWeb;
-import thorbank.Bill;
-import thorbank.Currency;
+import webbanking.BankOnWeb;
+import webbanking.Bill;
+import webbanking.Currency;
 
 import java.util.*;
 

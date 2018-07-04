@@ -1,7 +1,7 @@
 package debit;
 
 import card.Card;
-import thorbank.Bill;
+import webbanking.Bill;
 
 public interface DebitInjectableWithdrawable {
     void injectMoneyInDebit(Debit debit, Bill bill, double amount);

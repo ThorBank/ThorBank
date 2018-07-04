@@ -1,7 +1,7 @@
 package db;
 
 import client.Client;
-import thorbank.BankOnWeb;
+import webbanking.BankOnWeb;
 
 import java.util.LinkedList;
 import java.util.List;

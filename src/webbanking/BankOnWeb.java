@@ -1,4 +1,4 @@
-package thorbank;
+package webbanking;
 
 import client.Client;
 import db.DB;

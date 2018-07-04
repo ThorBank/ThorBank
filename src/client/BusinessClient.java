@@ -1,6 +1,6 @@
 package client;
 
-import thorbank.FactorConnect;
+import webbanking.FactorConnect;
 import java.util.GregorianCalendar;
 import java.util.List;
 
