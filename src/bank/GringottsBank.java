@@ -7,7 +7,7 @@ import card.PaymentNetwork;
 import client.Client;
 import credit.ConsumerCredit;
 import credit.HousingCredit;
-import debit.IndefiniteDebit;
+import debit.Debit;
 import debit.TermDebit;
 import thorbank.Bill;
 
@@ -136,9 +136,16 @@ public final class GringottsBank {
         return true;
     }
 
-    public void createIndefiniteDebit(Client client, double balance, double discount){
+    /**
+     * Creating a IndefiniteDebit for a Individual Client.
+     *
+     * @param client **Client applying for the debit**
+     * @param balance **Initially injected balance from the client**
+     * @param bonus **Bonus if the creation is made online**
+     */
+    public void createIndefiniteDebit(final Client client, final double balance, final double bonus){
         if (approveIndefiniteDebit()){
-
+            client.getDebitList().add(new Debit(client, balance * bonus));
         }
     }
 

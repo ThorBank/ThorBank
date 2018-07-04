@@ -8,18 +8,16 @@ import java.util.Currency;
 import java.util.List;
 
 import card.NotEnoughMoneyInCardException;
+import client.Client;
 import credit.Credit;
 import thorbank.Bill;
 
 public class Debit {
-    private String name;
-    private String iban;
+    private Client client;
     private List<Card> card;
     private double balance;
 
-    public Debit(String name, String iban, double balance) {
-        this.name = name;
-        this.iban = iban;
+    public Debit(Client client, double balance) {
         this.balance = balance;
     }
 
