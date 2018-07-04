@@ -1,6 +1,6 @@
 package debit;
 
 public interface DebitAppliable {
-    void applyingForAIndefiniteDebit(IndefiniteDebit indefiniteDebit);
-    void applyingForATermDebit(TermDebit termDebit);
+    void applyingForAIndefiniteDebit(double balance);
+    void applyingForATermDebit(double balance, int timeInMonths);
 }

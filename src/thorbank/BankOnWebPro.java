@@ -47,26 +47,6 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
     }
 
     @Override
-    public void applyingForATermDebit(TermDebit termDebit) {
-        GringottsBank.getInstance().approveTermDebit(this.getClient(), termDebit, ONLINE_DISCOUNT_PERCENT);
-    }
-
-    @Override
-    public void applyingForAIndefiniteDebit(IndefiniteDebit indefiniteDebit) {
-        GringottsBank.getInstance().approveIndefiniteDebit(this.getClient(), indefiniteDebit, ONLINE_DISCOUNT_PERCENT);
-    }
-
-    @Override
-    public void applyingForAConsumerCredit(ConsumerCredit consumerCredit) {
-        GringottsBank.getInstance().approveConsumerCredit(this.getClient(), consumerCredit, 0);
-    }
-
-    @Override
-    public void applyingForAHousingCredit(HousingCredit housingCredit) {
-        GringottsBank.getInstance().approveHousingCredit(this.getClient(), housingCredit, 0);
-    }
-
-    @Override
     public void injectMoneyInDebit(Debit debit, Bill bill, double amount) {
         bill.setBalance(bill.getBalance() - amount);
         debit.injectMoney(amount);
@@ -88,5 +68,25 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
     public void withdrawMoneyFromDebit(Debit debit, Card card, double amount) {
         card.setBalance(card.getBalance() - amount);
         debit.withdrawMoney(amount);
+    }
+
+    @Override
+    public void applyingForAConsumerCredit(Client guarantor, double amount, int periodInMonths) {
+        GringottsBank.getInstance().createConsumerCredit(this.getClient(), guarantor, amount, periodInMonths);
+    }
+
+    @Override
+    public void applyingForAHousingCredit(double amount, int periodInMonths) {
+        GringottsBank.getInstance().createHousingCredit(this.getClient(), amount, periodInMonths, TaxAssessment.EIGHT, 0.8d);
+    }
+
+    @Override
+    public void applyingForAIndefiniteDebit(double balance) {
+        GringottsBank.getInstance().createIndefiniteDebit(this.getClient(), balance, 1.2d);
+    }
+
+    @Override
+    public void applyingForATermDebit(double balance, int timeInMonths) {
+        GringottsBank.getInstance().createTermDebit(this.getClient(), balance, timeInMonths, 1.2d);
     }
 }

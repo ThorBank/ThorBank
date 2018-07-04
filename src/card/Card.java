@@ -1,9 +1,9 @@
 package card;
 
 import client.Client;
+import thorbank.Currency;
 
 import java.util.Calendar;
-import java.util.Currency;
 import java.util.Date;
 import java.util.GregorianCalendar;
 

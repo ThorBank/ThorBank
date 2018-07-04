@@ -3,10 +3,10 @@ package debit;
 import client.Client;
 
 public class TermDebit extends Debit {
-    private int timeInDays;
+    private int timeInMonths;
 
-    public TermDebit(Client client, double balance, int timeInDays) {
+    public TermDebit(Client client, double balance, int timeInMonths) {
         super(client, balance);
-        this.timeInDays = timeInDays;
+        this.timeInMonths = timeInMonths;
     }
 }

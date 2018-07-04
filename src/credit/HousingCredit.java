@@ -2,13 +2,13 @@ package credit;
 
 import client.Client;
 
-public class HousingCredit extends ConsumerCredit{
+public class HousingCredit extends Credit{
     private static final int MONTHS_PER_YEAR = 12;
     private static final double PERCENT_TO_NUM = 0.01d;
     private TaxAssessment taxAssessment;
     private double assessment;
 
-    public HousingCredit(Client client, double amount, int creditPeriodInMonths, TaxAssessment taxAssessment) {
+    public HousingCredit(final Client client, final double amount, final int creditPeriodInMonths, final TaxAssessment taxAssessment) {
         super(client, amount, creditPeriodInMonths);
         setTaxAssessment(taxAssessment);
     }
@@ -17,7 +17,7 @@ public class HousingCredit extends ConsumerCredit{
         return taxAssessment;
     }
 
-    public void setTaxAssessment(TaxAssessment taxAssessment) {
+    public void setTaxAssessment(final TaxAssessment taxAssessment) {
         switch (taxAssessment){
             case ONE: assessment = 0.82d; break;
             case TWO: assessment = 0.84d; break;
@@ -43,6 +43,6 @@ public class HousingCredit extends ConsumerCredit{
 
     @Override
     public double calculateCreditInterestRate() {
-        return (getCreditPeriodInMonths() / MONTHS_PER_YEAR) * (getYearlyInterestRate() * PERCENT_TO_NUM) * getAmount() * assessment;
+        return (1 / MONTHS_PER_YEAR) * (2 * PERCENT_TO_NUM) * getAmount() * assessment; //1 is getCreditPeriodInMonths, 2 is getYearlyInterestRate
     }
 }

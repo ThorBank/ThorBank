@@ -1,8 +1,7 @@
 package card;
 
 import client.Client;
-
-import java.util.Currency;
+import thorbank.Currency;
 
 public class CreditCard extends Card {
 

@@ -6,19 +6,15 @@ import thorbank.Bill;
 
 public class ConsumerCredit extends Credit {
     private Client client;
+    private Client guarantor;
     private double amount;
     private int creditPeriodInMonths;
     private static final int MONTHS_PER_YEAR = 12;
     private static final double PERCENT_TO_NUM = 0.01d;
 
-    public ConsumerCredit(Client client, double amount, int creditPeriodInMonths) {
-        super(amount, creditPeriodInMonths);
-        setConsumer(consumer);
-        setYearlyInterestRate(yearlyInterestRate);
-    }
-
-    public String getConsumer() {
-        return consumer;
+    public ConsumerCredit(final Client client, final Client guarantor, final double amount, final int creditPeriodInMonths) {
+        super(client, amount, creditPeriodInMonths);
+        this.guarantor = guarantor;
     }
 
     public double getAmount() {
@@ -29,14 +25,6 @@ public class ConsumerCredit extends Credit {
         return creditPeriodInMonths;
     }
 
-    public double getYearlyInterestRate() {
-        return yearlyInterestRate;
-    }
-
-    public void setConsumer(String consumer) {
-        this.consumer = consumer;
-    }
-
     public void setAmount(double amount) {
         this.amount = amount;
     }
@@ -44,13 +32,8 @@ public class ConsumerCredit extends Credit {
     public void setCreditPeriodInMonths(int creditPeriodInMonths) {
         this.creditPeriodInMonths = creditPeriodInMonths;
     }
-
-    public void setYearlyInterestRate(double yearlyInterestRate) {
-        this.yearlyInterestRate = yearlyInterestRate;
-    }
-
     @Override
     public double calculateCreditInterestRate() {
-        return (creditPeriodInMonths / MONTHS_PER_YEAR) * (yearlyInterestRate * PERCENT_TO_NUM) * amount;
+        return (creditPeriodInMonths / MONTHS_PER_YEAR) * (2 * PERCENT_TO_NUM) * amount;//2 is the yearly interest rate
     }
 }

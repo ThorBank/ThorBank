@@ -11,9 +11,9 @@ import credit.TaxAssessment;
 import debit.Debit;
 import debit.TermDebit;
 import thorbank.Bill;
+import thorbank.Currency;
 
 import java.util.Calendar;
-import java.util.Currency;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -55,11 +55,7 @@ public final class GringottsBank {
      * Number to create a 3-digit number for the Credit Card.
      */
     private static final long CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER = 1000L;
-    /**
-     * Bank should approve the credit card before creating.
-     *
-     * @param client **Client who is applying for the credit card**
-     */
+
     public boolean approveCreditCard(final Client client) {
         Date date = new Date();
         Calendar timeNow = new GregorianCalendar();
@@ -179,9 +175,9 @@ public final class GringottsBank {
      * @param amount **The amount wanted from the client**
      * @param creditPeriodInMonths **The period of months in which the client will return the whole credit**
      */
-    public void createConsumerCredit(final Client client, final double amount, final int creditPeriodInMonths){
+    public void createConsumerCredit(final Client client, final Client guarantor,  final double amount, final int creditPeriodInMonths){
         if (approveConsumerCredit(client, amount, creditPeriodInMonths)){
-            client.getCreditList().add(new ConsumerCredit(client, amount, creditPeriodInMonths));
+            client.getCreditList().add(new ConsumerCredit(client, guarantor, amount, creditPeriodInMonths));
         }
     }
 
@@ -205,7 +201,7 @@ public final class GringottsBank {
      */
     public void createHousingCredit(final Client client, final double amount, final int creditPeriodInMonths, final TaxAssessment taxAssessment, final double discount){
         if (approveHousingCredit()){
-            client.getCreditList().add(new HousingCredit(client, amount, creditPeriodInMonths, taxAssessment));
+            client.getCreditList().add(new HousingCredit(client, amount * discount, creditPeriodInMonths, taxAssessment));
         }
     }
 }

@@ -1,36 +1,57 @@
 package client;
 
 import bank.GringottsBank;
-import card.Card;
+import card.*;
 import credit.*;
 import debit.*;
 import thorbank.BankOnWeb;
 import thorbank.Bill;
+import thorbank.Currency;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
-public class Client implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable {
+public class Client implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable, AppliableForANewCard {
     private String firstName;
     private String lastName;
     private String email;
     private Calendar dateofBirth;
     private boolean isWorking;
+    private DebitCard paySalaryDebitCard;
     private List<Bill> billList;
     private List<Card> cardList;
     private List<Credit> creditList;
     private List<Debit> debitList;
-    private double balance;
     private BankOnWeb bankOnWeb;
 
-    public Client(String firstName, String lastName, String email, GregorianCalendar dateofBirth, boolean isWorking) {
+    public Client(final String firstName, final String lastName, final String email, final GregorianCalendar dateofBirth, final boolean isWorking) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
         setDateofBirth(dateofBirth);
         setWorking(isWorking);
+        setBillList(new LinkedList<>());
+        setCardList(new LinkedList<>());
+        setDebitList(new LinkedList<>());
+    }
+
+    public DebitCard getPaySalaryDebitCard() {
+        return paySalaryDebitCard;
+    }
+
+    public void setBillList(final List<Bill> billList) {
+        this.billList = billList;
+    }
+
+    public void setCardList(final List<Card> cardList) {
+        this.cardList = cardList;
+    }
+
+    public void setCreditList(final List<Credit> creditList) {
+        this.creditList = creditList;
+    }
+
+    public void setDebitList(final List<Debit> debitList) {
+        this.debitList = debitList;
     }
 
     public List<Debit> getDebitList() {
@@ -45,19 +66,19 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         return isWorking;
     }
 
-    public void setWorking(boolean working) {
+    public void setWorking(final boolean working) {
         isWorking = working;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(final String email) {
         this.email = email;
     }
 
@@ -67,14 +88,6 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
 
     public String getLastName() {
         return lastName;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public double getBalance() {
-        return balance;
     }
 
     public List<Bill> getBillList() {
@@ -89,7 +102,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         return dateofBirth;
     }
 
-    public void setDateofBirth(Calendar dateofBirth) {
+    public void setDateofBirth(final Calendar dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
 
@@ -101,60 +114,74 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         }
     }
 
+    public void changePaySalaryDebitCard(final DebitCard debitCard){
+        paySalaryDebitCard = debitCard;
+    }
+
     @Override
-    public void payCredit(Credit credit, Bill bill) {
+    public void payCredit(final Credit credit, final Bill bill) {
         bill.setBalance(bill.getBalance() - credit.getMonthlyPayment());
         credit.payedcreditInstallment(credit.getMonthlyPayment());
     }
 
     @Override
-    public void payCredit(Credit credit, Card card) {
+    public void payCredit(final Credit credit, final Card card) {
         card.setBalance(card.getBalance() - credit.getMonthlyPayment());
         credit.payedcreditInstallment(credit.getMonthlyPayment());
     }
 
 
     @Override
-    public void injectMoneyInDebit(Debit debit, Bill bill, double amount) {
+    public void injectMoneyInDebit(final Debit debit, final Bill bill, final double amount) {
         bill.setBalance(bill.getBalance() - amount);
         debit.injectMoney(amount);
     }
 
     @Override
-    public void injectMoneyInDebit(Debit debit, Card card, double amount) {
+    public void injectMoneyInDebit(final Debit debit, final Card card, final double amount) {
         card.setBalance(card.getBalance() - amount);
         debit.injectMoney(amount);
     }
 
     @Override
-    public void withdrawMoneyFromDebit(Debit debit, Bill bill, double amount) {
+    public void withdrawMoneyFromDebit(final Debit debit,final  Bill bill, final double amount) {
         bill.setBalance(bill.getBalance() - amount);
         debit.withdrawMoney(amount);
     }
 
     @Override
-    public void withdrawMoneyFromDebit(Debit debit, Card card, double amount) {
+    public void withdrawMoneyFromDebit(final Debit debit, final Card card, final double amount) {
         card.setBalance(card.getBalance() - amount);
         debit.withdrawMoney(amount);
     }
 
     @Override
-    public void applyingForAIndefiniteDebit(IndefiniteDebit indefiniteDebit) {
-        GringottsBank.getInstance().approveIndefiniteDebit(this, 0);
+    public void applyingForAIndefiniteDebit(final double balance) {
+        GringottsBank.getInstance().createIndefiniteDebit(this, balance, 1);
     }
 
     @Override
-    public void applyingForATermDebit(TermDebit termDebit) {
-        GringottsBank.getInstance().approveTermDebit(this, termDebit, 0);
+    public void applyingForATermDebit(final double balance, final int timeInMonths) {
+        GringottsBank.getInstance().createTermDebit(this, balance, timeInMonths, 1);
     }
 
     @Override
-    public void applyingForAConsumerCredit(ConsumerCredit consumerCredit) {
-        GringottsBank.getInstance().approveConsumerCredit(this, consumerCredit, 0);
+    public void applyingForAConsumerCredit(final Client guarantor, final double balance, final int periodInMonths) {
+        GringottsBank.getInstance().createConsumerCredit(this, guarantor, balance, periodInMonths);
     }
 
     @Override
-    public void applyingForAHousingCredit(HousingCredit housingCredit) {
-        GringottsBank.getInstance().approveHousingCredit(this, housingCredit, 0);
+    public void applyingForAHousingCredit(final double balance, final int periodInMonths) {
+        GringottsBank.getInstance().createHousingCredit(this, balance, periodInMonths, TaxAssessment.EIGHT, 1);
+    }
+
+    @Override
+    public void applyForCreditCard(final PaymentNetwork paymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
+        GringottsBank.getInstance().createCreditCard(this, paymentNetwork, balance, currency);
+    }
+
+    @Override
+    public void applyForDebitCard(final PaymentNetwork paymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
+        GringottsBank.getInstance().createDebitCard(this, paymentNetwork, balance, currency, bill);
     }
 }
