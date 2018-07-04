@@ -59,11 +59,12 @@ public final class GringottsBank {
      */
     private static final int MAX_YEARS_OWN_CREDIT_CARD = 63;
     /**
-     * Number to create a 16-digit number for the Credit Card
+     * Number to create a 16-digit number for the Credit Card.
      */
-    private static final long NUMBER_CREDIT_CARD_GENERATOR_MAGIC_NUMBER = 10000000000000000L;
+    private static final long NUMBER_CREDIT_CARD_GENERATOR_MAGIC_NUMBER
+            = 10000000000000000L;
     /**
-     * Number to create a 3-digit number for the Credit Card
+     * Number to create a 3-digit number for the Credit Card.
      */
     private static final long CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER = 1000L;
     /**
@@ -153,6 +154,7 @@ public final class GringottsBank {
     /**
      * Approving a Term Debit.
      *
+     * @param balance **The initial injected balance**
      * @return **Return the response if debit is approved**
      */
     public boolean approveTermDebit(final double balance){
@@ -172,7 +174,7 @@ public final class GringottsBank {
      */
     public void createTermDebit(final Client client, final double balance, final int timeInDays, final double bonus){
         if (approveTermDebit(balance)){
-            client.getDebitList().add(new TermDebit(client, balance*bonus, timeInDays));
+            client.getDebitList().add(new TermDebit(client, balance * bonus, timeInDays));
         }
     }
 
@@ -184,7 +186,7 @@ public final class GringottsBank {
      * @param discount **Discount if credit is applied from the online platform of the bank**
      * @return
      */
-    public boolean approveConsumerCredit(Client client, double amount, double discount){
+    public boolean approveConsumerCredit(final Client client, final double amount, final double discount){
         if (amount > MIN_BALANCE_CONSUMER_DEBIT){
             return true;
         }
@@ -198,17 +200,31 @@ public final class GringottsBank {
      * @param amount **The amount wanted from the client**
      * @param creditPeriodInMonths **The period of months in which the client will return the whole credit**
      */
-    public void createConsumerCredit(Client client, double amount, int creditPeriodInMonths){
+    public void createConsumerCredit(final Client client, final double amount, final int creditPeriodInMonths){
         if (approveConsumerCredit(client, amount, creditPeriodInMonths)){
             client.getCreditList().add(new ConsumerCredit(client, amount, creditPeriodInMonths));
         }
     }
 
+    /**
+     * No requirements for Housing Credit
+     *
+     * @return **always true**
+     */
     public boolean approveHousingCredit(){
         return true;
     }
 
-    public void createHousingCredit(Client client, double amount, int creditPeriodInMonths, TaxAssessment taxAssessment, double discount){
+    /**
+     * Creating a House Credit for an Individual Client
+     *
+     * @param client **The individual client**
+     * @param amount **The amount wanted from the client**
+     * @param creditPeriodInMonths **Period in which the client will return the credit**
+     * @param taxAssessment **The tax assesment for calculating the actual assesment**
+     * @param discount **The discount if the client applied from our web platform**
+     */
+    public void createHousingCredit(final Client client, final double amount, final int creditPeriodInMonths, final TaxAssessment taxAssessment, final double discount){
         if (approveHousingCredit()){
             client.getCreditList().add(new HousingCredit(client, amount, creditPeriodInMonths, taxAssessment));
         }
