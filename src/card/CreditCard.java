@@ -3,12 +3,10 @@ package card;
 import client.Client;
 
 import java.util.Currency;
-import java.util.Date;
-import java.util.List;
 
 public class CreditCard extends Card {
 
-    public CreditCard(Client client, String number, PaymentNetwork paymentNetwork, String CVV, double balance, Currency currency) throws CardNumberFormatException {
-        super(client, number, paymentNetwork, CVV, balance, currency);
+    public CreditCard(final Client client, final String number, final PaymentNetwork paymentNetwork, final String cVV, final double balance, final Currency currency) throws CardNumberFormatException {
+        super(client, number, paymentNetwork, cVV, balance, currency);
     }
 }

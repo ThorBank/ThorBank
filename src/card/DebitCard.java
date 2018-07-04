@@ -9,7 +9,7 @@ import java.util.Date;
 public class DebitCard extends Card {
     private Bill bill;
 
-    public DebitCard(Client client, String number, PaymentNetwork paymentNetwork, String CVV, double balance, Currency currency, Bill bill) throws CardNumberFormatException {
+    public DebitCard(final Client client, final String number, final PaymentNetwork paymentNetwork, final String CVV, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
         super(client, number, paymentNetwork, CVV, balance, currency);
         setBill(bill);
     }
@@ -18,7 +18,7 @@ public class DebitCard extends Card {
         return bill;
     }
 
-    public void setBill(Bill bill) {
+    public void setBill(final Bill bill) {
         this.bill = bill;
     }
 

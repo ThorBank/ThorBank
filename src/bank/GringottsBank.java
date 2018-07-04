@@ -26,9 +26,6 @@ public final class GringottsBank {
      */
     private static final GringottsBank INSTANCE = new GringottsBank();
 
-    /**
-     * Empty private constructor.
-     */
     private GringottsBank() {
     }
 
@@ -41,22 +38,13 @@ public final class GringottsBank {
         return INSTANCE;
     }
 
-    /**
-     * The minimum balance of the term debit.
-     */
     private static final int MIN_BALANCE_TERM_DEBIT = 100;
-    /**
-     * The minimum balance of the consumer debit.
-     */
     private static final int MIN_BALANCE_CONSUMER_DEBIT = 5000;
     /**
      * The amount charged, expressed as a percentage of principal,
      * by a lender to a borrower for the use of assets.
      */
     private static final int MIN_YEARS_OWN_CREDIT_CARD = 23;
-    /**
-     * Oldest people which could create a credit card.
-     */
     private static final int MAX_YEARS_OWN_CREDIT_CARD = 63;
     /**
      * Number to create a 16-digit number for the Credit Card.
@@ -87,8 +75,6 @@ public final class GringottsBank {
     }
 
     /**
-     * Creation of credit card.
-     *
      * @param client **Client who is applying for the credit card**
      * @param paymentNetwork **Payment Method reuired by the client**
      * @param balance **Balance reuired by the client**
@@ -113,13 +99,6 @@ public final class GringottsBank {
     }
 
     /**
-     * Creating Debit Card cicle
-     *
-     * @param client **Client applying for a Debit Card**
-     * @param paymentNetwork **Wanted Payment Network**
-     * @param balance **Initial injected balance**
-     * @param currency **Picked currency from the client**
-     * @param bill **The bill conected to the Debit Card**
      * @throws CardNumberFormatException **For number of the card matching the regex**
      */
     public void createDebitCard(final Client client, final PaymentNetwork paymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {

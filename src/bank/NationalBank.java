@@ -18,9 +18,7 @@ public final class NationalBank {
      * The only instance of BanksBank.
      */
     private static final NationalBank INSTANCE = new NationalBank();
-    /**
-     * Constructor.
-     */
+
     private NationalBank() {
     }
     /**

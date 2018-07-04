@@ -12,15 +12,12 @@ public final class BanksBank {
     /**
      * List of all clients of BanksBank.
      */
-    private Set<Client> clientList;
+    private Set<Client> bankClientList;
     /**
      * The only instance of BanksBank.
      */
     private static final BanksBank INSTANCE = new BanksBank();
 
-    /**
-     * Constructor.
-     */
     private BanksBank() {
     }
 
@@ -34,12 +31,12 @@ public final class BanksBank {
     }
 
     {
-        clientList = new HashSet<>();
-        clientList.add(new Client("Nikolai", "Nikolaev", "n.nikolaev@gmail.com",
+        bankClientList = new HashSet<>();
+        bankClientList.add(new Client("Nikolai", "Nikolaev", "n.nikolaev@gmail.com",
                 new GregorianCalendar(2002, 3, 5), true));
-        clientList.add(new Client("Petur", "Petrov", "p.petrov@gmail.com",
+        bankClientList.add(new Client("Petur", "Petrov", "p.petrov@gmail.com",
                 new GregorianCalendar(1960, 3, 5), true));
-        clientList.add(new Client("Hristo", "Hristov", "h.hristov@gmail.com",
+        bankClientList.add(new Client("Hristo", "Hristov", "h.hristov@gmail.com",
                 new GregorianCalendar(1940, 3, 5), false));
     }
 }

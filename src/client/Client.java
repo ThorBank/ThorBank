@@ -23,7 +23,6 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     private List<Credit> creditList;
     private List<Debit> debitList;
     private double balance;
-    private double billAvailability;
     private BankOnWeb bankOnWeb;
 
     public Client(String firstName, String lastName, String email, GregorianCalendar dateofBirth, boolean isWorking) {
