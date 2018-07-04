@@ -14,9 +14,11 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
         super(client);
     }
 
-    public void transactionBetweenBills(Client client, Bill firstBill, Bill secondBill, double amount) {
+    public void transactionBetweenBills(Client client, Bill firstBill, Bill secondBill, double amount) throws BillDoesNotMatchExceptions, NotEnoughMoneyInYourBill {
         if (!client.getBillList().contains(firstBill) || !client.getBillList().contains(secondBill)) {
-
+            throw new BillDoesNotMatchExceptions();
+        } else  if (firstBill.getAvailability() < amount) {
+            throw new NotEnoughMoneyInYourBill();
         }
 
         firstBill.setAvailability(firstBill.getAvailability()-amount);
