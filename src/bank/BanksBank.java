@@ -6,25 +6,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *  GringottsBank is our bank.
+ *  BanksBank is test bank to test BankHub.
  */
 public final class BanksBank {
     /**
-     *
+     * List of all clients of BanksBank.
      */
     private Set<Client> clientList;
     /**
-     *
+     * The only instance of BanksBank.
      */
     private static final BanksBank INSTANCE = new BanksBank();
 
     /**
-     *
+     * Constructor.
      */
     private BanksBank() {
     }
 
     /**
+     * Getter for the only instance of BanksBank.
      *
      * @return **instance of BanksBank**
      */

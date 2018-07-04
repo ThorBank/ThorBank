@@ -5,18 +5,29 @@ import client.Client;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeMap;
 
 /**
  * GringottsBank is our bank.
  */
 public final class NationalBank {
-    private Set<Client> clientList = new HashSet<>();
+    /**
+     * List of all clients of BanksBank.
+     */
+    private Set<Client> clientList;
+    /**
+     * The only instance of BanksBank.
+     */
     private static final NationalBank INSTANCE = new NationalBank();
-
+    /**
+     * Constructor.
+     */
     private NationalBank() {
     }
-
+    /**
+     * Getter for the only instance of BanksBank.
+     *
+     * @return **instance of BanksBank**
+     */
     public static NationalBank getInstance() {
         return INSTANCE;
     }
