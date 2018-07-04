@@ -2,28 +2,29 @@ package card;
 
 import client.Client;
 
+import java.util.Calendar;
 import java.util.Currency;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public abstract class Card {
     private static String NUMBER_REGEX = "^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11})$";
+    private String bankName;
     private String number;
-    private String firstName;
-    private String lastName;
-    private Date expirationDate;
+    private Calendar expirationDate;
     private String CVV;
-    private String CVV2;
     private Client client;
     private double balance;
     private Currency currency;
 
-    public Card(String number, String firstName, String lastName, Date expirationDate, String CVV, String CVV2, Client client, double balance, Currency currency) throws CardNumberFormatException {
+    public Card(Client client, String number, PaymentNetwork paymentNetwork, String CVV, double balance, Currency currency) throws CardNumberFormatException {
+        this.bankName = "GringottsBank";
         setNumber(number);
-        setFirstName(firstName);
-        setLastName(lastName);
-        setExpirationDate(expirationDate);
+        Date date = new Date();
+        Calendar timeNow = new GregorianCalendar();
+        timeNow.setTime(date);
+        setExpirationDate(new GregorianCalendar(timeNow.get(Calendar.YEAR + 4), timeNow.get(Calendar.MONTH), timeNow.get(Calendar.DAY_OF_MONTH)));
         setCVV(CVV);
-        setCVV2(CVV2);
         setClient(client);
         setBalance(balance);
         setCurrency(currency);
@@ -40,44 +41,12 @@ public abstract class Card {
         this.number = number;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(Calendar expirationDate) {
         this.expirationDate = expirationDate;
-    }
-
-    public String getCVV() {
-        return CVV;
     }
 
     public void setCVV(String CVV) {
         this.CVV = CVV;
-    }
-
-    public String getCVV2() {
-        return CVV2;
-    }
-
-    public void setCVV2(String CVV2) {
-        this.CVV2 = CVV2;
     }
 
     public void setClient(Client client) {
@@ -98,10 +67,6 @@ public abstract class Card {
 
     public void setCurrency(Currency currency) {
         this.currency = currency;
-    }
-
-    public Currency getCurrency() {
-        return currency;
     }
 
 }

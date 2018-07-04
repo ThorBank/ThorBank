@@ -8,9 +8,7 @@ import java.util.List;
 
 public class CreditCard extends Card {
 
-    public CreditCard(String number, String firstName, String lastName, Date expirationDate, String CVV, String CVV2, Client client, double balance, Currency currency) throws CardNumberFormatException {
-        super(number, firstName, lastName, expirationDate, CVV, CVV2, client, balance, currency);
-
+    public CreditCard(Client client, String number, PaymentNetwork paymentNetwork, String CVV, double balance, Currency currency) throws CardNumberFormatException {
+        super(client, number, paymentNetwork, CVV, balance, currency);
     }
-
 }

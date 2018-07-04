@@ -1,15 +1,17 @@
 package bank;
 
+import card.CardNumberFormatException;
 import card.CreditCard;
 import card.DebitCard;
+import card.PaymentNetwork;
 import client.Client;
 import credit.ConsumerCredit;
 import credit.HousingCredit;
 import debit.IndefiniteDebit;
 import debit.TermDebit;
-import thorbank.Bill;
 
 import java.util.Calendar;
+import java.util.Currency;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -22,7 +24,11 @@ public final class GringottsBank {
      */
     private static final GringottsBank INSTANCE = new GringottsBank();
 
-    private GringottsBank(){}
+    /**
+     * Empty private constructor.
+     */
+    private GringottsBank() {
+    }
 
     /**
      * Getter for the only instance of GringottsBank.
@@ -34,11 +40,11 @@ public final class GringottsBank {
     }
 
     /**
-     *
+     * The minimum balance of the term debit.
      */
     private static final int MIN_BALANCE_TERM_DEBIT = 100;
     /**
-     *
+     * The minimum balance of the consumer debit.
      */
     private static final int MIN_BALANCE_CONSUMER_DEBIT = 5000;
     /**
@@ -46,15 +52,17 @@ public final class GringottsBank {
      * by a lender to a borrower for the use of assets.
      */
     private static final int MIN_YEARS_OWN_CREDIT_CARD = 23;
+    /**
+     * Oldest people which could create a credit card.
+     */
     private static final int MAX_YEARS_OWN_CREDIT_CARD = 63;
 
     /**
      * This is for app.
      *
-     * @param card **The cardgf gsdg dsg d**
      * @param client **The client dsg dsgds**
      */
-    public boolean approveCreditCard(final CreditCard card, final Client client) {
+    public boolean approveCreditCard(final Client client) {
         Date date = new Date();
         Calendar timeNow = new GregorianCalendar();
         timeNow.setTime(date);
@@ -62,13 +70,19 @@ public final class GringottsBank {
         if (!(clientYears >= MIN_YEARS_OWN_CREDIT_CARD && clientYears <= MAX_YEARS_OWN_CREDIT_CARD)){
             return false;
         }
-        else if (!client.isWorking())
+        else
         {
-            return false;
+            return client.isWorking();
         }
-        return true;
     }
 
+    public void createCreditCard(final Client client, PaymentNetwork paymentNetwork, double balance, Currency currency) throws CardNumberFormatException {
+        if (approveCreditCard(client)){
+            long numberCreditCard = (long) (Math.random() * 10000000000000000L);
+            long CVV = (long) (Math.random() * 1000L);
+            client.getCardList().add(new CreditCard(client, Long.toString(numberCreditCard), paymentNetwork, Long.toString(CVV), balance, currency));
+        }
+    }
     /**
      *
      *
@@ -76,12 +90,9 @@ public final class GringottsBank {
      * @param iban **fdsfsd**
      * @param debitCard **fsfds**
      */
-    public void issuanceDebitCard(final Client client, final String iban, final DebitCard debitCard) {
-        for (Bill bill : client.getBillList()) {
-            if (bill.getIban().equals(iban)) {
-                debitCard.setBill(bill);
-            }
-        }
+    public boolean issuanceDebitCard(final Client client) throws CardNumberFormatException {
+        //client.getCardList().add(new DebitCard());
+        return true;
     }
 
     /**
