@@ -3,17 +3,15 @@ package debit;
 import card.Card;
 import card.CreditCard;
 import card.DebitCard;
+import card.NotEnoughMoneyInCardException;
+import client.Client;
 
 import java.util.Currency;
 import java.util.List;
 
-import card.NotEnoughMoneyInCardException;
-import client.Client;
-import credit.Credit;
-import thorbank.Bill;
-
 public class Debit {
     private Client client;
+    private String iban;
     private List<Card> card;
     private double balance;
 
@@ -65,15 +63,6 @@ public class Debit {
 
     public void withdrawMoney(double amount){
         this.balance -= amount;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getIban() {
