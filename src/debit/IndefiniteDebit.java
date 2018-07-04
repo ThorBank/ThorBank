@@ -1,8 +1,9 @@
 package debit;
 
-public class IndefiniteDebit extends Debit {
+import client.Client;
 
-    public IndefiniteDebit(String name, String iban, double balance) {
-        super(name, iban, balance);
+public class IndefiniteDebit extends Debit {
+    public IndefiniteDebit(Client client, double balance) {
+        super(client, balance);
     }
 }

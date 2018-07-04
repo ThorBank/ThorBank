@@ -1,9 +1,12 @@
 package debit;
 
-public class TermDebit extends Debit {
-    private int time;
+import client.Client;
 
-    public TermDebit(String name, String iban, double balance) {
-        super(name, iban, balance);
+public class TermDebit extends Debit {
+    private int timeInDays;
+
+    public TermDebit(Client client, double balance, int timeInDays) {
+        super(client, balance);
+        this.timeInDays = timeInDays;
     }
 }

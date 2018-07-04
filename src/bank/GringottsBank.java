@@ -150,17 +150,28 @@ public final class GringottsBank {
     }
 
     /**
+     * Approving a Term Debit.
      *
-     * @param client **Hi**
-     * @param debit **Come ein debit**
-     * @param discount **fdffds**
-     * @return **fdsfssfd**
+     * @return **Return the response if debit is approved**
      */
-    public boolean approveTermDebit(final Client client, final TermDebit debit, final double discount){
-        if (debit.getBalance() < MIN_BALANCE_TERM_DEBIT){
+    public boolean approveTermDebit(final double balance){
+        if (balance < MIN_BALANCE_TERM_DEBIT){
             return false;
         }
         return true;
+    }
+
+    /**
+     * Creating the Term Debit.
+     *
+     * @param client **Client applying for the Term Debit**
+     * @param balance **Initial balance**
+     * @param timeInDays **Time in which client is not going to withdraw without getting a fine**
+     */
+    public void createTermDebit(final Client client, final double balance, final int timeInDays){
+        if (approveTermDebit(balance)){
+            client.getDebitList().add(new TermDebit(client, balance, timeInDays));
+        }
     }
 
     public boolean approveConsumerCredit(Client client, ConsumerCredit consumerCredit, double discount){
