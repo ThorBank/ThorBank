@@ -63,9 +63,9 @@ public class BankOnWeb {
 
     public List<Transaction> searchInTransactionListByDate(Date startDate, Date endDate){
         List<Transaction> resultTransactionsFromSearch = new LinkedList<>();
-        for (int i = 0; i < transactionList.size(); i++){
-            if (transactionList.get(i).getDate().compareTo(startDate) >= 0 && transactionList.get(i).getDate().compareTo(endDate) <= 0){
-                resultTransactionsFromSearch.add(transactionList.get(i));
+        for (Transaction aTransactionList : transactionList) {
+            if (aTransactionList.getDate().compareTo(startDate) >= 0 && aTransactionList.getDate().compareTo(endDate) <= 0) {
+                resultTransactionsFromSearch.add(aTransactionList);
             }
         }
 
@@ -73,8 +73,6 @@ public class BankOnWeb {
     }
 
     public void printTransactionList(List<Transaction> transactionList){
-        for (int i = 0; i < transactionList.size(); i++){
-            System.out.print(transactionList.get(i).toString());
-        }
+        transactionList.forEach(t -> System.out.print(t.toString()));
     }
 }
