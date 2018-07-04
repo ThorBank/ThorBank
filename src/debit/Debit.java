@@ -35,9 +35,8 @@ public class Debit {
     }
 
     public void withdrawMoney(DebitCard debitCard, double amount, Currency currency) throws NotEnoughMoneyInCardException {
-        if (debitCard.getBalance() <= 0 || debitCard.getBalance() - amount < 0){
+        if (debitCard.getBalance() <= 0 || debitCard.getBalance() - amount < 0)
             throw new NotEnoughMoneyInCardException();
-        }
         else {
             debitCard.setBalance(debitCard.getBalance() - amount);
             System.out.println(amount + " " + currency.toString() + " has been withdrawn!");
