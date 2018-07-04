@@ -1,14 +1,16 @@
 package credit;
 
+import client.Client;
+
 public class HousingCredit extends ConsumerCredit{
     private static final int MONTHS_PER_YEAR = 12;
     private static final double PERCENT_TO_NUM = 0.01d;
     private TaxAssessment taxAssessment;
     private double assessment;
 
-    public HousingCredit(String consumer, double amount, int creditPeriodInMonths, double yearlyInterestRate, double assessment) {
-        super(consumer, amount, creditPeriodInMonths, yearlyInterestRate);
-        setAssessment(assessment);
+    public HousingCredit(Client client, double amount, int creditPeriodInMonths, TaxAssessment taxAssessment) {
+        super(client, amount, creditPeriodInMonths);
+        setTaxAssessment(taxAssessment);
     }
 
     public TaxAssessment getTaxAssessment() {

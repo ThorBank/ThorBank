@@ -38,6 +38,10 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         return debitList;
     }
 
+    public List<Credit> getCreditList() {
+        return creditList;
+    }
+
     public boolean isWorking() {
         return isWorking;
     }

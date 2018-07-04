@@ -7,6 +7,7 @@ import card.PaymentNetwork;
 import client.Client;
 import credit.ConsumerCredit;
 import credit.HousingCredit;
+import credit.TaxAssessment;
 import debit.Debit;
 import debit.TermDebit;
 import thorbank.Bill;
@@ -167,21 +168,49 @@ public final class GringottsBank {
      * @param client **Client applying for the Term Debit**
      * @param balance **Initial balance**
      * @param timeInDays **Time in which client is not going to withdraw without getting a fine**
+     * @param bonus **Bonus debit is applied online**
      */
-    public void createTermDebit(final Client client, final double balance, final int timeInDays){
+    public void createTermDebit(final Client client, final double balance, final int timeInDays, final double bonus){
         if (approveTermDebit(balance)){
-            client.getDebitList().add(new TermDebit(client, balance, timeInDays));
+            client.getDebitList().add(new TermDebit(client, balance*bonus, timeInDays));
         }
     }
 
-    public boolean approveConsumerCredit(Client client, ConsumerCredit consumerCredit, double discount){
-        if (consumerCredit.getAmount() > MIN_BALANCE_CONSUMER_DEBIT){
+    /**
+     * Approving a Consumer Credit from an Individual Client
+     *
+     * @param client **The individual client applying for the credit**
+     * @param amount **The amount of the possible credit**
+     * @param discount **Discount if credit is applied from the online platform of the bank**
+     * @return
+     */
+    public boolean approveConsumerCredit(Client client, double amount, double discount){
+        if (amount > MIN_BALANCE_CONSUMER_DEBIT){
             return true;
         }
         return false;
     }
 
-    public boolean approveHousingCredit(Client client, HousingCredit housingCredit, double discount){
+    /**
+     * Create Consumer Credit for Individual Client
+     *
+     * @param client **Client applied for the credit**
+     * @param amount **The amount wanted from the client**
+     * @param creditPeriodInMonths **The period of months in which the client will return the whole credit**
+     */
+    public void createConsumerCredit(Client client, double amount, int creditPeriodInMonths){
+        if (approveConsumerCredit(client, amount, creditPeriodInMonths)){
+            client.getCreditList().add(new ConsumerCredit(client, amount, creditPeriodInMonths));
+        }
+    }
+
+    public boolean approveHousingCredit(){
         return true;
+    }
+
+    public void createHousingCredit(Client client, double amount, int creditPeriodInMonths, TaxAssessment taxAssessment, double discount){
+        if (approveHousingCredit()){
+            client.getCreditList().add(new HousingCredit(client, amount, creditPeriodInMonths, taxAssessment));
+        }
     }
 }
