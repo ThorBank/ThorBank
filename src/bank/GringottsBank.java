@@ -56,11 +56,18 @@ public final class GringottsBank {
      * Oldest people which could create a credit card.
      */
     private static final int MAX_YEARS_OWN_CREDIT_CARD = 63;
-
     /**
-     * This is for app.
+     * Number to create a 16-digit number for the Credit Card
+     */
+    private static final long NUMBER_CREDIT_CARD_GENERATOR_MAGIC_NUMBER = 10000000000000000L;
+    /**
+     * Number to create a 3-digit number for the Credit Card
+     */
+    private static final long CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER = 1000L;
+    /**
+     * Bank should approve the credit card before creating.
      *
-     * @param client **The client dsg dsgds**
+     * @param client **Client who is applying for the credit card**
      */
     public boolean approveCreditCard(final Client client) {
         Date date = new Date();
@@ -76,22 +83,29 @@ public final class GringottsBank {
         }
     }
 
-    public void createCreditCard(final Client client, PaymentNetwork paymentNetwork, double balance, Currency currency) throws CardNumberFormatException {
+    /**
+     * Creation of credit card.
+     *
+     * @param client **Client who is applying for the credit card**
+     * @param paymentNetwork **Payment Method reuired by the client**
+     * @param balance **Balance reuired by the client**
+     * @param currency **Currency reuired by the client**
+     * @throws CardNumberFormatException **Throws if number doesn't match the regex**
+     */
+    public void createCreditCard(final Client client, final PaymentNetwork paymentNetwork, final double balance, final Currency currency) throws CardNumberFormatException {
         if (approveCreditCard(client)){
-            long numberCreditCard = (long) (Math.random() * 10000000000000000L);
-            long CVV = (long) (Math.random() * 1000L);
-            client.getCardList().add(new CreditCard(client, Long.toString(numberCreditCard), paymentNetwork, Long.toString(CVV), balance, currency));
+            long numberCreditCard = (long) (Math.random() * NUMBER_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
+            long cVV = (long) (Math.random() * CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
+            client.getCardList().add(new CreditCard(client, Long.toString(numberCreditCard), paymentNetwork, Long.toString(cVV), balance, currency));
         }
     }
     /**
+     * For now all of our clients can create Debit Card without checking for some restrictions.
      *
-     *
-     * @param client **fdsfds**
-     * @param iban **fdsfsd**
-     * @param debitCard **fsfds**
+     * @param client **Client who applies for the Debit Card**
+     * @throws CardNumberFormatException **Throws if number doesn't match the regex**
      */
-    public boolean issuanceDebitCard(final Client client) throws CardNumberFormatException {
-        //client.getCardList().add(new DebitCard());
+    public boolean createDebitCard(final Client client) throws CardNumberFormatException {
         return true;
     }
 
