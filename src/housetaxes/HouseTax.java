@@ -12,7 +12,7 @@ public class HouseTax {
     private String mobile;
     private ServiceType serviceType;
 
-    public HouseTax(String subscriberNumber, Bill bill, String payName, boolean isPayingAutomated, boolean smsNotification, String mobile, ServiceType serviceType) {
+    public HouseTax(final String subscriberNumber, final Bill bill, final String payName, final boolean isPayingAutomated, final boolean smsNotification, final String mobile, final ServiceType serviceType) {
         setSubscriberNumber(subscriberNumber);
         setBill(bill);
         setPayName(payName);
@@ -22,31 +22,31 @@ public class HouseTax {
         setServiceType(serviceType);
     }
 
-    public void setSubscriberNumber(String subscriberNumber) {
+    public void setSubscriberNumber(final String subscriberNumber) {
         this.subscriberNumber = subscriberNumber;
     }
 
-    public void setBill(Bill bill) {
+    public void setBill(final Bill bill) {
         this.bill = bill;
     }
 
-    public void setPayName(String payName) {
+    public void setPayName(final String payName) {
         this.payName = payName;
     }
 
-    public void setPayingAutomated(boolean payingAutomated) {
+    public void setPayingAutomated(final boolean payingAutomated) {
         isPayingAutomated = payingAutomated;
     }
 
-    public void setSmsNotification(boolean smsNotification) {
+    public void setSmsNotification(final boolean smsNotification) {
         this.smsNotification = smsNotification;
     }
 
-    public void setMobile(String mobile) {
+    public void setMobile(final String mobile) {
         this.mobile = mobile;
     }
 
-    public void setServiceType(ServiceType serviceType) {
+    public void setServiceType(final ServiceType serviceType) {
         this.serviceType = serviceType;
     }
 }

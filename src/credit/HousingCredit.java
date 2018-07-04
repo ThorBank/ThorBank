@@ -37,7 +37,7 @@ public class HousingCredit extends Credit{
         return assessment;
     }
 
-    public void setAssessment(double assessment) {
+    public void setAssessment(final double assessment) {
         this.assessment = assessment;
     }
 

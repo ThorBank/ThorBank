@@ -20,7 +20,7 @@ public class BankOnWeb {
     private List<Message> messagesWithTheBank;
     private Client client;
 
-    public BankOnWeb(Client client) {
+    public BankOnWeb(final Client client) {
         this.client = client;
     }
 
@@ -28,7 +28,7 @@ public class BankOnWeb {
         return client;
     }
 
-    public void setPasswordAuthentication(PasswordAuthentication passwordAuthentication) {
+    public void setPasswordAuthentication(final PasswordAuthentication passwordAuthentication) {
         this.passwordAuthentication = passwordAuthentication;
     }
 
@@ -36,13 +36,13 @@ public class BankOnWeb {
         return passwordAuthentication;
     }
 
-    public void changePassword(String newPassword){
+    public void changePassword(final String newPassword){
         if (newPassword.matches(PASSWORD_REGEX)){
             this.setPasswordAuthentication(new PasswordAuthentication(getPasswordAuthentication().getUserName(), newPassword.toCharArray()));
         }
     }
 
-    public void changeUsername(String newUserName) throws UsernameFormatException, TakenUsernameException {
+    public void changeUsername(final String newUserName) throws UsernameFormatException, TakenUsernameException {
         boolean isNewUserNameTaken = false;
         for (int i = 0; i < DB.getInstance().getBankOnWebList().size(); i++){
             if (DB.getInstance().getBankOnWebList().get(i).getPasswordAuthentication().getUserName() == newUserName){
@@ -61,7 +61,7 @@ public class BankOnWeb {
         }
     }
 
-    public List<Transaction> searchInTransactionListByDate(Date startDate, Date endDate){
+    public List<Transaction> searchInTransactionListByDate(final Date startDate, final Date endDate){
         List<Transaction> resultTransactionsFromSearch = new LinkedList<>();
         for (Transaction aTransactionList : transactionList) {
             if (aTransactionList.getDate().compareTo(startDate) >= 0 && aTransactionList.getDate().compareTo(endDate) <= 0) {
@@ -72,7 +72,7 @@ public class BankOnWeb {
         return resultTransactionsFromSearch;
     }
 
-    public void printTransactionList(List<Transaction> transactionList){
+    public void printTransactionList(final List<Transaction> transactionList){
         transactionList.forEach(t -> System.out.print(t.toString()));
     }
 }

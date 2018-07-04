@@ -7,7 +7,7 @@ public class Transaction {
     private double transactionAmount;
     private String email;
 
-    public Transaction(Date date, double transactionAmount, String email) {
+    public Transaction(final Date date, final double transactionAmount, final String email) {
         setDate(date);
         setTransactionAmount(transactionAmount);
         setEmail(email);
@@ -17,7 +17,7 @@ public class Transaction {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(final Date date) {
         this.date = date;
     }
 
@@ -25,7 +25,7 @@ public class Transaction {
         return transactionAmount;
     }
 
-    public void setTransactionAmount(double transactionAmount) {
+    public void setTransactionAmount(final double transactionAmount) {
         this.transactionAmount = transactionAmount;
     }
 
@@ -33,7 +33,7 @@ public class Transaction {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(final String email) {
         this.email = email;
     }
 

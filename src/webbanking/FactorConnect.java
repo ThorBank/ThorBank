@@ -5,7 +5,7 @@ import client.BusinessClient;
 public class FactorConnect extends BankOnWebPro {
     BusinessClient businessClient;
 
-    public FactorConnect(BusinessClient businessClient) {
+    public FactorConnect(final BusinessClient businessClient) {
         super(null);
         this.businessClient = businessClient;
     }

@@ -23,11 +23,11 @@ public class ConsumerCredit extends Credit {
         return creditPeriodInMonths;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(final double amount) {
         this.amount = amount;
     }
 
-    public void setCreditPeriodInMonths(int creditPeriodInMonths) {
+    public void setCreditPeriodInMonths(final int creditPeriodInMonths) {
         this.creditPeriodInMonths = creditPeriodInMonths;
     }
     @Override

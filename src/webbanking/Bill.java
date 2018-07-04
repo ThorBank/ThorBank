@@ -6,7 +6,7 @@ public class Bill {
     private double balance;
     private double availability;
 
-    public Bill(String iban, Currency currency, double balance, double availability) {
+    public Bill(final String iban, final Currency currency, final double balance, final double availability) {
         setIban(iban);
         setCurrency(currency);
         setBalance(balance);
@@ -17,7 +17,7 @@ public class Bill {
         return iban;
     }
 
-    public void setIban(String iban) {
+    public void setIban(final String iban) {
         this.iban = iban;
     }
 
@@ -25,7 +25,7 @@ public class Bill {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(final Currency currency) {
         this.currency = currency;
     }
 
@@ -33,7 +33,7 @@ public class Bill {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(final double balance) {
         this.balance = balance;
     }
 
@@ -41,7 +41,7 @@ public class Bill {
         return availability;
     }
 
-    public void setAvailability(double availability) {
+    public void setAvailability(final double availability) {
         this.availability = availability;
     }
 }

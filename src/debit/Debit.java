@@ -15,7 +15,7 @@ public class Debit {
     private List<Card> card;
     private double balance;
 
-    public Debit(Client client, double balance) {
+    public Debit(final Client client, final double balance) {
         this.balance = balance;
     }
 
@@ -23,7 +23,7 @@ public class Debit {
         return this.balance;
     }
 
-    public void withdrawMoney(CreditCard creditCard, double amount, Currency currency) throws NotEnoughMoneyInCardException {
+    public void withdrawMoney(final CreditCard creditCard, final double amount, final Currency currency) throws NotEnoughMoneyInCardException {
         if (creditCard.getBalance() <= 0 || creditCard.getBalance() - amount < 0){
             throw new NotEnoughMoneyInCardException();
         }
@@ -34,7 +34,7 @@ public class Debit {
         }
     }
 
-    public void withdrawMoney(DebitCard debitCard, double amount, Currency currency) throws NotEnoughMoneyInCardException {
+    public void withdrawMoney(final DebitCard debitCard, final double amount, final Currency currency) throws NotEnoughMoneyInCardException {
         if (debitCard.getBalance() <= 0 || debitCard.getBalance() - amount < 0)
             throw new NotEnoughMoneyInCardException();
         else {
@@ -44,23 +44,23 @@ public class Debit {
         }
     }
 
-    public void injectMoney(CreditCard card, double amount, Currency currency) {
+    public void injectMoney(final CreditCard card, final double amount, final Currency currency) {
         card.setBalance(card.getBalance() + amount);
         System.out.println(amount + " " + currency.toString() + " has been injected!");
         System.out.println("New card balance: " + card.getBalance() + " " + card.getBalance());
     }
 
-    public void injectMoney(DebitCard card, double amount, Currency currency) {
+    public void injectMoney(final DebitCard card, final double amount, final Currency currency) {
         card.setBalance(card.getBalance() + amount);
         System.out.println(amount + " " + currency.toString() + " has been injected!");
         System.out.println("New card balance: " + card.getBalance() + " " + card.getBalance());
     }
 
-    public void injectMoney(double amount){
+    public void injectMoney(final double amount){
         this.balance += amount;
     }
 
-    public void withdrawMoney(double amount){
+    public void withdrawMoney(final double amount){
         this.balance -= amount;
     }
 

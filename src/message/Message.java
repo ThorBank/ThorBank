@@ -5,21 +5,21 @@ public class Message {
     private PriorityMessage priorityMessage;
     private ValidityMessage validityMessage;
 
-    public Message(StatusMessage statusMessage, PriorityMessage priorityMessage, ValidityMessage validityMessage) {
+    public Message(final StatusMessage statusMessage, final PriorityMessage priorityMessage, final ValidityMessage validityMessage) {
         setStatusMessage(statusMessage);
         setPriorityMessage(priorityMessage);
         setValidityMessage(validityMessage);
     }
 
-    public void setStatusMessage(StatusMessage statusMessage) {
+    public void setStatusMessage(final StatusMessage statusMessage) {
         this.statusMessage = statusMessage;
     }
 
-    public void setPriorityMessage(PriorityMessage priorityMessage) {
+    public void setPriorityMessage(final PriorityMessage priorityMessage) {
         this.priorityMessage = priorityMessage;
     }
 
-    public void setValidityMessage(ValidityMessage validityMessage) {
+    public void setValidityMessage(final ValidityMessage validityMessage) {
         this.validityMessage = validityMessage;
     }
 

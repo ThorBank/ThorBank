@@ -10,11 +10,11 @@ import housetaxes.Taxes;
 public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable {
     private static final double ONLINE_DISCOUNT_PERCENT = 2;
 
-    public BankOnWebPro(Client client) {
+    public BankOnWebPro(final Client client) {
         super(client);
     }
 
-    public void transactionBetweenBills(Client client, Bill firstBill, Bill secondBill, double amount) throws BillDoesNotMatchExceptions, NotEnoughMoneyInYourBill {
+    public void transactionBetweenBills(final Client client, final Bill firstBill, final Bill secondBill, final double amount) throws BillDoesNotMatchExceptions, NotEnoughMoneyInYourBill {
         if (!client.getBillList().contains(firstBill) || !client.getBillList().contains(secondBill)) {
             throw new BillDoesNotMatchExceptions();
         } else  if (firstBill.getAvailability() < amount) {
@@ -26,7 +26,7 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
     }
 
 
-    public void payingTaxes(Taxes taxes) {
+    public void payingTaxes(final Taxes taxes) {
         switch (taxes) {
             case TAXES: break;
             case HOUSEHOLD_BILLS: break;
@@ -35,58 +35,58 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
     }
 
     @Override
-    public void payCredit(Credit credit, Bill bill) {
+    public void payCredit(final Credit credit, final Bill bill) {
         bill.setBalance(bill.getBalance() - credit.getMonthlyPayment() + 2/100*credit.getMonthlyPayment());
         credit.payedcreditInstallment(credit.getMonthlyPayment() - 2/100*credit.getMonthlyPayment());
     }
 
     @Override
-    public void payCredit(Credit credit, Card card) {
+    public void payCredit(final Credit credit, final Card card) {
         card.setBalance(card.getBalance() - credit.getMonthlyPayment() + 2/100*credit.getMonthlyPayment());
         credit.payedcreditInstallment(credit.getMonthlyPayment() - 2/100*credit.getMonthlyPayment());
     }
 
     @Override
-    public void injectMoneyInDebit(Debit debit, Bill bill, double amount) {
+    public void injectMoneyInDebit(final Debit debit, final Bill bill, final double amount) {
         bill.setBalance(bill.getBalance() - amount);
         debit.injectMoney(amount);
     }
 
     @Override
-    public void injectMoneyInDebit(Debit debit, Card card, double amount) {
+    public void injectMoneyInDebit(final Debit debit, final Card card, final double amount) {
         card.setBalance(card.getBalance() - amount);
         debit.injectMoney(amount);
     }
 
     @Override
-    public void withdrawMoneyFromDebit(Debit debit, Bill bill, double amount) {
+    public void withdrawMoneyFromDebit(final Debit debit, final Bill bill, final double amount) {
         bill.setBalance(bill.getBalance() - amount);
         debit.withdrawMoney(amount);
     }
 
     @Override
-    public void withdrawMoneyFromDebit(Debit debit, Card card, double amount) {
+    public void withdrawMoneyFromDebit(final Debit debit, final Card card, final double amount) {
         card.setBalance(card.getBalance() - amount);
         debit.withdrawMoney(amount);
     }
 
     @Override
-    public void applyingForAConsumerCredit(Client guarantor, double amount, int periodInMonths) {
+    public void applyingForAConsumerCredit(final Client guarantor, final double amount, final int periodInMonths) {
         GringottsBank.getInstance().createConsumerCredit(this.getClient(), guarantor, amount, periodInMonths);
     }
 
     @Override
-    public void applyingForAHousingCredit(double amount, int periodInMonths) {
+    public void applyingForAHousingCredit(final double amount, final int periodInMonths) {
         GringottsBank.getInstance().createHousingCredit(this.getClient(), amount, periodInMonths, TaxAssessment.EIGHT, 0.8d);
     }
 
     @Override
-    public void applyingForAIndefiniteDebit(double balance) {
+    public void applyingForAIndefiniteDebit(final double balance) {
         GringottsBank.getInstance().createIndefiniteDebit(this.getClient(), balance, 1.2d);
     }
 
     @Override
-    public void applyingForATermDebit(double balance, int timeInMonths) {
+    public void applyingForATermDebit(final double balance, final int timeInMonths) {
         GringottsBank.getInstance().createTermDebit(this.getClient(), balance, timeInMonths, 1.2d);
     }
 }
