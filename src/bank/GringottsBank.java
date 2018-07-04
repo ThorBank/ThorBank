@@ -9,6 +9,7 @@ import credit.ConsumerCredit;
 import credit.HousingCredit;
 import debit.IndefiniteDebit;
 import debit.TermDebit;
+import thorbank.Bill;
 
 import java.util.Calendar;
 import java.util.Currency;
@@ -105,19 +106,40 @@ public final class GringottsBank {
      * @param client **Client who applies for the Debit Card**
      * @throws CardNumberFormatException **Throws if number doesn't match the regex**
      */
-    public boolean createDebitCard(final Client client) throws CardNumberFormatException {
+    public boolean approveDebitCard(final Client client) throws CardNumberFormatException {
         return true;
     }
 
     /**
+     * Creating Debit Card cicle
      *
-     * @param client **client**
-     * @param debit **fdsfsdfd**
-     * @param discount **fdsfsd**
-     * @return
+     * @param client **Client applying for a Debit Card**
+     * @param paymentNetwork **Wanted Payment Network**
+     * @param balance **Initial injected balance**
+     * @param currency **Picked currency from the client**
+     * @param bill **The bill conected to the Debit Card**
+     * @throws CardNumberFormatException **For number of the card matching the regex**
      */
-    public boolean approveIndefiniteDebit(final Client client, final IndefiniteDebit debit, final double discount){
+    public void createDebitCard(final Client client, final PaymentNetwork paymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
+        if (approveDebitCard(client)){
+            long numberCreditCard = (long) (Math.random() * NUMBER_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
+            long cVV = (long) (Math.random() * CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
+            client.getCardList().add(new DebitCard(client, Long.toString(numberCreditCard), paymentNetwork, Long.toString(cVV), balance, currency, bill));
+        }
+    }
+
+    /**
+     * For now all of our clients can create Indefinite Debit without checking for some restrictions.
+     * @return **always true**
+     */
+    public boolean approveIndefiniteDebit(){
         return true;
+    }
+
+    public void createIndefiniteDebit(Client client, double balance, double discount){
+        if (approveIndefiniteDebit()){
+
+        }
     }
 
     /**

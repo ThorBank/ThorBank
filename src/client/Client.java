@@ -21,6 +21,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     private List<Bill> billList;
     private List<Card> cardList;
     private List<Credit> creditList;
+    private List<Debit> debitList;
     private double balance;
     private double billAvailability;
     private BankOnWeb bankOnWeb;
@@ -31,6 +32,10 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         setEmail(email);
         setDateofBirth(dateofBirth);
         setWorking(isWorking);
+    }
+
+    public List<Debit> getDebitList() {
+        return debitList;
     }
 
     public boolean isWorking() {
@@ -88,8 +93,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     public void createBankOnWeb() throws BankOnWebAlreadyExistsException {
         if (bankOnWeb == null) {
             bankOnWeb = new BankOnWeb(this);
-        }
-        else {
+        } else {
             throw new BankOnWebAlreadyExistsException();
         }
     }
@@ -133,7 +137,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
 
     @Override
     public void applyingForAIndefiniteDebit(IndefiniteDebit indefiniteDebit) {
-        GringottsBank.getInstance().approveIndefiniteDebit(this, indefiniteDebit, 0);
+        GringottsBank.getInstance().approveIndefiniteDebit(this, 0);
     }
 
     @Override
