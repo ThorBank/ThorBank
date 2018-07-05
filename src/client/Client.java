@@ -16,6 +16,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     private String email;
     private GregorianCalendar dateofBirth;
     private boolean isWorking;
+    //TODO: Bill instead of debit card
     private DebitCard paySalaryDebitCard;
     private List<Bill> billList;
     private List<Card> cardList;
@@ -118,6 +119,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         }
     }
 
+    //TODO: change to BILL
     public void changePaySalaryDebitCard(final DebitCard debitCard){
         paySalaryDebitCard = debitCard;
     }
@@ -125,13 +127,13 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     @Override
     public void payCredit(final Credit credit, final Bill bill) {
         bill.setBalance(bill.getBalance() - credit.getMonthlyPayment());
-        credit.payedcreditInstallment(credit.getMonthlyPayment());
+        credit.payedCreditInstallment(credit.getMonthlyPayment());
     }
 
     @Override
     public void payCredit(final Credit credit, final Card card) {
         card.setBalance(card.getBalance() - credit.getMonthlyPayment());
-        credit.payedcreditInstallment(credit.getMonthlyPayment());
+        credit.payedCreditInstallment(credit.getMonthlyPayment());
     }
 
 
@@ -148,7 +150,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     }
 
     @Override
-    public void withdrawMoneyFromDebit(final Debit debit,final  Bill bill, final double amount) {
+    public void withdrawMoneyFromDebit(final Debit debit, final Bill bill, final double amount) {
         bill.setBalance(bill.getBalance() - amount);
         debit.withdrawMoney(amount);
     }

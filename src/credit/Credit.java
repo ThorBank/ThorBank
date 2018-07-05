@@ -9,8 +9,10 @@ public abstract class Credit {
     private Date dateApproval;
     private double amount;
     private int creditPeriodInMonths;
+    //TODO: update logic
     private double monthlyPayment = amount/creditPeriodInMonths;
 
+    //TODO: setters
     public Credit(final Client client, final double amount, final int creditPeriodInMonths) {
         dateApproval = new Date();
         this.amount = amount;
@@ -28,7 +30,8 @@ public abstract class Credit {
 
     public abstract double calculateCreditInterestRate();
 
-    public void payedcreditInstallment(final double amount){
+    //TODO: update logic
+    public void payedCreditInstallment(final double amount){
         this.amount -= monthlyPayment;
     }
 

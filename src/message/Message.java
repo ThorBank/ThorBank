@@ -1,6 +1,7 @@
 package message;
 
 public class Message {
+    //TODO: string message
     private StatusMessage statusMessage;
     private PriorityMessage priorityMessage;
     private ValidityMessage validityMessage;

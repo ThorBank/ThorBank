@@ -8,7 +8,7 @@ public class BusinessClient extends Client {
     private List<IndividualClient> employeeList;
     private FactorConnect factorConnect;
     private double balance;
-
+    //TODO: Individual Client, String companyName
     public BusinessClient(final String CEOFirstName, final String CEOLirstName, final String CEOEmail, final GregorianCalendar dateofBirth, final boolean isWorking) {
         super(CEOFirstName, CEOLirstName, CEOEmail, dateofBirth, isWorking);
         setBalance(balance);

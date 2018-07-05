@@ -19,28 +19,10 @@ import java.util.*;
  *  GringottsBank is our bank.
  */
 public final class GringottsBank {
-    private List<Client> clients;
     /**
      * Singleton pattern. The only instance of GringottsBank.
      */
     private static final GringottsBank INSTANCE = new GringottsBank();
-
-    private GringottsBank() {
-    }
-
-    {
-        clients = new LinkedList<>();
-    }
-
-    /**
-     * Getter for the only instance of GringottsBank.
-     *
-     * @return **The only instance of GringottsBank.**
-     */
-    public static synchronized GringottsBank getInstance() {
-        return INSTANCE;
-    }
-
     private static final int MIN_BALANCE_TERM_DEBIT = 100;
     private static final int MIN_BALANCE_CONSUMER_DEBIT = 5000;
     /**
@@ -59,14 +41,31 @@ public final class GringottsBank {
      */
     private static final long CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER = 1000L;
 
-    public List<Client> getClients() {
-        return clients;
+    private GringottsBank() {
+    }
+
+    {
+    }
+
+    /**
+     * Getter for the only instance of GringottsBank.
+     *
+     * @return **The only instance of GringottsBank.**
+     */
+    public static synchronized GringottsBank getInstance() {
+        return INSTANCE;
+    }
+
+    public static long getCvvCreditCardGeneratorMagicNumber() {
+        return CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER;
     }
 
     public boolean approveCreditCard(final Client client) {
         Date date = new Date();
         Calendar timeNow = new GregorianCalendar();
         timeNow.setTime(date);
+        //TODO: check month and day
+        //TODO: difference between debit and credit card payment network
         int clientYears = timeNow.get(Calendar.YEAR) - client.getDateofBirth().get(Calendar.YEAR);
         if (!(clientYears >= MIN_YEARS_OWN_CREDIT_CARD && clientYears <= MAX_YEARS_OWN_CREDIT_CARD)){
             return false;
@@ -86,6 +85,7 @@ public final class GringottsBank {
      */
     public void createCreditCard(final Client client, final PaymentNetwork paymentNetwork, final double balance, final Currency currency) throws CardNumberFormatException {
         if (approveCreditCard(client)){
+            //TODO: long doesnt work
             long numberCreditCard = (long) (Math.random() * NUMBER_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
             long cVV = (long) (Math.random() * CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
             client.getCardList().add(new CreditCard(client, Long.toString(numberCreditCard), paymentNetwork, Long.toString(cVV), balance, currency));
@@ -106,14 +106,11 @@ public final class GringottsBank {
      */
     public void createDebitCard(final Client client, final PaymentNetwork paymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
         if (approveDebitCard(client)){
+            //TODO: long doesnt work
             long numberCreditCard = (long) (Math.random() * NUMBER_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
             long cVV = (long) (Math.random() * CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
             client.getCardList().add(new DebitCard(client, Long.toString(numberCreditCard), paymentNetwork, Long.toString(cVV), balance, currency, bill));
         }
-    }
-
-    public static long getCvvCreditCardGeneratorMagicNumber() {
-        return CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER;
     }
 
     /**
@@ -144,7 +141,7 @@ public final class GringottsBank {
      * @return **Return the response if debit is approved**
      */
     public boolean approveTermDebit(final double balance){
-        if (balance < MIN_BALANCE_TERM_DEBIT){
+        if (balance <= MIN_BALANCE_TERM_DEBIT){
             return false;
         }
         return true;
@@ -155,12 +152,12 @@ public final class GringottsBank {
      *
      * @param client **Client applying for the Term Debit**
      * @param balance **Initial balance**
-     * @param timeInDays **Time in which client is not going to withdraw without getting a fine**
+     * @param timeInMonths **Time in which client is not going to withdraw without getting a fine**
      * @param bonus **Bonus debit is applied online**
      */
-    public void createTermDebit(final Client client, final double balance, final int timeInDays, final double bonus){
+    public void createTermDebit(final Client client, final double balance, final int timeInMonths, final double bonus){
         if (approveTermDebit(balance)){
-            client.getDebitList().add(new TermDebit(client, balance * bonus, timeInDays));
+            client.getDebitList().add(new TermDebit(client, balance * bonus, timeInMonths));
         }
     }
 
@@ -173,7 +170,7 @@ public final class GringottsBank {
      * @return
      */
     public boolean approveConsumerCredit(final Client client, final double amount, final double discount){
-        if (amount > MIN_BALANCE_CONSUMER_DEBIT){
+        if (amount <= MIN_BALANCE_CONSUMER_DEBIT){
             return true;
         }
         return false;
@@ -187,6 +184,7 @@ public final class GringottsBank {
      * @param creditPeriodInMonths **The period of months in which the client will return the whole credit**
      */
     public void createConsumerCredit(final Client client, final Client guarantor,  final double amount, final int creditPeriodInMonths){
+        //TODO: check how many credits
         if (approveConsumerCredit(client, amount, creditPeriodInMonths)){
             client.getCreditList().add(new ConsumerCredit(client, guarantor, amount, creditPeriodInMonths));
         }

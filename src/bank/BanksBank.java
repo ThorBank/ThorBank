@@ -11,7 +11,7 @@ public final class BanksBank {
     /**
      * List of all clients of BanksBank.
      */
-    private List<Client> bankClientList;
+    private Set<Client> bankClientList;
     /**
      * The only instance of BanksBank.
      */
@@ -30,7 +30,7 @@ public final class BanksBank {
     }
 
     {
-        bankClientList = new LinkedList<>();
+        bankClientList = new HashSet<>();
         bankClientList.add(new Client("Nikolai", "Nikolaev", "n.nikolaev@gmail.com",
                 new GregorianCalendar(2002, 3, 5), true));
         bankClientList.add(new Client("Petur", "Petrov", "p.petrov@gmail.com",
@@ -39,7 +39,7 @@ public final class BanksBank {
                 new GregorianCalendar(1940, 3, 5), false));
     }
 
-    public List<Client> getBankClientList() {
+    public Set<Client> getBankClientList() {
         return bankClientList;
     }
 }

@@ -5,15 +5,16 @@ import card.Card;
 import client.*;
 import credit.*;
 import debit.*;
-import housetaxes.Taxes;
 
 public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable {
+    //TODO: in gringottsbank
     private static final double ONLINE_DISCOUNT_PERCENT = 2;
 
     public BankOnWebPro(final Client client) {
         super(client);
     }
 
+    //check if bill is in our bank
     public void transactionBetweenBills(final Client client, final Bill firstBill, final Bill secondBill, final double amount) throws BillDoesNotMatchExceptions, NotEnoughMoneyInYourBill {
         if (!client.getBillList().contains(firstBill) || !client.getBillList().contains(secondBill)) {
             throw new BillDoesNotMatchExceptions();
@@ -25,25 +26,16 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
         secondBill.setAvailability(secondBill.getAvailability()+amount);
     }
 
-
-    public void payingTaxes(final Taxes taxes) {
-        switch (taxes) {
-            case TAXES: break;
-            case HOUSEHOLD_BILLS: break;
-            case FEES: break;
-        }
-    }
-
     @Override
     public void payCredit(final Credit credit, final Bill bill) {
         bill.setBalance(bill.getBalance() - credit.getMonthlyPayment() + 2/100*credit.getMonthlyPayment());
-        credit.payedcreditInstallment(credit.getMonthlyPayment() - 2/100*credit.getMonthlyPayment());
+        credit.payedCreditInstallment(credit.getMonthlyPayment() - 2/100*credit.getMonthlyPayment());
     }
 
     @Override
     public void payCredit(final Credit credit, final Card card) {
         card.setBalance(card.getBalance() - credit.getMonthlyPayment() + 2/100*credit.getMonthlyPayment());
-        credit.payedcreditInstallment(credit.getMonthlyPayment() - 2/100*credit.getMonthlyPayment());
+        credit.payedCreditInstallment(credit.getMonthlyPayment() - 2/100*credit.getMonthlyPayment());
     }
 
     @Override
