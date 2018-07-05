@@ -34,7 +34,7 @@ public final class GringottsBank {
      *
      * @return **The only instance of GringottsBank.**
      */
-    public static GringottsBank getInstance() {
+    public static synchronized GringottsBank getInstance() {
         return INSTANCE;
     }
 

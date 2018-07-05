@@ -34,6 +34,10 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         setDebitList(new LinkedList<>());
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public DebitCard getPaySalaryDebitCard() {
         return paySalaryDebitCard;
     }

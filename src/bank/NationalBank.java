@@ -26,7 +26,7 @@ public final class NationalBank {
      *
      * @return **instance of BanksBank**
      */
-    public static NationalBank getInstance() {
+    public static synchronized NationalBank getInstance() {
         return INSTANCE;
     }
 
