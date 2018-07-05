@@ -13,20 +13,23 @@ import debit.TermDebit;
 import webbanking.Bill;
 import webbanking.Currency;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 /**
  *  GringottsBank is our bank.
  */
 public final class GringottsBank {
+    private List<Client> clients;
     /**
      * Singleton pattern. The only instance of GringottsBank.
      */
     private static final GringottsBank INSTANCE = new GringottsBank();
 
     private GringottsBank() {
+    }
+
+    {
+        clients = new LinkedList<>();
     }
 
     /**
@@ -55,6 +58,10 @@ public final class GringottsBank {
      * Number to create a 3-digit number for the Credit Card.
      */
     private static final long CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER = 1000L;
+
+    public List<Client> getClients() {
+        return clients;
+    }
 
     public boolean approveCreditCard(final Client client) {
         Date date = new Date();
@@ -103,6 +110,10 @@ public final class GringottsBank {
             long cVV = (long) (Math.random() * CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
             client.getCardList().add(new DebitCard(client, Long.toString(numberCreditCard), paymentNetwork, Long.toString(cVV), balance, currency, bill));
         }
+    }
+
+    public static long getCvvCreditCardGeneratorMagicNumber() {
+        return CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER;
     }
 
     /**

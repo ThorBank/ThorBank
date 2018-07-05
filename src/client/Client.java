@@ -14,7 +14,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     private String firstName;
     private String lastName;
     private String email;
-    private Calendar dateofBirth;
+    private GregorianCalendar dateofBirth;
     private boolean isWorking;
     private DebitCard paySalaryDebitCard;
     private List<Bill> billList;
@@ -102,11 +102,11 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         return cardList;
     }
 
-    public Calendar getDateofBirth() {
+    public GregorianCalendar getDateofBirth() {
         return dateofBirth;
     }
 
-    public void setDateofBirth(final Calendar dateofBirth) {
+    public void setDateofBirth(final GregorianCalendar dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
 

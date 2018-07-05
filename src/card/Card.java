@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
  * The class which both Credit and Debit Card extends.
  */
 public abstract class Card {
-    private static final String NUMBER_CARD_REGEX = "^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11})$";
+    private static final String NUMBER_CARD_REGEX = "\\b\\d{4}(| |-)\\d{4}\\1\\d{4}\\1\\d{4}\\b";
     private String bankName;
     /**
      * The number of the card
@@ -54,6 +54,10 @@ public abstract class Card {
         setClient(client);
         setBalance(balance);
         setCurrency(currency);
+    }
+
+    public String getNumber() {
+        return number;
     }
 
     public void setBankName(final String bankName) {
