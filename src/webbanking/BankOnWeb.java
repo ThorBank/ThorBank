@@ -5,10 +5,8 @@ import db.DB;
 import message.Message;
 
 import java.net.PasswordAuthentication;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class BankOnWeb {
     private static final String PASSWORD_REGEX = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\\\S+$).{8,}";
@@ -72,7 +70,18 @@ public class BankOnWeb {
         return resultTransactionsFromSearch;
     }
 
-    public void printTransactionList(final List<Transaction> transactionList){
+//    public void printTransactionList(final List<Transaction> transactionList){
+////        transactionList.forEach(t -> System.out.print(t.toString()));
+////    }
+
+    public void sortTransactionByDescendingOrderOfAmount(List<Transaction> transactionList) {
+        List<Transaction> resultTransactions = transactionList.stream()
+                .sorted(Comparator.comparing(Transaction::getTransactionAmount).reversed())
+                .collect(Collectors.toList());
+        printTransactionList(resultTransactions);
+    }
+
+    public void printTransactionList(final List<? extends Transaction> transactionList){
         transactionList.forEach(t -> System.out.print(t.toString()));
     }
 }
