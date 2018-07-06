@@ -30,7 +30,7 @@ public abstract class Credit {
     public double calculateMonthlyInterestRate(){
         return (((GringottsBank.getInstance().getAnnualRatePercentageConsumerCredit()/100)/12)*this.getAmount())*100;
     }
-    
+
     public void payedCreditInstallment(final double amount){
         this.amount -= monthlyPayment;
     }

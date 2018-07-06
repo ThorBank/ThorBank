@@ -3,7 +3,6 @@ package housetaxes;
 import webbanking.Bill;
 
 public class HouseTax {
-    //TODO: Add other enums
     private String subscriberNumber;
     private Bill bill;
     private String payName;
