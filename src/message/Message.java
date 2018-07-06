@@ -11,6 +11,10 @@ public class Message {
         setStatusMessage(statusMessage);
         setPriorityMessage(priorityMessage);
         setValidityMessage(validityMessage);
+        setSender(sender);
+    }
+
+    public void setSender(Sender sender) {
         this.sender = sender;
     }
 

@@ -12,6 +12,10 @@ public class BusinessClient extends Client {
     public BusinessClient(IndividualClient individualClient, String companyName) {
         super(individualClient.getFirstName(), individualClient.getLastName(), individualClient.getEmail(), individualClient.getDateofBirth(), true);
         setBalance(balance);
+        setCompanyName(companyName);
+    }
+
+    public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 

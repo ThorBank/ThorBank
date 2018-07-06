@@ -14,9 +14,21 @@ public abstract class Credit {
 
     public Credit(final Client client, final double amount, final int creditPeriodInMonths) {
         dateApproval = new Date();
-        this.amount = amount;
-        this.creditPeriodInMonths = creditPeriodInMonths;
+        setAmount(amount);
+        setCreditPeriodInMonths(creditPeriodInMonths);
+        setClient(client);
+    }
+
+    public void setClient(Client client) {
         this.client = client;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setCreditPeriodInMonths(int creditPeriodInMonths) {
+        this.creditPeriodInMonths = creditPeriodInMonths;
     }
 
     public double getAmount() {

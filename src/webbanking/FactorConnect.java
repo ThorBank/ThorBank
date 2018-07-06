@@ -8,6 +8,10 @@ public class FactorConnect extends BankOnWebPro {
 
     public FactorConnect(final BusinessClient businessClient) {
         super(null);
+        setBusinessClient(businessClient);
+    }
+
+    public void setBusinessClient(BusinessClient businessClient) {
         this.businessClient = businessClient;
     }
 

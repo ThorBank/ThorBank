@@ -20,6 +20,10 @@ public class BankOnWeb {
     private List<Message> messagesWithGringottsBank;
 
     public BankOnWeb(final Client client) {
+        setClient(client);
+    }
+
+    public void setClient(Client client) {
         this.client = client;
     }
 

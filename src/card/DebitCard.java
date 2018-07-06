@@ -11,6 +11,10 @@ public class DebitCard extends Card {
     public DebitCard(final Client client, final String number, final String cVV, final double balance, final Currency currency, final Bill bill, final DebitCardPaymentNetwork debitCardPaymentNetwork) throws CardNumberFormatException {
         super(client, number, cVV, balance, currency);
         setBill(bill);
+        setDebitCardPaymentNetwork(debitCardPaymentNetwork);
+    }
+
+    public void setDebitCardPaymentNetwork(DebitCardPaymentNetwork debitCardPaymentNetwork) {
         this.debitCardPaymentNetwork = debitCardPaymentNetwork;
     }
 

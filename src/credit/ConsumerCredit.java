@@ -8,6 +8,10 @@ public class ConsumerCredit extends Credit {
 
     public ConsumerCredit(final Client client, final Client guarantor, final double amount, final int creditPeriodInMonths) {
         super(client, amount, creditPeriodInMonths);
+        setGuarantor(guarantor);
+    }
+
+    public void setGuarantor(Client guarantor) {
         this.guarantor = guarantor;
     }
 }

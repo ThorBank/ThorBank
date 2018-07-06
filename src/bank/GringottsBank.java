@@ -160,7 +160,7 @@ public final class GringottsBank implements Sender, Bank {
      */
     public void createIndefiniteDebit(final Client client, final double balance, final double bonus) {
         if (approveIndefiniteDebit()) {
-            client.getDebitList().add(new Debit(client, balance * bonus));
+            client.getDebitList().add(new Debit(balance * bonus));
         }
     }
 
@@ -187,7 +187,7 @@ public final class GringottsBank implements Sender, Bank {
      */
     public void createTermDebit(final Client client, final double balance, final int timeInMonths, final double bonus) {
         if (approveTermDebit(balance)) {
-            client.getDebitList().add(new TermDebit(client, balance * bonus, timeInMonths));
+            client.getDebitList().add(new TermDebit(balance * bonus, timeInMonths));
         }
     }
 

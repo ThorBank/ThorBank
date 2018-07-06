@@ -10,12 +10,15 @@ import java.util.Currency;
 import java.util.List;
 
 public class Debit {
-    private Client client;
     private String iban;
     private List<Card> card;
     private double balance;
 
-    public Debit(final Client client, final double balance) {
+    public Debit(final double balance) {
+        setBalance(balance);
+    }
+
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 

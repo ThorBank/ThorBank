@@ -12,8 +12,16 @@ public class GringottsBankDB {
     private List<BankOnWeb> bankOnWebList;
 
     {
-        clientList = new LinkedList<>();
-        bankOnWebList = new LinkedList<>();
+        setClientList(new LinkedList<>());
+        setBankOnWebList(new LinkedList<>());
+    }
+
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
+    }
+
+    public void setBankOnWebList(List<BankOnWeb> bankOnWebList) {
+        this.bankOnWebList = bankOnWebList;
     }
 
     private GringottsBankDB() { }
