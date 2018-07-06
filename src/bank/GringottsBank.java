@@ -7,6 +7,7 @@ import credit.HousingCredit;
 import credit.TaxAssessment;
 import debit.Debit;
 import debit.TermDebit;
+import message.Message;
 import message.Sender;
 import webbanking.Bill;
 import webbanking.Currency;
@@ -244,6 +245,10 @@ public final class GringottsBank implements Sender, Bank {
         if (approveHousingCredit(client)) {
             client.getCreditList().add(new HousingCredit(client, amount * discount, creditPeriodInMonths, taxAssessment));
         }
+    }
+
+    public void sendMessageToClient(final Client client, final Message message){
+        client.getBankOnWeb().sendMessageToGringottsBank(message);
     }
 
     private String randomNDigitString(int n) {
