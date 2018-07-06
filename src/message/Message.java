@@ -1,3 +1,12 @@
+/*
+ * Message
+ *
+ * version 1.0
+ *
+ * Last updated 06.07.18
+ *
+ * MIT Copyright
+ */
 package message;
 
 public class Message {
