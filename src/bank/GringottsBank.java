@@ -31,7 +31,7 @@ import java.util.GregorianCalendar;
 import java.util.Random;
 
 /**
- * GringottsBank is our bank.
+ * GringottsBank is our bank. Here are all the functions that only the staff of the bank can do.
  */
 public final class GringottsBank implements Sender, Bank {
 
@@ -135,13 +135,6 @@ public final class GringottsBank implements Sender, Bank {
         return true;
     }
 
-    /**
-     * Creating a IndefiniteDebit for a Individual Client.
-     *
-     * @param client  **Client applying for the debit**
-     * @param balance **Initially injected balance from the client**
-     * @param bonus   **Bonus if the creation is made online**
-     */
     public void createIndefiniteDebit(final Client client, final double balance, final double bonus) {
         if (approveIndefiniteDebit()) {
             client.getDebitList().add(new Debit(balance * bonus));
@@ -203,11 +196,6 @@ public final class GringottsBank implements Sender, Bank {
         }
     }
 
-    /**
-     * No requirements for Housing Credit
-     *
-     * @return **always true**
-     */
     public boolean approveHousingCredit(final Client client) {
         return client.doesHaveGoodBankHistory();
     }
@@ -227,10 +215,20 @@ public final class GringottsBank implements Sender, Bank {
         }
     }
 
+    /**
+     *  Only Client BankOnWeb can send messages one to another
+     * @param client
+     * @param message
+     */
     public void sendMessageToClient(final Client client, final Message message){
         client.getBankOnWeb().sendMessageToGringottsBank(message);
     }
 
+    /**
+     * Generates digit string for creation of CVV and Number of the cards.
+     * @param n
+     * @return
+     */
     private String randomNDigitString(final int n) {
         Random r = new Random();
         char[] v = new char[n];
