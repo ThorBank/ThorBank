@@ -11,7 +11,9 @@ package bank;
 
 import client.Client;
 
-import java.util.*;
+import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *  BanksBank is test bank to test BankHub.

@@ -9,7 +9,11 @@
  */
 package bank;
 
-import card.*;
+import card.CardNumberFormatException;
+import card.DebitCardPaymentNetwork;
+import card.CreditCard;
+import card.DebitCard;
+import card.CreditCardPaymentNetwork;
 import client.Client;
 import credit.ConsumerCredit;
 import credit.HousingCredit;
@@ -21,7 +25,10 @@ import message.Sender;
 import webbanking.Bill;
 import webbanking.Currency;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Random;
 
 /**
  * GringottsBank is our bank.
@@ -234,7 +241,7 @@ public final class GringottsBank implements Sender, Bank {
      *
      * @return **always true**
      */
-    public boolean approveHousingCredit(Client client) {
+    public boolean approveHousingCredit(final Client client) {
         if (client.doesHaveGoodBankHistory()) {
             return true;
         }
