@@ -1,9 +1,6 @@
 package bank;
 
-import card.CardNumberFormatException;
-import card.CreditCard;
-import card.DebitCard;
-import card.PaymentNetwork;
+import card.*;
 import client.Client;
 import credit.ConsumerCredit;
 import credit.HousingCredit;
@@ -64,9 +61,12 @@ public final class GringottsBank {
         Date date = new Date();
         Calendar timeNow = new GregorianCalendar();
         timeNow.setTime(date);
-        //TODO: check month and day
-        //TODO: difference between debit and credit card payment network
         int clientYears = timeNow.get(Calendar.YEAR) - client.getDateofBirth().get(Calendar.YEAR);
+        if (timeNow.get(Calendar.MONTH) < client.getDateofBirth().get(Calendar.MONTH)
+                || timeNow.get(Calendar.MONTH) == client.getDateofBirth().get(Calendar.MONTH)
+                && timeNow.get(Calendar.DAY_OF_MONTH) < client.getDateofBirth().get(Calendar.DAY_OF_MONTH)){
+            clientYears--;
+        }
         if (!(clientYears >= MIN_YEARS_OWN_CREDIT_CARD && clientYears <= MAX_YEARS_OWN_CREDIT_CARD)){
             return false;
         }
@@ -78,17 +78,16 @@ public final class GringottsBank {
 
     /**
      * @param client **Client who is applying for the credit card**
-     * @param paymentNetwork **Payment Method reuired by the client**
      * @param balance **Balance reuired by the client**
      * @param currency **Currency reuired by the client**
      * @throws CardNumberFormatException **Throws if number doesn't match the regex**
      */
-    public void createCreditCard(final Client client, final PaymentNetwork paymentNetwork, final double balance, final Currency currency) throws CardNumberFormatException {
+    public void createCreditCard(final Client client, final CreditCardPaymentNetwork creditCardPaymentNetwork, final double balance, final Currency currency) throws CardNumberFormatException {
         if (approveCreditCard(client)){
             //TODO: long doesnt work
             long numberCreditCard = (long) (Math.random() * NUMBER_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
             long cVV = (long) (Math.random() * CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
-            client.getCardList().add(new CreditCard(client, Long.toString(numberCreditCard), paymentNetwork, Long.toString(cVV), balance, currency));
+            client.getCardList().add(new CreditCard(client, Long.toString(numberCreditCard), Long.toString(cVV), balance, currency, creditCardPaymentNetwork));
         }
     }
     /**
@@ -104,12 +103,12 @@ public final class GringottsBank {
     /**
      * @throws CardNumberFormatException **For number of the card matching the regex**
      */
-    public void createDebitCard(final Client client, final PaymentNetwork paymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
+    public void createDebitCard(final Client client, final DebitCardPaymentNetwork debitCardPaymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
         if (approveDebitCard(client)){
             //TODO: long doesnt work
             long numberCreditCard = (long) (Math.random() * NUMBER_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
             long cVV = (long) (Math.random() * CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
-            client.getCardList().add(new DebitCard(client, Long.toString(numberCreditCard), paymentNetwork, Long.toString(cVV), balance, currency, bill));
+            client.getCardList().add(new DebitCard(client, Long.toString(numberCreditCard), Long.toString(cVV), balance, currency, bill, debitCardPaymentNetwork));
         }
     }
 

@@ -182,12 +182,12 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     }
 
     @Override
-    public void applyForCreditCard(final PaymentNetwork paymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
-        GringottsBank.getInstance().createCreditCard(this, paymentNetwork, balance, currency);
+    public void applyForCreditCard(final CreditCardPaymentNetwork creditCardPaymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
+        GringottsBank.getInstance().createCreditCard(this, creditCardPaymentNetwork, balance, currency);
     }
 
     @Override
-    public void applyForDebitCard(final PaymentNetwork paymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
-        GringottsBank.getInstance().createDebitCard(this, paymentNetwork, balance, currency, bill);
+    public void applyForDebitCard(final DebitCardPaymentNetwork debitCardPaymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
+        GringottsBank.getInstance().createDebitCard(this, debitCardPaymentNetwork, balance, currency, bill);
     }
 }

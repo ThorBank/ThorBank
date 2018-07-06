@@ -43,7 +43,7 @@ public abstract class Card {
      * @param currency
      * @throws CardNumberFormatException **When number doesn't match the regex**
      */
-    public Card(final Client client, final String number, final PaymentNetwork paymentNetwork, final String cVV, final double balance, final Currency currency) throws CardNumberFormatException {
+    public Card(final Client client, final String number, final String cVV, final double balance, final Currency currency) throws CardNumberFormatException {
         setBankName("GringottsBank");
         setNumber(number);
         Date date = new Date();

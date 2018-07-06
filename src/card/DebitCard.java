@@ -6,10 +6,12 @@ import webbanking.Currency;
 
 public class DebitCard extends Card {
     private Bill bill;
+    private DebitCardPaymentNetwork debitCardPaymentNetwork;
 
-    public DebitCard(final Client client, final String number, final PaymentNetwork paymentNetwork, final String cVV, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
-        super(client, number, paymentNetwork, cVV, balance, currency);
+    public DebitCard(final Client client, final String number, final String cVV, final double balance, final Currency currency, final Bill bill, final DebitCardPaymentNetwork debitCardPaymentNetwork) throws CardNumberFormatException {
+        super(client, number, cVV, balance, currency);
         setBill(bill);
+        this.debitCardPaymentNetwork = debitCardPaymentNetwork;
     }
 
     public Bill getBill() {
