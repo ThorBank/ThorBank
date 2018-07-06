@@ -9,8 +9,6 @@
  */
 package debit;
 
-import client.Client;
-
 public class TermDebit extends Debit {
     private int timeInMonths;
 

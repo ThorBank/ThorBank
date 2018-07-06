@@ -13,7 +13,6 @@ import card.Card;
 import card.CreditCard;
 import card.DebitCard;
 import card.NotEnoughMoneyInCardException;
-import client.Client;
 
 import java.util.Currency;
 import java.util.List;
