@@ -84,10 +84,9 @@ public final class GringottsBank {
      */
     public void createCreditCard(final Client client, final CreditCardPaymentNetwork creditCardPaymentNetwork, final double balance, final Currency currency) throws CardNumberFormatException {
         if (approveCreditCard(client)){
-            //TODO: long doesnt work
-            long numberCreditCard = (long) (Math.random() * NUMBER_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
-            long cVV = (long) (Math.random() * CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
-            client.getCardList().add(new CreditCard(client, Long.toString(numberCreditCard), Long.toString(cVV), balance, currency, creditCardPaymentNetwork));
+            String numberCreditCard = randomNDigitString(16);
+            String cVV = randomNDigitString(3);
+            client.getCardList().add(new CreditCard(client, numberCreditCard, cVV, balance, currency, creditCardPaymentNetwork));
         }
     }
     /**
@@ -105,10 +104,9 @@ public final class GringottsBank {
      */
     public void createDebitCard(final Client client, final DebitCardPaymentNetwork debitCardPaymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
         if (approveDebitCard(client)){
-            //TODO: long doesnt work
-            long numberCreditCard = (long) (Math.random() * NUMBER_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
-            long cVV = (long) (Math.random() * CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER);
-            client.getCardList().add(new DebitCard(client, Long.toString(numberCreditCard), Long.toString(cVV), balance, currency, bill, debitCardPaymentNetwork));
+            String numberDebitCard = randomNDigitString(16);
+            String cVV = randomNDigitString(3);
+            client.getCardList().add(new DebitCard(client, numberDebitCard, cVV, balance, currency, bill, debitCardPaymentNetwork));
         }
     }
 
@@ -211,5 +209,12 @@ public final class GringottsBank {
         if (approveHousingCredit()){
             client.getCreditList().add(new HousingCredit(client, amount * discount, creditPeriodInMonths, taxAssessment));
         }
+    }
+
+    private String randomNDigitString(int n) {
+        Random r = new Random();
+        char[] v = new char[n];
+        for (int j = 0; j < n; j++) v[j] = (char) (r.nextDouble()*10 + 48);
+        return new String(v);
     }
 }
