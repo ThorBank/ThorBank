@@ -1,3 +1,12 @@
+/*
+ * Business Client
+ *
+ * version 1.0
+ *
+ * Last updated 06.07.18
+ *
+ * MIT Copyright
+ */
 package client;
 
 import webbanking.FactorConnect;

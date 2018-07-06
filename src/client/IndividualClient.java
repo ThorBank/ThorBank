@@ -1,3 +1,12 @@
+/*
+ * IndividualClient
+ *
+ * version 1.0
+ *
+ * Last updated 06.07.18
+ *
+ * MIT Copyright
+ */
 package client;
 
 import java.net.PasswordAuthentication;
