@@ -147,6 +147,14 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         paySalaryBill = bill;
     }
 
+
+    public boolean doesHaveGoodBankHistory(){
+        if (this.getCreditList().size() > 4){
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void payCredit(final Credit credit, final Bill bill) {
         bill.setBalance(bill.getBalance() - credit.getMonthlyPayment());
@@ -212,12 +220,5 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     @Override
     public void applyForDebitCard(final DebitCardPaymentNetwork debitCardPaymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
         GringottsBank.getInstance().createDebitCard(this, debitCardPaymentNetwork, balance, currency, bill);
-    }
-
-    public boolean doesHaveGoodBankHistory(){
-        if (this.getCreditList().size() > 4){
-            return false;
-        }
-        return true;
     }
 }
