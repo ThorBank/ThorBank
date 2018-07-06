@@ -11,9 +11,14 @@ package webbanking;
 
 import bank.GringottsBank;
 import card.Card;
-import client.*;
-import credit.*;
-import debit.*;
+import client.Client;
+import credit.CreditAppliable;
+import credit.CreditPayable;
+import credit.Credit;
+import credit.TaxAssessment;
+import debit.Debit;
+import debit.DebitAppliable;
+import debit.DebitInjectableWithdrawable;
 
 public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable {
     public BankOnWebPro(final Client client) {

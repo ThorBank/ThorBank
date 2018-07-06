@@ -14,8 +14,12 @@ import db.GringottsBankDB;
 import message.Message;
 
 import java.net.PasswordAuthentication;
-import java.util.*;
+import java.util.UUID;
+import java.util.List;
+import java.util.LinkedList;
 import java.util.stream.Collectors;
+import java.util.Date;
+import java.util.Comparator;
 
 public class BankOnWeb {
     private static final String PASSWORD_REGEX = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\\\S+$).{8,}";
@@ -32,7 +36,7 @@ public class BankOnWeb {
         setClient(client);
     }
 
-    public void setClient(Client client) {
+    public void setClient(final Client client) {
         this.client = client;
     }
 
@@ -84,7 +88,7 @@ public class BankOnWeb {
         return resultTransactionsFromSearch;
     }
 
-    public void sortTransactionByDescendingOrderOfAmount(List<Transaction> transactionList) {
+    public void sortTransactionByDescendingOrderOfAmount(final List<Transaction> transactionList) {
         List<Transaction> resultTransactions = transactionList.stream()
                 .sorted(Comparator.comparing(Transaction::getTransactionAmount).reversed())
                 .collect(Collectors.toList());
