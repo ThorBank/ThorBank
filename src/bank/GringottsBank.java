@@ -167,7 +167,7 @@ public final class GringottsBank {
      * @return
      */
     public boolean approveConsumerCredit(final Client client, final double amount, final double discount){
-        if (amount <= MIN_BALANCE_CONSUMER_DEBIT){
+        if (amount <= MIN_BALANCE_CONSUMER_DEBIT && client.doesHaveGoodBankHistory()){
             return true;
         }
         return false;
@@ -181,7 +181,6 @@ public final class GringottsBank {
      * @param creditPeriodInMonths **The period of months in which the client will return the whole credit**
      */
     public void createConsumerCredit(final Client client, final Client guarantor,  final double amount, final int creditPeriodInMonths){
-        //TODO: check how many credits
         if (approveConsumerCredit(client, amount, creditPeriodInMonths)){
             client.getCreditList().add(new ConsumerCredit(client, guarantor, amount, creditPeriodInMonths));
         }
@@ -192,8 +191,11 @@ public final class GringottsBank {
      *
      * @return **always true**
      */
-    public boolean approveHousingCredit(){
-        return true;
+    public boolean approveHousingCredit(Client client){
+        if (client.doesHaveGoodBankHistory()){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -206,7 +208,7 @@ public final class GringottsBank {
      * @param discount **The discount if the client applied from our web platform**
      */
     public void createHousingCredit(final Client client, final double amount, final int creditPeriodInMonths, final TaxAssessment taxAssessment, final double discount){
-        if (approveHousingCredit()){
+        if (approveHousingCredit(client)){
             client.getCreditList().add(new HousingCredit(client, amount * discount, creditPeriodInMonths, taxAssessment));
         }
     }
