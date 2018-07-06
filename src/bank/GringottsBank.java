@@ -34,10 +34,7 @@ import java.util.Random;
  * GringottsBank is our bank.
  */
 public final class GringottsBank implements Sender, Bank {
-    /**
-     * Singleton pattern. The only instance of GringottsBank.
-     */
-    private static final GringottsBank INSTANCE = new GringottsBank();
+
     private static final int MIN_BALANCE_TERM_DEBIT = 100;
     private static final int MIN_BALANCE_CONSUMER_DEBIT = 5000;
     /**
@@ -47,11 +44,6 @@ public final class GringottsBank implements Sender, Bank {
     private static final int MIN_YEARS_OWN_CREDIT_CARD = 23;
     private static final int MAX_YEARS_OWN_CREDIT_CARD = 63;
     /**
-     * Number to create a 16-digit number for the Credit Card.
-     */
-    private static final long NUMBER_CREDIT_CARD_GENERATOR_MAGIC_NUMBER
-            = 10000000000000000L;
-    /**
      * Number to create a 3-digit number for the Credit Card.
      */
     private static final long CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER = 1000L;
@@ -59,7 +51,14 @@ public final class GringottsBank implements Sender, Bank {
     private double annualRatePercentageHousingCredit;
     private double onlineDiscountPercent;
 
+    /**
+     * Singleton pattern
+     */
+    private static final GringottsBank INSTANCE = new GringottsBank();
     private GringottsBank() {
+    }
+    public static synchronized GringottsBank getInstance() {
+        return INSTANCE;
     }
 
     {
@@ -72,7 +71,7 @@ public final class GringottsBank implements Sender, Bank {
         return onlineDiscountPercent;
     }
 
-    public void setOnlineDiscountPercent(double onlineDiscountPercent) {
+    public void setOnlineDiscountPercent(final double onlineDiscountPercent) {
         this.onlineDiscountPercent = onlineDiscountPercent;
     }
 
@@ -80,7 +79,7 @@ public final class GringottsBank implements Sender, Bank {
         return annualRatePercentageConsumerCredit;
     }
 
-    public void setAnnualRatePercentageConsumerCredit(double annualRatePercentageConsumerCredit) {
+    public void setAnnualRatePercentageConsumerCredit(final double annualRatePercentageConsumerCredit) {
         this.annualRatePercentageConsumerCredit = annualRatePercentageConsumerCredit;
     }
 
@@ -88,20 +87,10 @@ public final class GringottsBank implements Sender, Bank {
         return annualRatePercentageHousingCredit;
     }
 
-    public void setAnnualRatePercentageHousingCredit(double annualRatePercentage) {
+    public void setAnnualRatePercentageHousingCredit(final double annualRatePercentage) {
         this.annualRatePercentageHousingCredit = annualRatePercentage;
     }
 
-    /**
-     * Getter for the only instance of GringottsBank.
-     *
-     * @return **The only instance of GringottsBank.**
-     */
-
-
-    public static synchronized GringottsBank getInstance() {
-        return INSTANCE;
-    }
 
     public static long getCvvCreditCardGeneratorMagicNumber() {
         return CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER;

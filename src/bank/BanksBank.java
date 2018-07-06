@@ -19,23 +19,13 @@ import java.util.Set;
  *  BanksBank is test bank to test BankHub.
  */
 public final class BanksBank implements Bank {
-    /**
-     * List of all clients of BanksBank.
-     */
     private Set<Client> bankClientList;
     /**
-     * The only instance of BanksBank.
+     * Singleton pattern.
      */
     private static final BanksBank INSTANCE = new BanksBank();
-
     private BanksBank() {
     }
-
-    /**
-     * Getter for the only instance of BanksBank.
-     *
-     * @return **instance of BanksBank**
-     */
     public static synchronized BanksBank getInstance() {
         return INSTANCE;
     }

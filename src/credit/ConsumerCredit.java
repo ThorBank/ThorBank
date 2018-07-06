@@ -9,6 +9,7 @@
  */
 package credit;
 
+import bank.GringottsBank;
 import client.Client;
 
 public class ConsumerCredit extends Credit {
@@ -20,7 +21,12 @@ public class ConsumerCredit extends Credit {
         setGuarantor(guarantor);
     }
 
-    public void setGuarantor(Client guarantor) {
+    public void setGuarantor(final Client guarantor) {
         this.guarantor = guarantor;
+    }
+
+    @Override
+    public double calculateMonthlyInterestRate() {
+        return (((GringottsBank.getInstance().getAnnualRatePercentageConsumerCredit()/100)/12)*this.getAmount())*100;
     }
 }
