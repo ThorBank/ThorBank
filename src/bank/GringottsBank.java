@@ -43,16 +43,14 @@ public final class GringottsBank implements Sender, Bank {
      */
     private static final int MIN_YEARS_OWN_CREDIT_CARD = 23;
     private static final int MAX_YEARS_OWN_CREDIT_CARD = 63;
-    /**
-     * Number to create a 3-digit number for the Credit Card.
-     */
-    private static final long CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER = 1000L;
+    private static final int CARD_NUMBER_LENGTH = 16;
+    private static final int CARD_CVV_LENGTH = 3;
     private double annualRatePercentageConsumerCredit;
     private double annualRatePercentageHousingCredit;
     private double onlineDiscountPercent;
 
     /**
-     * Singleton pattern
+     * Singleton pattern.
      */
     private static final GringottsBank INSTANCE = new GringottsBank();
     private GringottsBank() {
@@ -91,11 +89,6 @@ public final class GringottsBank implements Sender, Bank {
         this.annualRatePercentageHousingCredit = annualRatePercentage;
     }
 
-
-    public static long getCvvCreditCardGeneratorMagicNumber() {
-        return CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER;
-    }
-
     public boolean approveCreditCard(final Client client) {
         Date date = new Date();
         Calendar timeNow = new GregorianCalendar();
@@ -113,37 +106,22 @@ public final class GringottsBank implements Sender, Bank {
         }
     }
 
-    /**
-     * @param client   **Client who is applying for the credit card**
-     * @param balance  **Balance reuired by the client**
-     * @param currency **Currency reuired by the client**
-     * @throws CardNumberFormatException **Throws if number doesn't match the regex**
-     */
     public void createCreditCard(final Client client, final CreditCardPaymentNetwork creditCardPaymentNetwork, final double balance, final Currency currency) throws CardNumberFormatException {
         if (approveCreditCard(client)) {
-            String numberCreditCard = randomNDigitString(16);
-            String cVV = randomNDigitString(3);
+            String numberCreditCard = randomNDigitString(CARD_NUMBER_LENGTH);
+            String cVV = randomNDigitString(CARD_CVV_LENGTH);
             client.getCardList().add(new CreditCard(client, numberCreditCard, cVV, balance, currency, creditCardPaymentNetwork));
         }
     }
 
-    /**
-     * For now all of our clients can create Debit Card without checking for some restrictions.
-     *
-     * @param client **Client who applies for the Debit Card**
-     * @throws CardNumberFormatException **Throws if number doesn't match the regex**
-     */
     public boolean approveDebitCard(final Client client) throws CardNumberFormatException {
         return true;
     }
 
-    /**
-     * @throws CardNumberFormatException **For number of the card matching the regex**
-     */
     public void createDebitCard(final Client client, final DebitCardPaymentNetwork debitCardPaymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
         if (approveDebitCard(client)) {
-            String numberDebitCard = randomNDigitString(16);
-            String cVV = randomNDigitString(3);
+            String numberDebitCard = randomNDigitString(CARD_NUMBER_LENGTH);
+            String cVV = randomNDigitString(CARD_CVV_LENGTH);
             client.getCardList().add(new DebitCard(client, numberDebitCard, cVV, balance, currency, bill, debitCardPaymentNetwork));
         }
     }
@@ -231,10 +209,7 @@ public final class GringottsBank implements Sender, Bank {
      * @return **always true**
      */
     public boolean approveHousingCredit(final Client client) {
-        if (client.doesHaveGoodBankHistory()) {
-            return true;
-        }
-        return false;
+        return client.doesHaveGoodBankHistory();
     }
 
     /**
@@ -256,7 +231,7 @@ public final class GringottsBank implements Sender, Bank {
         client.getBankOnWeb().sendMessageToGringottsBank(message);
     }
 
-    private String randomNDigitString(int n) {
+    private String randomNDigitString(final int n) {
         Random r = new Random();
         char[] v = new char[n];
         for (int j = 0; j < n; j++) v[j] = (char) (r.nextDouble() * 10 + 48);
