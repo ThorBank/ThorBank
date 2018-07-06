@@ -20,7 +20,7 @@ public class CreditCard extends Card {
         setCreditCardPaymentNetwork(creditCardPaymentNetwork);
     }
 
-    public void setCreditCardPaymentNetwork(CreditCardPaymentNetwork creditCardPaymentNetwork) {
+    public void setCreditCardPaymentNetwork(final CreditCardPaymentNetwork creditCardPaymentNetwork) {
         this.creditCardPaymentNetwork = creditCardPaymentNetwork;
     }
 }

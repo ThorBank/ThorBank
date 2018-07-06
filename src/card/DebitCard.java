@@ -23,7 +23,7 @@ public class DebitCard extends Card {
         setDebitCardPaymentNetwork(debitCardPaymentNetwork);
     }
 
-    public void setDebitCardPaymentNetwork(DebitCardPaymentNetwork debitCardPaymentNetwork) {
+    public void setDebitCardPaymentNetwork(final DebitCardPaymentNetwork debitCardPaymentNetwork) {
         this.debitCardPaymentNetwork = debitCardPaymentNetwork;
     }
 

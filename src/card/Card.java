@@ -22,9 +22,6 @@ import java.util.GregorianCalendar;
 public abstract class Card {
     private static final String NUMBER_CARD_REGEX = "\\b\\d{4}(| |-)\\d{4}\\1\\d{4}\\1\\d{4}\\b";
     private String bankName;
-    /**
-     * The number of the card
-     */
     private String number;
     private Calendar expirationDate;
     /**
@@ -41,17 +38,6 @@ public abstract class Card {
      */
     private Currency currency;
 
-    /**
-     *  The only constructor for creating some type of card
-     *
-     * @param client
-     * @param number
-     * @param paymentNetwork
-     * @param cVV
-     * @param balance
-     * @param currency
-     * @throws CardNumberFormatException **When number doesn't match the regex**
-     */
     public Card(final Client client, final String number, final String cVV, final double balance, final Currency currency) throws CardNumberFormatException {
         setBankName("GringottsBank");
         setNumber(number);
