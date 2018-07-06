@@ -16,8 +16,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     private String email;
     private GregorianCalendar dateofBirth;
     private boolean isWorking;
-    //TODO: Bill instead of debit card
-    private DebitCard paySalaryDebitCard;
+    private Bill paySalaryBill;
     private List<Bill> billList;
     private List<Card> cardList;
     private List<Credit> creditList;
@@ -39,8 +38,8 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         return email;
     }
 
-    public DebitCard getPaySalaryDebitCard() {
-        return paySalaryDebitCard;
+    public Bill getPaySalaryBill() {
+        return paySalaryBill;
     }
 
     public void setBillList(final List<Bill> billList) {
@@ -119,9 +118,8 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         }
     }
 
-    //TODO: change to BILL
-    public void changePaySalaryDebitCard(final DebitCard debitCard){
-        paySalaryDebitCard = debitCard;
+    public void changePaySalaryBill(final Bill bill){
+        paySalaryBill = bill;
     }
 
     @Override

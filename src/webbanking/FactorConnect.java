@@ -13,7 +13,7 @@ public class FactorConnect extends BankOnWebPro {
     public void payingSalary() {
         for (int i = 0; i < this.businessClient.getEmployeeList().size(); i++){
             this.businessClient.setBalance(this.businessClient.getBalance() - this.businessClient.getEmployeeList().get(i).getSalary()*countDiscountPayingSalaryFromBankWebsite());
-            this.businessClient.getEmployeeList().get(i).getPaySalaryDebitCard().setBalance(this.businessClient.getEmployeeList().get(i).getPaySalaryDebitCard().getBalance() + this.businessClient.getEmployeeList().get(i).getSalary());
+            this.businessClient.getEmployeeList().get(i).getPaySalaryBill().setBalance(this.businessClient.getEmployeeList().get(i).getPaySalaryBill().getBalance() + this.businessClient.getEmployeeList().get(i).getSalary());
         }
     }
 
