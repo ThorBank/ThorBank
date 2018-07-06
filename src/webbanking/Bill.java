@@ -1,16 +1,28 @@
 package webbanking;
 
+import bank.Bank;
+
 public class Bill {
     private String iban;
     private Currency currency;
     private double balance;
     private double availability;
+    private Bank bank;
 
-    public Bill(final String iban, final Currency currency, final double balance, final double availability) {
+    public Bill(final Bank bank, final String iban, final Currency currency, final double balance, final double availability) {
         setIban(iban);
         setCurrency(currency);
         setBalance(balance);
         setAvailability(availability);
+        setBank(bank);
+    }
+
+    public Bank getBank() {
+        return bank;
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
 
     public String getIban() {

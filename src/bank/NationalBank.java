@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * GringottsBank is our bank.
  */
-public final class NationalBank {
+public final class NationalBank implements Bank {
     /**
      * List of all clients of BanksBank.
      */

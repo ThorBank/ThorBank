@@ -16,7 +16,7 @@ import java.util.*;
 /**
  * GringottsBank is our bank.
  */
-public final class GringottsBank implements Sender {
+public final class GringottsBank implements Sender, Bank {
     /**
      * Singleton pattern. The only instance of GringottsBank.
      */

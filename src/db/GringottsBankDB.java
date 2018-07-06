@@ -6,8 +6,8 @@ import webbanking.BankOnWeb;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DB {
-    private static final DB instance = new DB();
+public class GringottsBankDB {
+    private static final GringottsBankDB instance = new GringottsBankDB();
     private List<Client> clientList;
     private List<BankOnWeb> bankOnWebList;
 
@@ -16,9 +16,9 @@ public class DB {
         bankOnWebList = new LinkedList<>();
     }
 
-    private DB() { }
+    private GringottsBankDB() { }
 
-    public static DB getInstance(){
+    public static GringottsBankDB getInstance(){
         return instance;
     }
 

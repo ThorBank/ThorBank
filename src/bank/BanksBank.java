@@ -7,7 +7,7 @@ import java.util.*;
 /**
  *  BanksBank is test bank to test BankHub.
  */
-public final class BanksBank {
+public final class BanksBank implements Bank {
     /**
      * List of all clients of BanksBank.
      */

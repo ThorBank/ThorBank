@@ -1,7 +1,7 @@
 package webbanking;
 
 import client.Client;
-import db.DB;
+import db.GringottsBankDB;
 import message.Message;
 
 import java.net.PasswordAuthentication;
@@ -43,8 +43,8 @@ public class BankOnWeb {
 
     public void changeUsername(final String newUserName) throws UsernameFormatException, TakenUsernameException {
         boolean isNewUserNameTaken = false;
-        for (int i = 0; i < DB.getInstance().getBankOnWebList().size(); i++){
-            if (DB.getInstance().getBankOnWebList().get(i).getPasswordAuthentication().getUserName() == newUserName){
+        for (int i = 0; i < GringottsBankDB.getInstance().getBankOnWebList().size(); i++){
+            if (GringottsBankDB.getInstance().getBankOnWebList().get(i).getPasswordAuthentication().getUserName() == newUserName){
                 isNewUserNameTaken = true;
                 break;
             }
