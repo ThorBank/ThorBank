@@ -40,6 +40,7 @@ public final class GringottsBank implements Sender {
     private static final long CVV_CREDIT_CARD_GENERATOR_MAGIC_NUMBER = 1000L;
     private double annualRatePercentageConsumerCredit;
     private double annualRatePercentageHousingCredit;
+    private double onlineDiscountPercent;
 
     private GringottsBank() {
     }
@@ -47,6 +48,15 @@ public final class GringottsBank implements Sender {
     {
         setAnnualRatePercentageConsumerCredit(3);
         setAnnualRatePercentageHousingCredit(3);
+        setOnlineDiscountPercent(2);
+    }
+
+    public double getOnlineDiscountPercent() {
+        return onlineDiscountPercent;
+    }
+
+    public void setOnlineDiscountPercent(double onlineDiscountPercent) {
+        this.onlineDiscountPercent = onlineDiscountPercent;
     }
 
     public double getAnnualRatePercentageConsumerCredit() {

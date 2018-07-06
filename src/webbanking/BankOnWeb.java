@@ -70,7 +70,7 @@ public class BankOnWeb {
 
         return resultTransactionsFromSearch;
     }
-    
+
     public void sortTransactionByDescendingOrderOfAmount(List<Transaction> transactionList) {
         List<Transaction> resultTransactions = transactionList.stream()
                 .sorted(Comparator.comparing(Transaction::getTransactionAmount).reversed())
