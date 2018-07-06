@@ -15,6 +15,7 @@ import card.Card;
 import card.CardNumberFormatException;
 import card.CreditCardPaymentNetwork;
 import card.DebitCardPaymentNetwork;
+import card.NotEnoughMoneyInCardException;
 import credit.CreditPayable;
 import credit.CreditAppliable;
 import credit.Credit;
@@ -171,25 +172,25 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     @Override
     public void injectMoneyInDebit(final Debit debit, final Bill bill, final double amount) {
         bill.setBalance(bill.getBalance() - amount);
-        debit.injectMoney(amount);
+        debit.injectMoney(bill, amount, bill.getCurrency());
     }
 
     @Override
     public void injectMoneyInDebit(final Debit debit, final Card card, final double amount) {
         card.setBalance(card.getBalance() - amount);
-        debit.injectMoney(amount);
+        debit.injectMoney(card, amount, card.getCurrency());
     }
 
     @Override
-    public void withdrawMoneyFromDebit(final Debit debit, final Bill bill, final double amount) {
+    public void withdrawMoneyFromDebit(final Debit debit, final Bill bill, final double amount) throws NotEnoughMoneyInCardException {
         bill.setBalance(bill.getBalance() - amount);
-        debit.withdrawMoney(amount);
+        debit.withdrawMoney(bill, amount, bill.getCurrency());
     }
 
     @Override
-    public void withdrawMoneyFromDebit(final Debit debit, final Card card, final double amount) {
+    public void withdrawMoneyFromDebit(final Debit debit, final Card card, final double amount) throws NotEnoughMoneyInCardException {
         card.setBalance(card.getBalance() - amount);
-        debit.withdrawMoney(amount);
+        debit.withdrawMoney(card, amount, card.getCurrency());
     }
 
     @Override

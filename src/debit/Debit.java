@@ -13,8 +13,9 @@ import card.Card;
 import card.CreditCard;
 import card.DebitCard;
 import card.NotEnoughMoneyInCardException;
+import webbanking.Bill;
+import webbanking.Currency;
 
-import java.util.Currency;
 import java.util.List;
 
 public class Debit {
@@ -34,28 +35,29 @@ public class Debit {
         return this.balance;
     }
 
-    public void withdrawMoney(final CreditCard creditCard, final double amount, final Currency currency) throws NotEnoughMoneyInCardException {
-        if (creditCard.getBalance() <= 0 || creditCard.getBalance() - amount < 0){
+    public void withdrawMoney(final Card card, final double amount, final Currency currency) throws NotEnoughMoneyInCardException {
+        if (card.getBalance() <= 0 || card.getBalance() - amount < 0){
             throw new NotEnoughMoneyInCardException();
         }
         else {
-            creditCard.setBalance(creditCard.getBalance() - amount);
+            card.setBalance(card.getBalance() - amount);
         }
     }
 
-    public void withdrawMoney(final DebitCard debitCard, final double amount, final Currency currency) throws NotEnoughMoneyInCardException {
-        if (debitCard.getBalance() <= 0 || debitCard.getBalance() - amount < 0)
+    public void withdrawMoney(final Bill bill, final double amount, final Currency currency) throws NotEnoughMoneyInCardException {
+        if (bill.getBalance() <= 0 || bill.getBalance() - amount < 0){
             throw new NotEnoughMoneyInCardException();
+        }
         else {
-            debitCard.setBalance(debitCard.getBalance() - amount);
+            bill.setBalance(bill.getBalance() - amount);
         }
     }
 
-    public void injectMoney(final CreditCard card, final double amount, final Currency currency) {
+    public void injectMoney(final Card card, final double amount, final Currency currency) {
         card.setBalance(card.getBalance() + amount);
     }
 
-    public void injectMoney(final DebitCard card, final double amount, final Currency currency) {
-        card.setBalance(card.getBalance() + amount);
+    public void injectMoney(final Bill bill, final double amount, final Currency currency) {
+        bill.setBalance(bill.getBalance() + amount);
     }
 }

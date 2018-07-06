@@ -17,7 +17,7 @@ public class TermDebit extends Debit {
         setTimeInMonths(timeInMonths);
     }
 
-    public void setTimeInMonths(int timeInMonths) {
+    public void setTimeInMonths(final int timeInMonths) {
         this.timeInMonths = timeInMonths;
     }
 }
