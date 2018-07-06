@@ -1,12 +1,12 @@
 package message;
 
 public class Message {
-    //TODO: string message
+    private String text;
     private StatusMessage statusMessage;
     private PriorityMessage priorityMessage;
     private ValidityMessage validityMessage;
 
-    public Message(final StatusMessage statusMessage, final PriorityMessage priorityMessage, final ValidityMessage validityMessage) {
+    public Message(final String text, final StatusMessage statusMessage, final PriorityMessage priorityMessage, final ValidityMessage validityMessage) {
         setStatusMessage(statusMessage);
         setPriorityMessage(priorityMessage);
         setValidityMessage(validityMessage);
