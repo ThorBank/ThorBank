@@ -40,8 +40,6 @@ public class Debit {
         }
         else {
             creditCard.setBalance(creditCard.getBalance() - amount);
-            System.out.println(amount + " " + currency.toString() + " has been withdrawn!");
-            System.out.println("New card balance: " + creditCard.getBalance() + " " + currency.toString());
         }
     }
 
@@ -50,32 +48,14 @@ public class Debit {
             throw new NotEnoughMoneyInCardException();
         else {
             debitCard.setBalance(debitCard.getBalance() - amount);
-            System.out.println(amount + " " + currency.toString() + " has been withdrawn!");
-            System.out.println("New card balance: " + debitCard.getBalance() + " " + currency.toString());
         }
     }
 
     public void injectMoney(final CreditCard card, final double amount, final Currency currency) {
         card.setBalance(card.getBalance() + amount);
-        System.out.println(amount + " " + currency.toString() + " has been injected!");
-        System.out.println("New card balance: " + card.getBalance() + " " + card.getBalance());
     }
 
     public void injectMoney(final DebitCard card, final double amount, final Currency currency) {
         card.setBalance(card.getBalance() + amount);
-        System.out.println(amount + " " + currency.toString() + " has been injected!");
-        System.out.println("New card balance: " + card.getBalance() + " " + card.getBalance());
-    }
-
-    public void injectMoney(final double amount){
-        this.balance += amount;
-    }
-
-    public void withdrawMoney(final double amount){
-        this.balance -= amount;
-    }
-
-    public String getIban() {
-        return iban;
     }
 }
