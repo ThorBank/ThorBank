@@ -10,15 +10,26 @@
 package client;
 
 import bank.GringottsBank;
-import card.*;
-import credit.*;
-import debit.*;
+import card.AppliableForANewCard;
+import card.Card;
+import card.CardNumberFormatException;
+import card.CreditCardPaymentNetwork;
+import card.DebitCardPaymentNetwork;
+import credit.CreditPayable;
+import credit.CreditAppliable;
+import credit.Credit;
+import credit.TaxAssessment;
+import debit.Debit;
+import debit.DebitAppliable;
+import debit.DebitInjectableWithdrawable;
 import message.Sender;
 import webbanking.BankOnWeb;
 import webbanking.Bill;
 import webbanking.Currency;
 
-import java.util.*;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.LinkedList;
 
 public class Client implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable, AppliableForANewCard, Sender {
     private String firstName;

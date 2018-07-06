@@ -9,7 +9,6 @@
  */
 package client;
 
-import java.net.PasswordAuthentication;
 import java.util.GregorianCalendar;
 
 public class IndividualClient extends Client {
