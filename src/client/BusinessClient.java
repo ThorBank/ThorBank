@@ -9,7 +9,6 @@ public class BusinessClient extends Client {
     private List<IndividualClient> employeeList;
     private FactorConnect factorConnect;
     private double balance;
-    //TODO: Individual Client, String companyName
     public BusinessClient(IndividualClient individualClient, String companyName) {
         super(individualClient.getFirstName(), individualClient.getLastName(), individualClient.getEmail(), individualClient.getDateofBirth(), true);
         setBalance(balance);
