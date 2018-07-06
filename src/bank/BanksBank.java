@@ -29,7 +29,9 @@ public final class BanksBank implements Bank {
     public static synchronized BanksBank getInstance() {
         return INSTANCE;
     }
-
+    /**
+     * Created clients so we can test BankHub.
+     */
     {
         bankClientList = new HashSet<>();
         bankClientList.add(new Client("Nikolai", "Nikolaev", "n.nikolaev@gmail.com",
