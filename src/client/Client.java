@@ -4,13 +4,14 @@ import bank.GringottsBank;
 import card.*;
 import credit.*;
 import debit.*;
+import message.Sender;
 import webbanking.BankOnWeb;
 import webbanking.Bill;
 import webbanking.Currency;
 
 import java.util.*;
 
-public class Client implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable, AppliableForANewCard {
+public class Client implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable, AppliableForANewCard, Sender {
     private String firstName;
     private String lastName;
     private String email;

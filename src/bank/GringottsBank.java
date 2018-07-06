@@ -7,6 +7,7 @@ import credit.HousingCredit;
 import credit.TaxAssessment;
 import debit.Debit;
 import debit.TermDebit;
+import message.Sender;
 import webbanking.Bill;
 import webbanking.Currency;
 
@@ -15,7 +16,7 @@ import java.util.*;
 /**
  * GringottsBank is our bank.
  */
-public final class GringottsBank {
+public final class GringottsBank implements Sender {
     /**
      * Singleton pattern. The only instance of GringottsBank.
      */

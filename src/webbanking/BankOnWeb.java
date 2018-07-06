@@ -17,6 +17,7 @@ public class BankOnWeb {
     private List<Transaction> transactionList;
     private List<Message> messagesWithTheBank;
     private Client client;
+    private List<Message> messagesWithGringottsBank;
 
     public BankOnWeb(final Client client) {
         this.client = client;
@@ -69,11 +70,7 @@ public class BankOnWeb {
 
         return resultTransactionsFromSearch;
     }
-
-//    public void printTransactionList(final List<Transaction> transactionList){
-////        transactionList.forEach(t -> System.out.print(t.toString()));
-////    }
-
+    
     public void sortTransactionByDescendingOrderOfAmount(List<Transaction> transactionList) {
         List<Transaction> resultTransactions = transactionList.stream()
                 .sorted(Comparator.comparing(Transaction::getTransactionAmount).reversed())
@@ -83,5 +80,9 @@ public class BankOnWeb {
 
     public void printTransactionList(final List<? extends Transaction> transactionList){
         transactionList.forEach(t -> System.out.print(t.toString()));
+    }
+
+    public void sendMessageToGringottsBank(final Message message){
+        this.messagesWithGringottsBank.add(message);
     }
 }
