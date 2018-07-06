@@ -13,14 +13,14 @@ import client.BusinessClient;
 import client.IndividualClient;
 
 public class FactorConnect extends BankOnWebPro {
-    BusinessClient businessClient;
+    private BusinessClient businessClient;
 
     public FactorConnect(final BusinessClient businessClient) {
         super(null);
         setBusinessClient(businessClient);
     }
 
-    public void setBusinessClient(BusinessClient businessClient) {
+    public void setBusinessClient(final BusinessClient businessClient) {
         this.businessClient = businessClient;
     }
 

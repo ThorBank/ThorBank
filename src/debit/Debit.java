@@ -10,8 +10,6 @@
 package debit;
 
 import card.Card;
-import card.CreditCard;
-import card.DebitCard;
 import card.NotEnoughMoneyInCardException;
 import webbanking.Bill;
 import webbanking.Currency;
