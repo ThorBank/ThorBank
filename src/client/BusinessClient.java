@@ -5,13 +5,15 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class BusinessClient extends Client {
+    private String companyName;
     private List<IndividualClient> employeeList;
     private FactorConnect factorConnect;
     private double balance;
     //TODO: Individual Client, String companyName
-    public BusinessClient(final String CEOFirstName, final String CEOLirstName, final String CEOEmail, final GregorianCalendar dateofBirth, final boolean isWorking) {
-        super(CEOFirstName, CEOLirstName, CEOEmail, dateofBirth, isWorking);
+    public BusinessClient(IndividualClient individualClient, String companyName) {
+        super(individualClient.getFirstName(), individualClient.getLastName(), individualClient.getEmail(), individualClient.getDateofBirth(), true);
         setBalance(balance);
+        this.companyName = companyName;
     }
 
     public double getBalance() {
