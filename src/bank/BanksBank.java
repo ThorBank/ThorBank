@@ -39,8 +39,4 @@ public final class BanksBank implements Bank {
         bankClientList.add(new Client("Hristo", "Hristov", "h.hristov@gmail.com",
                 new GregorianCalendar(1940, 3, 5), false));
     }
-
-    public Set<Client> getBankClientList() {
-        return bankClientList;
-    }
 }
