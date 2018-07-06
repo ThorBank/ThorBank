@@ -1,3 +1,12 @@
+/*
+ * Transaction
+ *
+ * version 1.0
+ *
+ * Last updated 03.07.18
+ *
+ * MIT Copyright
+ */
 package webbanking;
 
 import java.util.Date;
