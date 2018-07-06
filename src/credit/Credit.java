@@ -1,5 +1,6 @@
 package credit;
 
+import bank.GringottsBank;
 import client.Client;
 
 import java.util.Date;
@@ -9,10 +10,8 @@ public abstract class Credit {
     private Date dateApproval;
     private double amount;
     private int creditPeriodInMonths;
-    //TODO: update logic
-    private double monthlyPayment = amount/creditPeriodInMonths;
+    private double monthlyPayment = amount/creditPeriodInMonths + amount/creditPeriodInMonths*this.calculateMonthlyInterestRate();
 
-    //TODO: setters
     public Credit(final Client client, final double amount, final int creditPeriodInMonths) {
         dateApproval = new Date();
         this.amount = amount;
@@ -28,9 +27,10 @@ public abstract class Credit {
         return monthlyPayment;
     }
 
-    public abstract double calculateCreditInterestRate();
-
-    //TODO: update logic
+    public double calculateMonthlyInterestRate(){
+        return (((GringottsBank.getInstance().getAnnualRatePercentageConsumerCredit()/100)/12)*this.getAmount())*100;
+    }
+    
     public void payedCreditInstallment(final double amount){
         this.amount -= monthlyPayment;
     }

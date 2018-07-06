@@ -40,9 +40,4 @@ public class HousingCredit extends Credit{
     public void setAssessment(final double assessment) {
         this.assessment = assessment;
     }
-
-    @Override
-    public double calculateCreditInterestRate() {
-        return (1 / MONTHS_PER_YEAR) * (2 * PERCENT_TO_NUM) * getAmount() * assessment; //1 is getCreditPeriodInMonths, 2 is getYearlyInterestRate
-    }
 }
