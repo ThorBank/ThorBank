@@ -51,10 +51,6 @@ public abstract class Card {
         setCurrency(currency);
     }
 
-    public String getNumber() {
-        return number;
-    }
-
     public void setBankName(final String bankName) {
         this.bankName = bankName;
     }
