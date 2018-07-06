@@ -1,3 +1,12 @@
+/*
+ * Debit
+ *
+ * version 1.0
+ *
+ * Last updated 06.07.18
+ *
+ * MIT Copyright
+ */
 package debit;
 
 import card.Card;
