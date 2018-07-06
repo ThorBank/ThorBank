@@ -18,5 +18,4 @@ public class IndividualClient extends Client {
     public void setSalary(final double salary) {
         this.salary = salary;
     }
-    //TODO: when start working for a company which has Factory Connect in our bank
 }
