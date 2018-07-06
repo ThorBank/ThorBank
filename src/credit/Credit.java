@@ -19,24 +19,25 @@ public abstract class Credit {
     private Date dateApproval;
     private double amount;
     private int creditPeriodInMonths;
-    private double monthlyPayment = amount/creditPeriodInMonths + amount/creditPeriodInMonths*this.calculateMonthlyInterestRate();
+    private double monthlyPayment;
 
     public Credit(final Client client, final double amount, final int creditPeriodInMonths) {
         dateApproval = new Date();
         setAmount(amount);
         setCreditPeriodInMonths(creditPeriodInMonths);
         setClient(client);
+        setMonthlyPayment(amount / creditPeriodInMonths + amount / creditPeriodInMonths * this.calculateMonthlyInterestRate());
     }
 
-    public void setClient(Client client) {
+    public void setClient(final Client client) {
         this.client = client;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(final double amount) {
         this.amount = amount;
     }
 
-    public void setCreditPeriodInMonths(int creditPeriodInMonths) {
+    public void setCreditPeriodInMonths(final int creditPeriodInMonths) {
         this.creditPeriodInMonths = creditPeriodInMonths;
     }
 
@@ -46,6 +47,10 @@ public abstract class Credit {
 
     public double getMonthlyPayment() {
         return monthlyPayment;
+    }
+
+    public void setMonthlyPayment(double monthlyPayment) {
+        this.monthlyPayment = monthlyPayment;
     }
 
     public abstract double calculateMonthlyInterestRate();
