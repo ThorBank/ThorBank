@@ -17,13 +17,13 @@ public class BusinessClient extends Client {
     private List<IndividualClient> employeeList;
     private FactorConnect factorConnect;
     private double balance;
-    public BusinessClient(IndividualClient individualClient, String companyName) {
-        super(individualClient.getFirstName(), individualClient.getLastName(), individualClient.getEmail(),individualClient.getPassword(), individualClient.getDateofBirth(), true);
+    public BusinessClient(final IndividualClient individualClient, final String companyName) {
+        super(individualClient.getFirstName(), individualClient.getLastName(), individualClient.getEmail(), individualClient.getPassword(), individualClient.getDateofBirth(), true);
         setBalance(balance);
         setCompanyName(companyName);
     }
 
-    public void setCompanyName(String companyName) {
+    public void setCompanyName(final String companyName) {
         this.companyName = companyName;
     }
 
@@ -31,7 +31,7 @@ public class BusinessClient extends Client {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(final double balance) {
         this.balance = balance;
     }
 
