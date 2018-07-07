@@ -12,6 +12,7 @@ package webbanking;
 import client.Client;
 import db.GringottsBankDB;
 import message.Message;
+import message.Sender;
 
 import java.net.PasswordAuthentication;
 import java.util.UUID;
@@ -31,6 +32,10 @@ public class BankOnWeb {
     private List<Message> messagesWithTheBank;
     private Client client;
     private List<Message> messagesWithGringottsBank;
+
+    public List<Message> getMessagesWithTheBank() {
+        return messagesWithTheBank;
+    }
 
     public BankOnWeb(final Client client) {
         setClient(client);

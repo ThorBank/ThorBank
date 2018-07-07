@@ -221,7 +221,7 @@ public final class GringottsBank implements Sender, Bank {
      * @param message
      */
     public void sendMessageToClient(final Client client, final Message message){
-        client.getBankOnWeb().sendMessageToGringottsBank(message);
+        client.getBankOnWeb().getMessagesWithTheBank().add(message);
     }
 
     /**
