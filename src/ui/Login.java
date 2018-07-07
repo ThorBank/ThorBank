@@ -35,7 +35,7 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 if (GringottsBankDB.getInstance().getClientList().stream()
-                        .filter((client) -> client.getEmail().equals(email.getText()))
+                        .filter((client) -> client.getEmail().equals(email.getText()) && client.getPassword().equals(password.getText()))
                         .anyMatch(client -> true)){
                     Login.super.dispose();
                 }
