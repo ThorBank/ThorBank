@@ -16,7 +16,6 @@ import card.DebitCard;
 import card.CreditCardPaymentNetwork;
 import client.Client;
 import credit.ConsumerCredit;
-import credit.Credit;
 import credit.HousingCredit;
 import credit.TaxAssessment;
 import debit.Debit;

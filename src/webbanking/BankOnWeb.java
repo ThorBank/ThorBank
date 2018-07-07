@@ -12,7 +12,6 @@ package webbanking;
 import client.Client;
 import db.GringottsBankDB;
 import message.Message;
-import message.Sender;
 
 import java.net.PasswordAuthentication;
 import java.util.UUID;

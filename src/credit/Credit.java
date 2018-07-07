@@ -9,7 +9,6 @@
  */
 package credit;
 
-import bank.GringottsBank;
 import client.Client;
 
 import java.util.Date;
