@@ -1,9 +1,8 @@
-import bank.BanksBank;
-import bank.GringottsBank;
+import ui.Welcome;
 
 public class ThorBank {
     public static void main(String[] args) {
-        //System.out.println(BanksBank.getInstance().getBankClientList().get(1).getEmail());
+        new Welcome();
     }
 }
 
