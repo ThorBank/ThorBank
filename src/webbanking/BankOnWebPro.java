@@ -36,7 +36,7 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
         } else  if (sender.getAvailability() < amount) {
             throw new NotEnoughMoneyInYourBill();
         }
-        else if (!sender.getBank().equals(GringottsBank.getInstance())){
+        else if (!sender.getBank().equals(GringottsBank.getInstance())) {
             throw new BillNotFromGringottsBankException();
         }
 

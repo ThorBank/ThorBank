@@ -46,6 +46,8 @@ public final class GringottsBank implements Sender, Bank {
     private static final int MAX_YEARS_OWN_CREDIT_CARD = 63;
     private static final int CARD_NUMBER_LENGTH = 16;
     private static final int CARD_CVV_LENGTH = 3;
+    private static final int STARTING_ANNUAL_PERCENTAGE_CREDIT = 3;
+    private static final int STARTING_ONLINE_DISCOUNT_PERCENT = 3;
     private double annualRatePercentageConsumerCredit;
     private double annualRatePercentageHousingCredit;
     private double onlineDiscountPercent;
@@ -61,9 +63,9 @@ public final class GringottsBank implements Sender, Bank {
     }
 
     {
-        setAnnualRatePercentageConsumerCredit(3);
-        setAnnualRatePercentageHousingCredit(3);
-        setOnlineDiscountPercent(2);
+        setAnnualRatePercentageConsumerCredit(STARTING_ANNUAL_PERCENTAGE_CREDIT);
+        setAnnualRatePercentageHousingCredit(STARTING_ANNUAL_PERCENTAGE_CREDIT);
+        setOnlineDiscountPercent(STARTING_ONLINE_DISCOUNT_PERCENT);
     }
 
     public double getOnlineDiscountPercent() {
