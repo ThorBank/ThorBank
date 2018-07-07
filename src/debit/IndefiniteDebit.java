@@ -10,7 +10,7 @@
 package debit;
 
 public class IndefiniteDebit extends Debit {
-    public IndefiniteDebit(final double balance) {
-        super(balance);
+    public IndefiniteDebit(final double balance, final double percentYearly) {
+        super(balance, percentYearly);
     }
 }

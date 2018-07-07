@@ -30,7 +30,7 @@ public class Bill {
         return bank;
     }
 
-    public void setBank(Bank bank) {
+    public void setBank(final Bank bank) {
         this.bank = bank;
     }
 

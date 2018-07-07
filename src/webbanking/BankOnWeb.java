@@ -26,6 +26,7 @@ public class BankOnWeb {
     private static final String PASSWORD_REGEX = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\\\S+$).{8,}";
     private static final String USERNAME_REGEX = "^[a-zA-Z0-9._-]{3,}$";
     private static final String EMAIL_REGEX = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+    private static final Integer DATE_COMPARE_ZERO = 0;
     private UUID id;
     private PasswordAuthentication passwordAuthentication;
     private List<Transaction> transactionList;
@@ -85,7 +86,7 @@ public class BankOnWeb {
     public List<Transaction> searchInTransactionListByDate(final Date startDate, final Date endDate){
         List<Transaction> resultTransactionsFromSearch = new LinkedList<>();
         for (Transaction aTransactionList : transactionList) {
-            if (aTransactionList.getDate().compareTo(startDate) >= 0 && aTransactionList.getDate().compareTo(endDate) <= 0) {
+            if (aTransactionList.getDate().compareTo(startDate) >= DATE_COMPARE_ZERO && aTransactionList.getDate().compareTo(endDate) <= DATE_COMPARE_ZERO) {
                 resultTransactionsFromSearch.add(aTransactionList);
             }
         }

@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class GringottsBankDB {
-    private static final GringottsBankDB instance = new GringottsBankDB();
+    private static final GringottsBankDB INSTANCE = new GringottsBankDB();
     private List<Client> clientList;
     private List<BankOnWeb> bankOnWebList;
 
@@ -18,11 +18,11 @@ public class GringottsBankDB {
 
     private GringottsBankDB() { }
 
-    public static GringottsBankDB getInstance(){
-        return instance;
+    public static GringottsBankDB getInstance() {
+        return INSTANCE;
     }
 
-    public List<Client> getClientList(){
+    public List<Client> getClientList() {
         return this.clientList;
     }
 

@@ -22,6 +22,10 @@ import debit.DebitAppliable;
 import debit.DebitInjectableWithdrawable;
 
 public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable {
+    private static final double BONUS_DEBIT_WHEN_THROUGH_BANK_ON_WEB = 0.2d;
+    private static final double DISCOUNT_CREDIT_WHEN_THROUGH_BANK_ON_WEB = 0.8d;
+    private static final Integer CONVERT_TO_PERCENT_DIVIDER = 100;
+
     public BankOnWebPro(final Client client) {
         super(client);
     }
@@ -36,20 +40,20 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
             throw new BillNotFromGringottsBankException();
         }
 
-        sender.setAvailability(sender.getAvailability()-amount);
-        receiver.setAvailability(receiver.getAvailability()+amount);
+        sender.setAvailability(sender.getAvailability()- amount);
+        receiver.setAvailability(receiver.getAvailability()+ amount);
     }
 
     @Override
     public void payCredit(final Credit credit, final Bill bill) {
-        bill.setBalance(bill.getBalance() - credit.getMonthlyPayment() + (GringottsBank.getInstance().getOnlineDiscountPercent()/100)*credit.getMonthlyPayment());
-        credit.payedCreditInstallment(credit.getMonthlyPayment() - (GringottsBank.getInstance().getOnlineDiscountPercent()/100)*credit.getMonthlyPayment());
+        bill.setBalance(bill.getBalance() - credit.getMonthlyPayment() + (GringottsBank.getInstance().getOnlineDiscountPercent()/ CONVERT_TO_PERCENT_DIVIDER)* credit.getMonthlyPayment());
+        credit.payedCreditInstallment(credit.getMonthlyPayment() - (GringottsBank.getInstance().getOnlineDiscountPercent()/ CONVERT_TO_PERCENT_DIVIDER)* credit.getMonthlyPayment());
     }
 
     @Override
     public void payCredit(final Credit credit, final Card card) {
-        card.setBalance(card.getBalance() - credit.getMonthlyPayment() + (GringottsBank.getInstance().getOnlineDiscountPercent()/100)*credit.getMonthlyPayment());
-        credit.payedCreditInstallment(credit.getMonthlyPayment() - (GringottsBank.getInstance().getOnlineDiscountPercent()/100)*credit.getMonthlyPayment());
+        card.setBalance(card.getBalance() - credit.getMonthlyPayment() + (GringottsBank.getInstance().getOnlineDiscountPercent()/ CONVERT_TO_PERCENT_DIVIDER)* credit.getMonthlyPayment());
+        credit.payedCreditInstallment(credit.getMonthlyPayment() - (GringottsBank.getInstance().getOnlineDiscountPercent()/ CONVERT_TO_PERCENT_DIVIDER)* credit.getMonthlyPayment());
     }
 
     @Override
@@ -83,16 +87,16 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
 
     @Override
     public void applyingForAHousingCredit(final double amount, final int periodInMonths) {
-        GringottsBank.getInstance().createHousingCredit(this.getClient(), amount, periodInMonths, TaxAssessment.EIGHT, 0.8d);
+        GringottsBank.getInstance().createHousingCredit(this.getClient(), amount, periodInMonths, TaxAssessment.EIGHT, DISCOUNT_CREDIT_WHEN_THROUGH_BANK_ON_WEB);
     }
 
     @Override
     public void applyingForAIndefiniteDebit(final double balance) {
-        GringottsBank.getInstance().createIndefiniteDebit(this.getClient(), balance, 1.2d);
+        GringottsBank.getInstance().createIndefiniteDebit(this.getClient(), balance, BONUS_DEBIT_WHEN_THROUGH_BANK_ON_WEB);
     }
 
     @Override
     public void applyingForATermDebit(final double balance, final int timeInMonths) {
-        GringottsBank.getInstance().createTermDebit(this.getClient(), balance, timeInMonths, 1.2d);
+        GringottsBank.getInstance().createTermDebit(this.getClient(), balance, timeInMonths, BONUS_DEBIT_WHEN_THROUGH_BANK_ON_WEB);
     }
 }

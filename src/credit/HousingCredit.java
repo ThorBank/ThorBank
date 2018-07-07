@@ -13,8 +13,18 @@ import bank.GringottsBank;
 import client.Client;
 
 public class HousingCredit extends Credit{
-    private static final int MONTHS_PER_YEAR = 12;
-    private static final double PERCENT_TO_NUM = 0.01d;
+    private static final Integer CONVERT_TO_PERCENT_DIVIDER = 100;
+    private static final Integer MONTHS_IN_YEAR = 12;
+    private static final Double ASSESMENT_WHEN_TAX_ASSESSMENT_ONE = 0.82;
+    private static final Double ASSESMENT_WHEN_TAX_ASSESSMENT_TWO = 0.84;
+    private static final Double ASSESMENT_WHEN_TAX_ASSESSMENT_THREE = 0.86;
+    private static final Double ASSESMENT_WHEN_TAX_ASSESSMENT_FOUR = 0.88;
+    private static final Double ASSESMENT_WHEN_TAX_ASSESSMENT_FIVE = 0.90;
+    private static final Double ASSESMENT_WHEN_TAX_ASSESSMENT_SIX = 0.92;
+    private static final Double ASSESMENT_WHEN_TAX_ASSESSMENT_SEVEN = 0.94;
+    private static final Double ASSESMENT_WHEN_TAX_ASSESSMENT_EIGHT = 0.96;
+    private static final Double ASSESMENT_WHEN_TAX_ASSESSMENT_NINE = 0.98;
+    private static final Double ASSESMENT_WHEN_TAX_ASSESSMENT_TEN = 1.0;
     private TaxAssessment taxAssessment;
     private double assessment;
 
@@ -29,16 +39,16 @@ public class HousingCredit extends Credit{
 
     public void setTaxAssessment(final TaxAssessment taxAssessment) {
         switch (taxAssessment){
-            case ONE: assessment = 0.82d; break;
-            case TWO: assessment = 0.84d; break;
-            case THREE: assessment = 0.86d; break;
-            case FOUR: assessment = 0.88d; break;
-            case FIVE: assessment = 0.90d; break;
-            case SIX: assessment = 0.92d; break;
-            case SEVEN: assessment = 0.94d; break;
-            case EIGHT: assessment = 0.96d; break;
-            case NINE: assessment = 0.98d; break;
-            case TEN: assessment = 1.0d; break;
+            case ONE: assessment = ASSESMENT_WHEN_TAX_ASSESSMENT_ONE; break;
+            case TWO: assessment = ASSESMENT_WHEN_TAX_ASSESSMENT_TWO; break;
+            case THREE: assessment = ASSESMENT_WHEN_TAX_ASSESSMENT_THREE; break;
+            case FOUR: assessment = ASSESMENT_WHEN_TAX_ASSESSMENT_FOUR; break;
+            case FIVE: assessment = ASSESMENT_WHEN_TAX_ASSESSMENT_FIVE; break;
+            case SIX: assessment = ASSESMENT_WHEN_TAX_ASSESSMENT_SIX; break;
+            case SEVEN: assessment = ASSESMENT_WHEN_TAX_ASSESSMENT_SEVEN; break;
+            case EIGHT: assessment = ASSESMENT_WHEN_TAX_ASSESSMENT_EIGHT; break;
+            case NINE: assessment = ASSESMENT_WHEN_TAX_ASSESSMENT_NINE; break;
+            case TEN: assessment = ASSESMENT_WHEN_TAX_ASSESSMENT_TEN; break;
         }
         this.taxAssessment = taxAssessment;
     }
@@ -49,6 +59,6 @@ public class HousingCredit extends Credit{
 
     @Override
     public double calculateMonthlyInterestRate() {
-        return (((GringottsBank.getInstance().getAnnualRatePercentageHousingCredit()/100)/12)*this.getAmount())*100;
+        return (((GringottsBank.getInstance().getAnnualRatePercentageHousingCredit()/ CONVERT_TO_PERCENT_DIVIDER)/ MONTHS_IN_YEAR)* this.getAmount())* CONVERT_TO_PERCENT_DIVIDER;
     }
 }

@@ -19,12 +19,28 @@ import webbanking.Currency;
 import java.util.List;
 
 public class Debit {
+    private static final double DEFAULT_DEBIT_PERCENT = 0.7d;
+    private static final Integer  BALANCE_ZERO = 0;
     private String iban;
     private List<Card> card;
     private double balance;
+    private double percentYearly;
 
-    public Debit(final double balance) {
+    public Debit(final double balance, final double percentYearly) {
         setBalance(balance);
+        setPercentYearly(DEFAULT_DEBIT_PERCENT + percentYearly);
+    }
+
+    public static double getDefaultDebitPercent() {
+        return DEFAULT_DEBIT_PERCENT;
+    }
+
+    public double getPercentYearly() {
+        return percentYearly;
+    }
+
+    public void setPercentYearly(double percentYearly) {
+        this.percentYearly = percentYearly;
     }
 
     public void setBalance(double balance) {
@@ -36,7 +52,7 @@ public class Debit {
     }
 
     public void withdrawMoney(final Card card, final double amount, final Currency currency) throws NotEnoughMoneyInCardException {
-        if (card.getBalance() <= 0 || card.getBalance() - amount < 0){
+        if (card.getBalance() <= BALANCE_ZERO || card.getBalance() - amount < BALANCE_ZERO){
             throw new NotEnoughMoneyInCardException();
         }
         else {

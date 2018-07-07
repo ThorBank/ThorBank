@@ -13,6 +13,7 @@ import client.BusinessClient;
 import client.IndividualClient;
 
 public class FactorConnect extends BankOnWebPro {
+    private static final double PAY_SALARY_FROM_WEB_DISCOUNT = 0.1d;
     private BusinessClient businessClient;
 
     public FactorConnect(final BusinessClient businessClient) {
@@ -32,7 +33,7 @@ public class FactorConnect extends BankOnWebPro {
     }
 
     public double countDiscountPayingSalaryFromBankWebsite() {
-        return this.businessClient.getEmployeeList().size()*0.1;
+        return this.businessClient.getEmployeeList().size() * PAY_SALARY_FROM_WEB_DISCOUNT;
     }
 
     private void setSalaryEmployee(final IndividualClient individualClient, final double salary){

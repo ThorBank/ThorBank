@@ -16,6 +16,7 @@ import card.DebitCard;
 import card.CreditCardPaymentNetwork;
 import client.Client;
 import credit.ConsumerCredit;
+import credit.Credit;
 import credit.HousingCredit;
 import credit.TaxAssessment;
 import debit.Debit;
@@ -137,7 +138,7 @@ public final class GringottsBank implements Sender, Bank {
 
     public void createIndefiniteDebit(final Client client, final double balance, final double bonus) {
         if (approveIndefiniteDebit()) {
-            client.getDebitList().add(new Debit(balance * bonus));
+            client.getDebitList().add(new Debit(balance, Debit.getDefaultDebitPercent() + bonus));
         }
     }
 
@@ -164,7 +165,7 @@ public final class GringottsBank implements Sender, Bank {
      */
     public void createTermDebit(final Client client, final double balance, final int timeInMonths, final double bonus) {
         if (approveTermDebit(balance)) {
-            client.getDebitList().add(new TermDebit(balance * bonus, timeInMonths));
+            client.getDebitList().add(new TermDebit(balance, timeInMonths, Debit.getDefaultDebitPercent() + bonus));
         }
     }
 

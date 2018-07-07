@@ -13,6 +13,8 @@ import bank.GringottsBank;
 import client.Client;
 
 public class ConsumerCredit extends Credit {
+    private static final Integer CONVERT_TO_PERCENT_DIVIDER = 100;
+    private static final Integer MONTHS_IN_YEAR = 12;
     private Client client;
     private Client guarantor;
 
@@ -27,6 +29,6 @@ public class ConsumerCredit extends Credit {
 
     @Override
     public double calculateMonthlyInterestRate() {
-        return (((GringottsBank.getInstance().getAnnualRatePercentageConsumerCredit()/100)/12)*this.getAmount())*100;
+        return (((GringottsBank.getInstance().getAnnualRatePercentageConsumerCredit()/ CONVERT_TO_PERCENT_DIVIDER)/ MONTHS_IN_YEAR)* this.getAmount())* CONVERT_TO_PERCENT_DIVIDER;
     }
 }

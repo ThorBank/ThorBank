@@ -205,12 +205,12 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
 
     @Override
     public void applyingForAIndefiniteDebit(final double balance) {
-        GringottsBank.getInstance().createIndefiniteDebit(this, balance, 1);
+        GringottsBank.getInstance().createIndefiniteDebit(this, balance, 0);
     }
 
     @Override
     public void applyingForATermDebit(final double balance, final int timeInMonths) {
-        GringottsBank.getInstance().createTermDebit(this, balance, timeInMonths, 1);
+        GringottsBank.getInstance().createTermDebit(this, balance, timeInMonths, 0);
     }
 
     @Override

@@ -12,8 +12,8 @@ package debit;
 public class TermDebit extends Debit {
     private int timeInMonths;
 
-    public TermDebit(final double balance, final int timeInMonths) {
-        super(balance);
+    public TermDebit(final double balance, final int timeInMonths, final double percentYearly) {
+        super(balance, percentYearly);
         setTimeInMonths(timeInMonths);
     }
 
