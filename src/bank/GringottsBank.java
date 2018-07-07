@@ -45,6 +45,10 @@ public final class GringottsBank implements Sender, Bank {
     private static final int MAX_YEARS_OWN_CREDIT_CARD = 63;
     private static final int CARD_NUMBER_LENGTH = 16;
     private static final int CARD_CVV_LENGTH = 3;
+    /**
+     * Gringotts Bank can change its own credit percent, but when program is started we need some by default.
+     * Same for all the STARTING_* constants.
+     */
     private static final int STARTING_ANNUAL_PERCENTAGE_CREDIT = 3;
     private static final int STARTING_ONLINE_DISCOUNT_PERCENT = 3;
     private double annualRatePercentageConsumerCredit;
@@ -52,7 +56,7 @@ public final class GringottsBank implements Sender, Bank {
     private double onlineDiscountPercent;
 
     /**
-     * Singleton pattern.
+     * Only one instance.
      */
     private static final GringottsBank INSTANCE = new GringottsBank();
     private GringottsBank() {
@@ -133,7 +137,7 @@ public final class GringottsBank implements Sender, Bank {
      *
      * @return **always true**
      */
-    public boolean approveIndefiniteDebit() {
+    private boolean approveIndefiniteDebit() {
         return true;
     }
 
@@ -149,11 +153,8 @@ public final class GringottsBank implements Sender, Bank {
      * @param balance **The initial injected balance**
      * @return **Return the response if debit is approved**
      */
-    public boolean approveTermDebit(final double balance) {
-        if (balance <= MIN_BALANCE_TERM_DEBIT) {
-            return false;
-        }
-        return true;
+    private boolean approveTermDebit(final double balance) {
+        return !(balance <= MIN_BALANCE_TERM_DEBIT);
     }
 
     /**
@@ -178,11 +179,8 @@ public final class GringottsBank implements Sender, Bank {
      * @param discount **Discount if credit is applied from the online platform of the bank**
      * @return
      */
-    public boolean approveConsumerCredit(final Client client, final double amount, final double discount) {
-        if (amount <= MIN_BALANCE_CONSUMER_DEBIT && client.doesHaveGoodBankHistory()) {
-            return true;
-        }
-        return false;
+    private boolean approveConsumerCredit(final Client client, final double amount, final double discount) {
+        return (amount <= MIN_BALANCE_CONSUMER_DEBIT && client.doesHaveGoodBankHistory());
     }
 
     /**
@@ -198,7 +196,7 @@ public final class GringottsBank implements Sender, Bank {
         }
     }
 
-    public boolean approveHousingCredit(final Client client) {
+    private boolean approveHousingCredit(final Client client) {
         return client.doesHaveGoodBankHistory();
     }
 
