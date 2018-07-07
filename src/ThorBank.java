@@ -1,8 +1,9 @@
+import ui.Login;
 import ui.Welcome;
 
 public class ThorBank {
     public static void main(String[] args) {
-        new Welcome();
+        new Login();
     }
 }
 

@@ -1,12 +1,3 @@
-/*
- * GringottsBankDB
- *
- * version 1.0
- *
- * Last updated 06.07.18
- *
- * MIT Copyright
- */
 package db;
 
 import client.Client;
@@ -21,16 +12,8 @@ public class GringottsBankDB {
     private List<BankOnWeb> bankOnWebList;
 
     {
-        setClientList(new LinkedList<>());
-        setBankOnWebList(new LinkedList<>());
-    }
-
-    public void setClientList(List<Client> clientList) {
-        this.clientList = clientList;
-    }
-
-    public void setBankOnWebList(List<BankOnWeb> bankOnWebList) {
-        this.bankOnWebList = bankOnWebList;
+        clientList = new LinkedList<>();
+        bankOnWebList = new LinkedList<>();
     }
 
     private GringottsBankDB() { }

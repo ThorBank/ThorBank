@@ -34,11 +34,11 @@ public final class BanksBank implements Bank {
      */
     {
         bankClientList = new HashSet<>();
-        bankClientList.add(new Client("Nikolai", "Nikolaev", "n.nikolaev@gmail.com",
+        bankClientList.add(new Client("Nikolai", "Nikolaev", "n.nikolaev@gmail.com", "123",
                 new GregorianCalendar(2002, 3, 5), true));
-        bankClientList.add(new Client("Petur", "Petrov", "p.petrov@gmail.com",
+        bankClientList.add(new Client("Petur", "Petrov", "p.petrov@gmail.com", "321",
                 new GregorianCalendar(1960, 3, 5), true));
-        bankClientList.add(new Client("Hristo", "Hristov", "h.hristov@gmail.com",
+        bankClientList.add(new Client("Hristo", "Hristov", "h.hristov@gmail.com", "qwer",
                 new GregorianCalendar(1940, 3, 5), false));
     }
 }

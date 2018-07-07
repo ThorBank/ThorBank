@@ -18,7 +18,7 @@ public class BusinessClient extends Client {
     private FactorConnect factorConnect;
     private double balance;
     public BusinessClient(IndividualClient individualClient, String companyName) {
-        super(individualClient.getFirstName(), individualClient.getLastName(), individualClient.getEmail(), individualClient.getDateofBirth(), true);
+        super(individualClient.getFirstName(), individualClient.getLastName(), individualClient.getEmail(),individualClient.getPassword(), individualClient.getDateofBirth(), true);
         setBalance(balance);
         setCompanyName(companyName);
     }

@@ -14,8 +14,8 @@ import java.util.GregorianCalendar;
 public class IndividualClient extends Client {
     private double salary;
 
-    public IndividualClient(final String firstName, final String lastName, final String email, final GregorianCalendar dateofBirth, final boolean isWorking) {
-        super(firstName, lastName, email, dateofBirth, isWorking);
+    public IndividualClient(final String firstName, final String lastName, final String email, final String password, final GregorianCalendar dateofBirth, final boolean isWorking) {
+        super(firstName, lastName, email, password, dateofBirth, isWorking);
         setSalary(0);
     }
 

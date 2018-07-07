@@ -36,6 +36,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
     private GregorianCalendar dateofBirth;
     private boolean isWorking;
     private Bill paySalaryBill;
@@ -45,15 +46,24 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     private List<Debit> debitList;
     private BankOnWeb bankOnWeb;
 
-    public Client(final String firstName, final String lastName, final String email, final GregorianCalendar dateofBirth, final boolean isWorking) {
+    public Client(final String firstName, final String lastName, final String email, final String password, final GregorianCalendar dateofBirth, final boolean isWorking) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
+        setPassword(password);
         setDateofBirth(dateofBirth);
         setWorking(isWorking);
         setBillList(new LinkedList<>());
         setCardList(new LinkedList<>());
         setDebitList(new LinkedList<>());
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public BankOnWeb getBankOnWeb() {

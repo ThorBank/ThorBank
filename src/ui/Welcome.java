@@ -12,8 +12,8 @@ public class Welcome extends JFrame {
         /**
          * show the window.
          */
-        this.setVisible(true);
 
+        //TODO: change position of this window to center with setLocationRelativeTo(null)
         Toolkit tk = Toolkit.getDefaultToolkit();
 
         Dimension dim = tk.getScreenSize();
@@ -33,7 +33,7 @@ public class Welcome extends JFrame {
          */
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.setTitle("My First Title");
+        this.setTitle("Welcome to Gringotts Bank");
 
         JPanel panel1 = new JPanel();
 
@@ -45,6 +45,7 @@ public class Welcome extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Welcome.super.dispose();
+                new Login().setVisible(true);
             }
         });
         panel1.add(button1);
@@ -59,5 +60,7 @@ public class Welcome extends JFrame {
         panel1.add(button2);
 
         this.add(panel1);
+
+        this.setVisible(true);
     }
 }
