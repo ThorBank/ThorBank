@@ -21,7 +21,7 @@ import java.util.Set;
 public final class NationalBank implements Bank {
     private Set<Client> clientList;
     /**
-     * Singleton pattern.
+     * Only one instance.
      */
     private static final NationalBank INSTANCE = new NationalBank();
     private NationalBank() {
