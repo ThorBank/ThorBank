@@ -1,6 +1,5 @@
 package ui;
 
-import bank.GringottsBank;
 import client.Client;
 import db.GringottsBankDB;
 
@@ -9,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
 
-public class Login extends JFrame {
-    public Login(){
+public class Register extends JFrame {
+    public Register() {
         this.setSize(400, 400);
 
         this.setLocationRelativeTo(null);
@@ -28,16 +27,16 @@ public class Login extends JFrame {
         JTextField password = new JTextField("", 15);
         email.setColumns(10);
 
-        JButton login = new JButton("Login");
-//        GringottsBankDB.getInstance().getClientList().add(new Client("aa", "aa", "a", "a",
-//                new GregorianCalendar(1,2,3), true));
+        JButton login = new JButton("Register");
+        GringottsBankDB.getInstance().getClientList().add(new Client("aa", "aa", "a", "a",
+                new GregorianCalendar(1,2,3), true));
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                if (GringottsBankDB.getInstance().getClientList().stream()
+                if (!GringottsBankDB.getInstance().getClientList().stream()
                         .filter((client) -> client.getEmail().equals(email.getText()))
-                        .anyMatch(client -> true)){
-                    Login.super.dispose();
+                        .anyMatch(client -> true)) {
+                    Register.super.dispose();
                 }
             }
         });

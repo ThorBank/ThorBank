@@ -55,6 +55,7 @@ public class Welcome extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Welcome.super.dispose();
+                new Register().setVisible(true);
             }
         });
         panel1.add(button2);
