@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.LinkedList;
 
 public class Client implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable, AppliableForANewCard, Sender {
+    private static final int MAX_CREDITS_PER_CLIENT = 3;
     private String firstName;
     private String lastName;
     private String email;
@@ -62,7 +63,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 
@@ -160,7 +161,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
 
 
     public boolean doesHaveGoodBankHistory(){
-        if (this.getCreditList().size() > 4){
+        if (this.getCreditList().size() >= MAX_CREDITS_PER_CLIENT){
             return false;
         }
         return true;
