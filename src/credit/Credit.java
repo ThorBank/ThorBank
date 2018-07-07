@@ -48,7 +48,7 @@ public abstract class Credit {
         return monthlyPayment;
     }
 
-    public void setMonthlyPayment(double monthlyPayment) {
+    public void setMonthlyPayment(final double monthlyPayment) {
         this.monthlyPayment = monthlyPayment;
     }
 
