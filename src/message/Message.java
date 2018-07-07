@@ -23,7 +23,7 @@ public class Message {
         setSender(sender);
     }
 
-    public void setSender(Sender sender) {
+    public void setSender(final Sender sender) {
         this.sender = sender;
     }
 

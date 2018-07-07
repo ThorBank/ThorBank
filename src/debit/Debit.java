@@ -37,11 +37,11 @@ public class Debit {
         return percentYearly;
     }
 
-    public void setPercentYearly(double percentYearly) {
+    public void setPercentYearly(final double percentYearly) {
         this.percentYearly = percentYearly;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(final double balance) {
         this.balance = balance;
     }
 
