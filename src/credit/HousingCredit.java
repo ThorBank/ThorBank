@@ -47,10 +47,6 @@ public class HousingCredit extends Credit{
         return assessment;
     }
 
-    public void setAssessment(final double assessment) {
-        this.assessment = assessment;
-    }
-
     @Override
     public double calculateMonthlyInterestRate() {
         return (((GringottsBank.getInstance().getAnnualRatePercentageHousingCredit()/100)/12)*this.getAmount())*100;

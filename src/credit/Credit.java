@@ -53,10 +53,10 @@ public abstract class Credit {
         this.monthlyPayment = monthlyPayment;
     }
 
-    public abstract double calculateMonthlyInterestRate();
-
     public void payedCreditInstallment(final double amount){
         this.amount -= monthlyPayment;
     }
+
+    public abstract double calculateMonthlyInterestRate();
 
 }
