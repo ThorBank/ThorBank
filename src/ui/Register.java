@@ -1,11 +1,15 @@
 package ui;
 
+import client.Client;
+import db.GringottsBankDB;
+
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.GregorianCalendar;
 
 /**
  * @author Tsveta Getova
@@ -25,16 +29,16 @@ public class Register extends JFrame {
     }
 
     private void registerBtnActionPerformed(ActionEvent e) {
-//        if (!GringottsBankDB.getInstance().getClientList().stream()
-//                .filter((client) -> client.getEmail().equals(email.getText()))
-//                .anyMatch(client -> true) && !firstName.getText().toString().isEmpty() && !lastName.getText().toString().isEmpty()
-//                && !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty()) {
-//
-//            GringottsBankDB.getInstance().getClientList().add(new Client(firstName.getText().toString(), lastName.getText().toString(),
-//                    email.getText().toString(), password.getText().toString(), new GregorianCalendar(Integer.parseInt(yearOfBirth.getSelectedItem().toString()), Integer.parseInt(monthOfBirth.getSelectedItem().toString()), Integer.parseInt(dayOfBirth.getSelectedItem().toString())), isWorking.isSelected()));
-//            Register.super.dispose();
-//            new Login().setVisible(true);
-//        }
+        if (!GringottsBankDB.getInstance().getClientList().stream()
+                .filter((client) -> client.getEmail().equals(email.getText()))
+                .anyMatch(client -> true) && !firstName.getText().toString().isEmpty() && !lastName.getText().toString().isEmpty()
+                && !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty()) {
+
+            GringottsBankDB.getInstance().getClientList().add(new Client(firstName.getText().toString(), lastName.getText().toString(),
+                    email.getText().toString(), password.getText().toString(), new GregorianCalendar(Integer.parseInt(yearOfBirth.getSelectedItem().toString()), Integer.parseInt(monthOfBirth.getSelectedItem().toString()), Integer.parseInt(dayOfBirth.getSelectedItem().toString())), isWorking.isSelected()));
+            Register.super.dispose();
+            new Login().setVisible(true);
+        }
     }
 
     private void backTologinBtnMouseClicked(MouseEvent e) {
@@ -59,13 +63,13 @@ public class Register extends JFrame {
         password = new JLabel();
         passwordField1 = new JPasswordField();
         dateOfBirth = new JLabel();
-        label1 = new JLabel();
-        radioButton1 = new JRadioButton();
-        backTologinBtn = new JButton();
+        isWorkingLb = new JLabel();
+        isWorking = new JRadioButton();
+        backToLoginBtn = new JButton();
         registerBtn = new JButton();
-        comboBox1 = new JComboBox();
-        comboBox2 = new JComboBox();
-        comboBox3 = new JComboBox();
+        dayOfBirth = new JComboBox();
+        monthOfBirth = new JComboBox();
+        yearOfBirth = new JComboBox();
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -79,9 +83,9 @@ public class Register extends JFrame {
             // JFormDesigner evaluation mark
             panel1.setBorder(new javax.swing.border.CompoundBorder(
                 new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                    "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                    javax.swing.border.TitledBorder.BOTTOM, new Font("Dialog", Font.BOLD, 12),
-                    Color.red), panel1.getBorder())); panel1.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+                    " ", javax.swing.border.TitledBorder.CENTER,
+                    javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                    java.awt.Color.red), panel1.getBorder())); panel1.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
             panel1.setLayout(null);
 
@@ -193,31 +197,31 @@ public class Register extends JFrame {
             panel1.add(dateOfBirth);
             dateOfBirth.setBounds(105, 355, 130, 35);
 
-            //---- label1 ----
-            label1.setText("Are you working: ");
-            label1.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
-            panel1.add(label1);
-            label1.setBounds(100, 415, label1.getPreferredSize().width, 35);
+            //---- isWorkingLb ----
+            isWorkingLb.setText("Are you working: ");
+            isWorkingLb.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+            panel1.add(isWorkingLb);
+            isWorkingLb.setBounds(100, 415, isWorkingLb.getPreferredSize().width, 35);
 
-            //---- radioButton1 ----
-            radioButton1.setBackground(Color.white);
-            radioButton1.setBorder(null);
-            panel1.add(radioButton1);
-            radioButton1.setBounds(new Rectangle(new Point(215, 427), radioButton1.getPreferredSize()));
+            //---- isWorking ----
+            isWorking.setBackground(Color.white);
+            isWorking.setBorder(null);
+            panel1.add(isWorking);
+            isWorking.setBounds(new Rectangle(new Point(215, 427), isWorking.getPreferredSize()));
 
-            //---- backTologinBtn ----
-            backTologinBtn.setText("GO TO LOGIN");
-            backTologinBtn.setBackground(new Color(102, 102, 102));
-            backTologinBtn.setForeground(Color.white);
-            backTologinBtn.setBorder(null);
-            backTologinBtn.addMouseListener(new MouseAdapter() {
+            //---- backToLoginBtn ----
+            backToLoginBtn.setText("GO TO LOGIN");
+            backToLoginBtn.setBackground(new Color(102, 102, 102));
+            backToLoginBtn.setForeground(Color.white);
+            backToLoginBtn.setBorder(null);
+            backToLoginBtn.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     backTologinBtnMouseClicked(e);
                 }
             });
-            panel1.add(backTologinBtn);
-            backTologinBtn.setBounds(285, 410, 160, 55);
+            panel1.add(backToLoginBtn);
+            backToLoginBtn.setBounds(285, 410, 160, 55);
 
             //---- registerBtn ----
             registerBtn.setText("REGISTER");
@@ -228,32 +232,32 @@ public class Register extends JFrame {
             panel1.add(registerBtn);
             registerBtn.setBounds(455, 410, 160, 55);
 
-            //---- comboBox1 ----
-            comboBox1.setMaximumRowCount(31);
-            comboBox1.setName("day");
-            comboBox1.setSelectedIndex(-1);
-            comboBox1.setBackground(new Color(102, 102, 102));
-            comboBox1.setBorder(null);
-            panel1.add(comboBox1);
-            comboBox1.setBounds(285, 355, 65, comboBox1.getPreferredSize().height);
+            //---- dayOfBirth ----
+            dayOfBirth.setMaximumRowCount(31);
+            dayOfBirth.setName("day");
+            dayOfBirth.setSelectedIndex(-1);
+            dayOfBirth.setBackground(new Color(102, 102, 102));
+            dayOfBirth.setBorder(null);
+            panel1.add(dayOfBirth);
+            dayOfBirth.setBounds(285, 355, 65, dayOfBirth.getPreferredSize().height);
 
-            //---- comboBox2 ----
-            comboBox2.setMaximumRowCount(31);
-            comboBox2.setName("day");
-            comboBox2.setSelectedIndex(-1);
-            comboBox2.setBackground(new Color(102, 102, 102));
-            comboBox2.setBorder(null);
-            panel1.add(comboBox2);
-            comboBox2.setBounds(360, 355, 125, 30);
+            //---- monthOfBirth ----
+            monthOfBirth.setMaximumRowCount(31);
+            monthOfBirth.setName("day");
+            monthOfBirth.setSelectedIndex(-1);
+            monthOfBirth.setBackground(new Color(102, 102, 102));
+            monthOfBirth.setBorder(null);
+            panel1.add(monthOfBirth);
+            monthOfBirth.setBounds(360, 355, 125, 30);
 
-            //---- comboBox3 ----
-            comboBox3.setMaximumRowCount(31);
-            comboBox3.setName("day");
-            comboBox3.setSelectedIndex(-1);
-            comboBox3.setBackground(new Color(102, 102, 102));
-            comboBox3.setBorder(null);
-            panel1.add(comboBox3);
-            comboBox3.setBounds(495, 355, 120, 30);
+            //---- yearOfBirth ----
+            yearOfBirth.setMaximumRowCount(31);
+            yearOfBirth.setName("day");
+            yearOfBirth.setSelectedIndex(-1);
+            yearOfBirth.setBackground(new Color(102, 102, 102));
+            yearOfBirth.setBorder(null);
+            panel1.add(yearOfBirth);
+            yearOfBirth.setBounds(495, 355, 120, 30);
 
             { // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -307,12 +311,12 @@ public class Register extends JFrame {
     private JLabel password;
     private JPasswordField passwordField1;
     private JLabel dateOfBirth;
-    private JLabel label1;
-    private JRadioButton radioButton1;
-    private JButton backTologinBtn;
+    private JLabel isWorkingLb;
+    private JRadioButton isWorking;
+    private JButton backToLoginBtn;
     private JButton registerBtn;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
-    private JComboBox comboBox3;
+    private JComboBox dayOfBirth;
+    private JComboBox monthOfBirth;
+    private JComboBox yearOfBirth;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

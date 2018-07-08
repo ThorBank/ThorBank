@@ -1,5 +1,7 @@
 package ui;
 
+import db.GringottsBankDB;
+
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
@@ -19,11 +21,11 @@ public class Login extends JFrame {
     }
 
     private void loginBtnActionPerformed(ActionEvent e) {
-//        if (GringottsBankDB.getInstance().getClientList().stream()
-//                .filter((client) -> client.getEmail().equals(email.getText()) && client.getPassword().equals(password.getText()))
-//                .anyMatch(client -> true)){
-//            Login.super.dispose();
-//        }
+        if (GringottsBankDB.getInstance().getClientList().stream()
+                .filter((client) -> client.getEmail().equals(email.getText()) && client.getPassword().equals(password.getText()))
+                .anyMatch(client -> true)){
+            Login.super.dispose();
+        }
     }
 
     private void initComponents() {
@@ -62,7 +64,7 @@ public class Login extends JFrame {
             // JFormDesigner evaluation mark
             loginPanel.setBorder(new javax.swing.border.CompoundBorder(
                 new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                    "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                    " ", javax.swing.border.TitledBorder.CENTER,
                     javax.swing.border.TitledBorder.BOTTOM, new Font("Dialog", Font.BOLD, 12),
                     Color.red), loginPanel.getBorder())); loginPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
