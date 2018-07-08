@@ -7,7 +7,6 @@ import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.GregorianCalendar;
 
 /**
  * @author Tsveta Getova
@@ -24,14 +23,14 @@ public class Login extends JFrame {
 
 
     private void loginBtnActionPerformed(ActionEvent e) {
-        GringottsBankDB.getInstance().getClientList().add(new Client("aa", "aa", "a", "a",
-                new GregorianCalendar(1,2,3), true));
-        System.out.println(email.getText() + " " + password.getText());
-        if (GringottsBankDB.getInstance().getClientList().stream()
-                .filter((client) -> client.getEmail().equals(textField1.getText()) && client.getPassword().equals(passwordF.getText()))
-                .anyMatch(client -> true)){
-            Login.super.dispose();
+        Client client;
+        for (int i = 0; i < GringottsBankDB.getInstance().getClientList().size(); i++) {
+            if (GringottsBankDB.getInstance().getClientList().get(i).getEmail().equals(textField1.getText()) && GringottsBankDB.getInstance().getClientList().get(i).getPassword().equals(passwordF.getText())) {
+                Login.super.dispose();
+                new Home(GringottsBankDB.getInstance().getClientList().get(i)).setVisible(true);
+            }
         }
+
     }
 
     private void initComponents() {
@@ -69,10 +68,15 @@ public class Login extends JFrame {
 
             // JFormDesigner evaluation mark
             loginPanel.setBorder(new javax.swing.border.CompoundBorder(
-                new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                    "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                    javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                    java.awt.Color.red), loginPanel.getBorder())); loginPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+                    new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                            "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                            javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                            java.awt.Color.red), loginPanel.getBorder()));
+            loginPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+                public void propertyChange(java.beans.PropertyChangeEvent e) {
+                    if ("border".equals(e.getPropertyName())) throw new RuntimeException();
+                }
+            });
 
             loginPanel.setLayout(null);
 
@@ -150,7 +154,7 @@ public class Login extends JFrame {
 
                 { // compute preferred size
                     Dimension preferredSize = new Dimension();
-                    for(int i = 0; i < second_login_panel.getComponentCount(); i++) {
+                    for (int i = 0; i < second_login_panel.getComponentCount(); i++) {
                         Rectangle bounds = second_login_panel.getComponent(i).getBounds();
                         preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                         preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -232,7 +236,7 @@ public class Login extends JFrame {
 
                 { // compute preferred size
                     Dimension preferredSize = new Dimension();
-                    for(int i = 0; i < second_login_panel2.getComponentCount(); i++) {
+                    for (int i = 0; i < second_login_panel2.getComponentCount(); i++) {
                         Rectangle bounds = second_login_panel2.getComponent(i).getBounds();
                         preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                         preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -249,7 +253,7 @@ public class Login extends JFrame {
 
             { // compute preferred size
                 Dimension preferredSize = new Dimension();
-                for(int i = 0; i < loginPanel.getComponentCount(); i++) {
+                for (int i = 0; i < loginPanel.getComponentCount(); i++) {
                     Rectangle bounds = loginPanel.getComponent(i).getBounds();
                     preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                     preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -266,7 +270,7 @@ public class Login extends JFrame {
 
         { // compute preferred size
             Dimension preferredSize = new Dimension();
-            for(int i = 0; i < contentPane.getComponentCount(); i++) {
+            for (int i = 0; i < contentPane.getComponentCount(); i++) {
                 Rectangle bounds = contentPane.getComponent(i).getBounds();
                 preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                 preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
