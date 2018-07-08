@@ -109,6 +109,14 @@ new FormModel {
 					"x": 45
 					"y": 270
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "birth"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 160
+					"height": 30
+					"x": 45
+					"y": 440
+				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 735
 				"height": 515

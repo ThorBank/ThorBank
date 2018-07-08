@@ -30,6 +30,8 @@ public class Home extends JFrame {
         firstName = new JLabel();
         lastName = new JLabel();
         email = new JLabel();
+        birth = new JLabel();
+
 
         firstName.setText(client.getFirstName());
         firstName.repaint();
@@ -37,7 +39,6 @@ public class Home extends JFrame {
         lastName.repaint();
         email.setText(client.getEmail());
         email.repaint();
-
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -51,7 +52,7 @@ public class Home extends JFrame {
             // JFormDesigner evaluation mark
             panel1.setBorder(new javax.swing.border.CompoundBorder(
                 new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                    "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                    " ", javax.swing.border.TitledBorder.CENTER,
                     javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
                     java.awt.Color.red), panel1.getBorder())); panel1.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
@@ -129,6 +130,8 @@ public class Home extends JFrame {
             lastName.setBounds(45, 240, 160, 30);
             panel1.add(email);
             email.setBounds(45, 270, 160, 30);
+            panel1.add(birth);
+            birth.setBounds(45, 440, 160, 30);
 
             { // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -178,5 +181,6 @@ public class Home extends JFrame {
     private JLabel firstName;
     private JLabel lastName;
     private JLabel email;
+    private JLabel birth;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
