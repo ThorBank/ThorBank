@@ -1,6 +1,5 @@
-import ui.Login;
-import ui.Register;
 import ui.Welcome;
+import ui.WelcomeHome;
 
 public class ThorBank {
     public static void main(String[] args) {
@@ -8,8 +7,7 @@ public class ThorBank {
 
         Welcome welcome = new Welcome();
         welcome.setVisible(true);
-        Register register = new Register();
-        Login login = new Login();
+        WelcomeHome welcomeHome = new WelcomeHome();
 
         try {
             for (int i = 0; i <= 100; i++) {
@@ -18,8 +16,7 @@ public class ThorBank {
                 welcome.num_loading.setText(Integer.toString(i) + "%");
                 if (i==100) {
                     welcome.setVisible(false);
-                    register.setVisible(true);
-//                    login.setVisible(true);
+                    welcomeHome.setVisible(true);
                 }
             }
         } catch (Exception e) {

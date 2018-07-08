@@ -1,6 +1,7 @@
 package ui;
 
-import client.Client;
+import client.BusinessClient;
+import client.IndividualClient;
 import db.GringottsBankDB;
 
 import javax.swing.*;
@@ -9,6 +10,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -22,6 +25,7 @@ public class Register extends JFrame {
 
     public Register() {
         initComponents();
+
     }
 
     private void backToLoginBtnMouseClicked(MouseEvent e) {
@@ -30,12 +34,20 @@ public class Register extends JFrame {
 
     private void registerBtnActionPerformed(ActionEvent e) {
         if (!GringottsBankDB.getInstance().getClientList().stream()
-                .filter((client) -> client.getEmail().equals(email.getText()))
-                .anyMatch(client -> true) && !firstName.getText().toString().isEmpty() && !lastName.getText().toString().isEmpty()
+                .filter((client) -> client.getEmail().equals(emailTextField2.getText()))
+                .anyMatch(client -> true) && !firstNameTextField.getText().toString().isEmpty() && !lastNameTextField2.getText().toString().isEmpty()
                 && !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty()) {
 
-            GringottsBankDB.getInstance().getClientList().add(new Client(firstName.getText().toString(), lastName.getText().toString(),
-                    email.getText().toString(), password.getText().toString(), new GregorianCalendar(Integer.parseInt(yearOfBirth.getSelectedItem().toString()), Integer.parseInt(monthOfBirth.getSelectedItem().toString()), Integer.parseInt(dayOfBirth.getSelectedItem().toString())), isWorking.isSelected()));
+            if (individual.isSelected())
+            {
+                GringottsBankDB.getInstance().getClientList().add(new IndividualClient(firstNameTextField.getText().toString(), lastNameTextField2.getText().toString(),
+                        emailTextField2.getText().toString(), passwordTextField.getText().toString(), new GregorianCalendar(Integer.parseInt(yearOfBirth.getSelectedItem().toString()), Integer.parseInt(monthOfBirth.getSelectedItem().toString()), Integer.parseInt(dayOfBirth.getSelectedItem().toString())), isWorking.isSelected()));
+            }
+            else {
+                GringottsBankDB.getInstance().getClientList().add(new BusinessClient(new IndividualClient(firstNameTextField.getText().toString(), lastNameTextField2.getText().toString(),
+                        emailTextField2.getText().toString(), passwordTextField.getText().toString(), new GregorianCalendar(Integer.parseInt(yearOfBirth.getSelectedItem().toString()), Integer.parseInt(monthOfBirth.getSelectedItem().toString()), Integer.parseInt(dayOfBirth.getSelectedItem().toString())), isWorking.isSelected()), companyName.getText()));
+            }
+
             Register.super.dispose();
             new Login().setVisible(true);
         }
@@ -44,6 +56,112 @@ public class Register extends JFrame {
     private void backTologinBtnMouseClicked(MouseEvent e) {
         // TODO add your code here
     }
+
+    private void dayOfBirthActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    /**
+     //     * To determine whether a year is a leap year, follow these steps:
+     //     * 1.If the year is evenly divisible by 4, go to step 2. Otherwise, go to step 5.
+     //     * 2.If the year is evenly divisible by 100, go to step 3. Otherwise, go to step 4.
+     //     * 3.If the year is evenly divisible by 400, go to step 4. Otherwise, go to step 5.
+     //     * 4.The year is a leap year (it has 366 days).
+     //     * 5.The year is not a leap year (it has 365 days).
+     //     */
+
+    private boolean isLeapYear(int year){
+        if (year%4 == 0){
+            if (year%100 == 0){
+                if (year%400 == 0){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    private void monthOfBirthActionPerformed(ActionEvent e) {
+        if (Integer.parseInt(monthOfBirth.getSelectedItem().toString())%2 != 0){
+                    dayOfBirth.removeAllItems();
+                    for (int i = 1; i <= 31; i++){
+                        dayOfBirth.addItem(i);
+                    }
+                }
+                else if (Integer.parseInt(monthOfBirth.getSelectedItem().toString()) == 2){
+                    if (isLeapYear(Integer.parseInt(yearOfBirth.getSelectedItem().toString()))){
+                        dayOfBirth.removeAllItems();
+                        for (int i = 1; i <= 29; i++){
+                            dayOfBirth.addItem(i);
+                        }
+                    }
+                    else {
+                        dayOfBirth.removeAllItems();
+                        for (int i = 1; i <= 28; i++){
+                            dayOfBirth.addItem(i);
+                        }
+                    }
+                }
+                else {
+                    dayOfBirth.removeAllItems();
+                    for (int i = 1; i <= 30; i++){
+                        dayOfBirth.addItem(i);
+                    }
+                }
+    }
+
+    private void yearOfBirthActionPerformed(ActionEvent e) {
+        if (monthOfBirth.getSelectedItem().toString() == "1"
+                        || monthOfBirth.getSelectedItem().toString() == "3"
+                        || monthOfBirth.getSelectedItem().toString() == "5"
+                        || monthOfBirth.getSelectedItem().toString() == "7"
+                        || monthOfBirth.getSelectedItem().toString() == "8"
+                        || monthOfBirth.getSelectedItem().toString() == "10"
+                        || monthOfBirth.getSelectedItem().toString() == "12"){
+                    dayOfBirth.removeAllItems();
+                    for (int i = 1; i <= 31; i++){
+                        dayOfBirth.addItem(i);
+                    }
+                }
+                else if (monthOfBirth.getSelectedItem().toString().equals("2")){
+                    if (isLeapYear(Integer.parseInt(yearOfBirth.getSelectedItem().toString()))){
+                        dayOfBirth.removeAllItems();
+                        for (int i = 1; i <= 29; i++){
+                            dayOfBirth.addItem(i);
+                        }
+                    }
+                    else {
+                        dayOfBirth.removeAllItems();
+                        for (int i = 1; i <= 28; i++){
+                            dayOfBirth.addItem(i);
+                        }
+                    }
+                }
+                else {
+                    dayOfBirth.removeAllItems();
+                    for (int i = 1; i <= 30; i++){
+                        dayOfBirth.addItem(i);
+                    }
+                }
+    }
+
+    private void individualMouseClicked(MouseEvent e) {
+        companyName.setVisible(false);
+    }
+
+    private void businessMouseClicked(MouseEvent e) {
+        companyName.setVisible(true);
+    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -61,15 +179,32 @@ public class Register extends JFrame {
         email = new JLabel();
         emailTextField2 = new JTextField();
         password = new JLabel();
-        passwordField1 = new JPasswordField();
+        passwordTextField = new JTextField();
         dateOfBirth = new JLabel();
         isWorkingLb = new JLabel();
         isWorking = new JRadioButton();
-        backToLoginBtn = new JButton();
         registerBtn = new JButton();
         dayOfBirth = new JComboBox();
         monthOfBirth = new JComboBox();
         yearOfBirth = new JComboBox();
+        individual = new JRadioButton();
+        business = new JRadioButton();
+        companyName = new JTextField();
+
+        Date date = new Date();
+        Calendar timeNow = new GregorianCalendar();
+        timeNow.setTime(date);
+
+        for (int i = 1950; i < timeNow.get(Calendar.YEAR); i++){
+            yearOfBirth.addItem(i);
+        }
+
+        for (int i = 1; i <= 12; i++){
+            monthOfBirth.addItem(i);
+        }
+        for (int i = 1; i <= 31; i++){
+            dayOfBirth.addItem(i);
+        }
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -83,7 +218,7 @@ public class Register extends JFrame {
             // JFormDesigner evaluation mark
             panel1.setBorder(new javax.swing.border.CompoundBorder(
                 new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                    " ", javax.swing.border.TitledBorder.CENTER,
+                    "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
                     javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
                     java.awt.Color.red), panel1.getBorder())); panel1.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
@@ -184,12 +319,12 @@ public class Register extends JFrame {
             panel1.add(password);
             password.setBounds(105, 290, 130, 35);
 
-            //---- passwordField1 ----
-            passwordField1.setBackground(Color.white);
-            passwordField1.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
-            passwordField1.setFont(new Font("FrankRuehl", Font.BOLD, 20));
-            panel1.add(passwordField1);
-            passwordField1.setBounds(285, 290, 330, 35);
+            //---- passwordTextField ----
+            passwordTextField.setBackground(Color.white);
+            passwordTextField.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            passwordTextField.setFont(new Font("FrankRuehl", Font.BOLD, 20));
+            panel1.add(passwordTextField);
+            passwordTextField.setBounds(285, 290, 330, 35);
 
             //---- dateOfBirth ----
             dateOfBirth.setText("Date of Birth");
@@ -209,20 +344,6 @@ public class Register extends JFrame {
             panel1.add(isWorking);
             isWorking.setBounds(new Rectangle(new Point(215, 427), isWorking.getPreferredSize()));
 
-            //---- backToLoginBtn ----
-            backToLoginBtn.setText("GO TO LOGIN");
-            backToLoginBtn.setBackground(new Color(102, 102, 102));
-            backToLoginBtn.setForeground(Color.white);
-            backToLoginBtn.setBorder(null);
-            backToLoginBtn.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    backTologinBtnMouseClicked(e);
-                }
-            });
-            panel1.add(backToLoginBtn);
-            backToLoginBtn.setBounds(285, 410, 160, 55);
-
             //---- registerBtn ----
             registerBtn.setText("REGISTER");
             registerBtn.setBackground(new Color(102, 102, 102));
@@ -238,6 +359,7 @@ public class Register extends JFrame {
             dayOfBirth.setSelectedIndex(-1);
             dayOfBirth.setBackground(new Color(102, 102, 102));
             dayOfBirth.setBorder(null);
+            dayOfBirth.addActionListener(e -> dayOfBirthActionPerformed(e));
             panel1.add(dayOfBirth);
             dayOfBirth.setBounds(285, 355, 65, dayOfBirth.getPreferredSize().height);
 
@@ -247,6 +369,7 @@ public class Register extends JFrame {
             monthOfBirth.setSelectedIndex(-1);
             monthOfBirth.setBackground(new Color(102, 102, 102));
             monthOfBirth.setBorder(null);
+            monthOfBirth.addActionListener(e -> monthOfBirthActionPerformed(e));
             panel1.add(monthOfBirth);
             monthOfBirth.setBounds(360, 355, 125, 30);
 
@@ -256,8 +379,37 @@ public class Register extends JFrame {
             yearOfBirth.setSelectedIndex(-1);
             yearOfBirth.setBackground(new Color(102, 102, 102));
             yearOfBirth.setBorder(null);
+            yearOfBirth.addActionListener(e -> yearOfBirthActionPerformed(e));
             panel1.add(yearOfBirth);
             yearOfBirth.setBounds(495, 355, 120, 30);
+
+            //---- individual ----
+            individual.setText("Individ");
+            individual.setSelected(true);
+            individual.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    individualMouseClicked(e);
+                }
+            });
+            panel1.add(individual);
+            individual.setBounds(new Rectangle(new Point(280, 430), individual.getPreferredSize()));
+
+            //---- business ----
+            business.setText("Bisnes");
+            business.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    businessMouseClicked(e);
+                }
+            });
+            panel1.add(business);
+            business.setBounds(new Rectangle(new Point(340, 430), business.getPreferredSize()));
+
+            //---- companyName ----
+            companyName.setVisible(false);
+            panel1.add(companyName);
+            companyName.setBounds(285, 330, 330, companyName.getPreferredSize().height);
 
             { // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -291,6 +443,11 @@ public class Register extends JFrame {
         }
         pack();
         setLocationRelativeTo(getOwner());
+
+        //---- buttonGroup1 ----
+        ButtonGroup buttonGroup1 = new ButtonGroup();
+        buttonGroup1.add(individual);
+        buttonGroup1.add(business);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -309,14 +466,16 @@ public class Register extends JFrame {
     private JLabel email;
     private JTextField emailTextField2;
     private JLabel password;
-    private JPasswordField passwordField1;
+    private JTextField passwordTextField;
     private JLabel dateOfBirth;
     private JLabel isWorkingLb;
     private JRadioButton isWorking;
-    private JButton backToLoginBtn;
     private JButton registerBtn;
     private JComboBox dayOfBirth;
     private JComboBox monthOfBirth;
     private JComboBox yearOfBirth;
+    private JRadioButton individual;
+    private JRadioButton business;
+    private JTextField companyName;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

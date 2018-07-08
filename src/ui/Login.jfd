@@ -131,10 +131,10 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textField1"
-						"background": new java.awt.Color( 255, 255, 255, 255 )
-						"border": new javax.swing.border.MatteBorder( 1, 1, 1, 1, new java.awt.Color( 204, 0, 51, 255 ) )
-						"foreground": new java.awt.Color( 153, 153, 153, 255 )
-						"font": new java.awt.Font( "FrankRuehl", 1, 20 )
+						"background": &Color0 new java.awt.Color( 255, 255, 255, 255 )
+						"border": &MatteBorder0 new javax.swing.border.MatteBorder( 1, 1, 1, 1, new java.awt.Color( 204, 0, 51, 255 ) )
+						"foreground": &Color1 new java.awt.Color( 153, 153, 153, 255 )
+						"font": &Font0 new java.awt.Font( "FrankRuehl", 1, 20 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 55
 						"y": 210
@@ -152,18 +152,6 @@ new FormModel {
 						"y": 265
 						"width": 200
 						"height": 40
-					} )
-					add( new FormComponent( "javax.swing.JPasswordField" ) {
-						name: "passwordField1"
-						"background": new java.awt.Color( 255, 255, 255, 255 )
-						"border": new javax.swing.border.MatteBorder( 1, 1, 1, 1, new java.awt.Color( 204, 0, 51, 255 ) )
-						"foreground": new java.awt.Color( 153, 153, 153, 255 )
-						"font": new java.awt.Font( "FrankRuehl", 1, 20 )
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 55
-						"y": 315
-						"width": 203
-						"height": 42
 					} )
 					add( new FormComponent( "javax.swing.JCheckBox" ) {
 						name: "checkBox1"
@@ -200,6 +188,18 @@ new FormModel {
 						"y": 95
 						"width": 200
 						"height": 40
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "passwordF"
+						"background": #Color0
+						"border": #MatteBorder0
+						"foreground": #Color1
+						"font": #Font0
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 200
+						"height": 40
+						"x": 55
+						"y": 315
 					} )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 300

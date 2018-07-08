@@ -1,11 +1,13 @@
 package ui;
 
+import client.Client;
 import db.GringottsBankDB;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.GregorianCalendar;
 
 /**
  * @author Tsveta Getova
@@ -20,9 +22,13 @@ public class Login extends JFrame {
         initComponents();
     }
 
+
     private void loginBtnActionPerformed(ActionEvent e) {
+        GringottsBankDB.getInstance().getClientList().add(new Client("aa", "aa", "a", "a",
+                new GregorianCalendar(1,2,3), true));
+        System.out.println(email.getText() + " " + password.getText());
         if (GringottsBankDB.getInstance().getClientList().stream()
-                .filter((client) -> client.getEmail().equals(email.getText()) && client.getPassword().equals(password.getText()))
+                .filter((client) -> client.getEmail().equals(textField1.getText()) && client.getPassword().equals(passwordF.getText()))
                 .anyMatch(client -> true)){
             Login.super.dispose();
         }
@@ -46,10 +52,10 @@ public class Login extends JFrame {
         email = new JLabel();
         textField1 = new JTextField();
         password = new JLabel();
-        passwordField1 = new JPasswordField();
         checkBox1 = new JCheckBox();
         loginBtn = new JButton();
         loginForm = new JLabel();
+        passwordF = new JTextField();
 
         //======== this ========
         setBackground(new Color(255, 0, 51));
@@ -64,9 +70,9 @@ public class Login extends JFrame {
             // JFormDesigner evaluation mark
             loginPanel.setBorder(new javax.swing.border.CompoundBorder(
                 new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                    " ", javax.swing.border.TitledBorder.CENTER,
-                    javax.swing.border.TitledBorder.BOTTOM, new Font("Dialog", Font.BOLD, 12),
-                    Color.red), loginPanel.getBorder())); loginPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+                    "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                    javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                    java.awt.Color.red), loginPanel.getBorder())); loginPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
             loginPanel.setLayout(null);
 
@@ -191,14 +197,6 @@ public class Login extends JFrame {
                 second_login_panel2.add(password);
                 password.setBounds(55, 265, 200, 40);
 
-                //---- passwordField1 ----
-                passwordField1.setBackground(Color.white);
-                passwordField1.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
-                passwordField1.setForeground(new Color(153, 153, 153));
-                passwordField1.setFont(new Font("FrankRuehl", Font.BOLD, 20));
-                second_login_panel2.add(passwordField1);
-                passwordField1.setBounds(55, 315, 203, 42);
-
                 //---- checkBox1 ----
                 checkBox1.setText("Remember me");
                 checkBox1.setFont(new Font("FrankRuehl", Font.PLAIN, 14));
@@ -223,6 +221,14 @@ public class Login extends JFrame {
                 loginForm.setForeground(new Color(102, 102, 102));
                 second_login_panel2.add(loginForm);
                 loginForm.setBounds(55, 95, 200, 40);
+
+                //---- passwordF ----
+                passwordF.setBackground(Color.white);
+                passwordF.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+                passwordF.setForeground(new Color(153, 153, 153));
+                passwordF.setFont(new Font("FrankRuehl", Font.BOLD, 20));
+                second_login_panel2.add(passwordF);
+                passwordF.setBounds(55, 315, 200, 40);
 
                 { // compute preferred size
                     Dimension preferredSize = new Dimension();
@@ -293,9 +299,9 @@ public class Login extends JFrame {
     private JLabel email;
     private JTextField textField1;
     private JLabel password;
-    private JPasswordField passwordField1;
     private JCheckBox checkBox1;
     private JButton loginBtn;
     private JLabel loginForm;
+    private JTextField passwordF;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
