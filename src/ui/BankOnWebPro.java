@@ -4,7 +4,6 @@
 
 package ui;
 
-import javax.swing.border.*;
 import card.CardNumberFormatException;
 import card.CreditCardPaymentNetwork;
 import card.DebitCardPaymentNetwork;
@@ -16,6 +15,7 @@ import webbanking.Bill;
 import webbanking.Currency;
 
 import javax.swing.*;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -185,6 +185,15 @@ public class BankOnWebPro extends JFrame {
         injectMoneyInDebitBill = new JComboBox();
         injectMoneyInDebitAmount = new JTextField();
         injectMoneyInDebitBtn = new JButton();
+        label1 = new JLabel();
+        label2 = new JLabel();
+        label3 = new JLabel();
+        label4 = new JLabel();
+        label5 = new JLabel();
+        label6 = new JLabel();
+        label7 = new JLabel();
+        label8 = new JLabel();
+        label9 = new JLabel();
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -370,7 +379,11 @@ public class BankOnWebPro extends JFrame {
             applyingForADebitCardBtn.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    applyingForADebitCardBtnMouseClicked(e);
+                    try {
+                        applyingForADebitCardBtnMouseClicked(e);
+                    } catch (CardNumberFormatException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             });
             panel1.add(applyingForADebitCardBtn);
@@ -401,7 +414,11 @@ public class BankOnWebPro extends JFrame {
             applyForCreditCardBtn.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    applyForCreditCardBtnMouseClicked(e);
+                    try {
+                        applyForCreditCardBtnMouseClicked(e);
+                    } catch (CardNumberFormatException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             });
             panel1.add(applyForCreditCardBtn);
@@ -532,7 +549,11 @@ public class BankOnWebPro extends JFrame {
             withdrawMoneyFromDebitBtn.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    withdrawMoneyFromDebitBtnMouseClicked(e);
+                    try {
+                        withdrawMoneyFromDebitBtnMouseClicked(e);
+                    } catch (NotEnoughMoneyInCardException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             });
             panel1.add(withdrawMoneyFromDebitBtn);
@@ -568,6 +589,51 @@ public class BankOnWebPro extends JFrame {
             });
             panel1.add(injectMoneyInDebitBtn);
             injectMoneyInDebitBtn.setBounds(730, 220, 110, injectMoneyInDebitBtn.getPreferredSize().height);
+
+            //---- label1 ----
+            label1.setText("AMOUNT");
+            panel1.add(label1);
+            label1.setBounds(new Rectangle(new Point(590, 200), label1.getPreferredSize()));
+
+            //---- label2 ----
+            label2.setText("AMOUNT");
+            panel1.add(label2);
+            label2.setBounds(605, 250, 51, 14);
+
+            //---- label3 ----
+            label3.setText("AMOUNT");
+            panel1.add(label3);
+            label3.setBounds(215, 310, 51, 14);
+
+            //---- label4 ----
+            label4.setText("AMOUNT");
+            panel1.add(label4);
+            label4.setBounds(205, 355, 51, 14);
+
+            //---- label5 ----
+            label5.setText("TIME IN MONTHS");
+            panel1.add(label5);
+            label5.setBounds(405, 350, 120, 14);
+
+            //---- label6 ----
+            label6.setText("BALANCE");
+            panel1.add(label6);
+            label6.setBounds(new Rectangle(new Point(235, 465), label6.getPreferredSize()));
+
+            //---- label7 ----
+            label7.setText("PERIOD IN MONTHS");
+            panel1.add(label7);
+            label7.setBounds(405, 460, 130, 14);
+
+            //---- label8 ----
+            label8.setText("AMOUNT");
+            panel1.add(label8);
+            label8.setBounds(400, 515, 85, 14);
+
+            //---- label9 ----
+            label9.setText("AMOUNT");
+            panel1.add(label9);
+            label9.setBounds(350, 565, 85, 14);
 
             { // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -655,5 +721,14 @@ public class BankOnWebPro extends JFrame {
     private JComboBox injectMoneyInDebitBill;
     private JTextField injectMoneyInDebitAmount;
     private JButton injectMoneyInDebitBtn;
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel label3;
+    private JLabel label4;
+    private JLabel label5;
+    private JLabel label6;
+    private JLabel label7;
+    private JLabel label8;
+    private JLabel label9;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

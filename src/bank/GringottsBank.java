@@ -19,6 +19,7 @@ import credit.ConsumerCredit;
 import credit.HousingCredit;
 import credit.TaxAssessment;
 import debit.Debit;
+import debit.IndefiniteDebit;
 import debit.TermDebit;
 import message.Message;
 import message.Sender;
@@ -147,7 +148,7 @@ public final class GringottsBank implements Sender, Bank {
 
     public void createIndefiniteDebit(final Client client, final double balance, final double bonus) {
         if (approveIndefiniteDebit()) {
-            client.getDebitList().add(new Debit(balance, Debit.getDefaultDebitPercent() + bonus));
+            client.getDebitList().add(new IndefiniteDebit(balance, Debit.getDefaultDebitPercent() + bonus));
         }
     }
 

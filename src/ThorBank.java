@@ -1,33 +1,32 @@
-import client.IndividualClient;
-import db.GringottsBankDB;
-
-import java.util.GregorianCalendar;
+import ui.Welcome;
+import ui.WelcomeHome;
 
 public class ThorBank {
     public static void main(String[] args) {
 //        new Register();
-        GringottsBankDB.getInstance().getClientList().add(new IndividualClient("Borislav", "Bohosyan", "b.bohosyan@gmail.com", "123", new GregorianCalendar(1990, 5, 23), true));
-        GringottsBankDB.getInstance().getClientList().add(new IndividualClient("Tsveta", "Getova", "t.getova@gmail.com", "123", new GregorianCalendar(1987, 5, 23), true));
-        GringottsBankDB.getInstance().getClientList().add(new IndividualClient("Bill", "Gates", "b.gates@gmail.com", "123", new GregorianCalendar(1960, 5, 23), true));
-        new ui.BankOnWebPro(new IndividualClient("Borislav", "Bohosyan", "b.bohosyan@gmail.com", "123", new GregorianCalendar(1990, 5, 23), true)).setVisible(true);
+        new Welcome();
+//        GringottsBankDB.getInstance().getClientList().add(new IndividualClient("Borislav", "Bohosyan", "b.bohosyan@gmail.com", "123", new GregorianCalendar(1990, 5, 23), true));
+//        GringottsBankDB.getInstance().getClientList().add(new IndividualClient("Tsveta", "Getova", "t.getova@gmail.com", "123", new GregorianCalendar(1987, 5, 23), true));
+//        GringottsBankDB.getInstance().getClientList().add(new IndividualClient("Bill", "Gates", "b.gates@gmail.com", "123", new GregorianCalendar(1960, 5, 23), true));
+//        new ui.BankOnWebPro(new IndividualClient("Borislav", "Bohosyan", "b.bohosyan@gmail.com", "123", new GregorianCalendar(1990, 5, 23), true)).setVisible(true);
         //new Test(new IndividualClient("Borislav", "Bohosyan", "b.bohosyan@gmail.com", "123", new GregorianCalendar(27, 5, 1996), false)).setVisible(true);
-//        Welcome welcome = new Welcome();
-//        welcome.setVisible(true);
-//        WelcomeHome welcomeHome = new WelcomeHome();
-//
-//        try {
-//            for (int i = 0; i <= 100; i++) {
-//                Thread.sleep(40);
-//
-//                welcome.num_loading.setText(Integer.toString(i) + "%");
-//                if (i==100) {
-//                    welcome.setVisible(false);
-//                    welcomeHome.setVisible(true);
-//                }
-//            }
-//        } catch (Exception e) {
-//
-//        }
+        Welcome welcome = new Welcome();
+        welcome.setVisible(true);
+        WelcomeHome welcomeHome = new WelcomeHome();
+
+        try {
+            for (int i = 0; i <= 100; i++) {
+                Thread.sleep(40);
+
+                welcome.num_loading.setText(Integer.toString(i) + "%");
+                if (i==100) {
+                    welcome.setVisible(false);
+                    welcomeHome.setVisible(true);
+                }
+            }
+        } catch (Exception e) {
+
+        }
     }
 }
 

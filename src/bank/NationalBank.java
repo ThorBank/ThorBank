@@ -10,6 +10,7 @@
 package bank;
 
 import client.Client;
+import client.IndividualClient;
 
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -34,8 +35,8 @@ public final class NationalBank implements Bank {
      */
     {
         clientList = new HashSet<>();
-        clientList.add(new Client("Georgi", "Georgiev", "g.georgiev@gmail.com", "123456", new GregorianCalendar(1990, 2,4), true));
-        clientList.add(new Client("Ivan", "Ivanov", "i.ivanov@gmail.com", "654321", new GregorianCalendar(2009, 3, 25), true));
-        clientList.add(new Client("Dimitur", "Dimitrov", "d.dimitrov@gmail.com", "asdfg", new GregorianCalendar(1950, 3,27), false));
+        clientList.add(new IndividualClient("Georgi", "Georgiev", "g.georgiev@gmail.com", "123456", new GregorianCalendar(1990, 2,4), true));
+        clientList.add(new IndividualClient("Ivan", "Ivanov", "i.ivanov@gmail.com", "654321", new GregorianCalendar(2009, 3, 25), true));
+        clientList.add(new IndividualClient("Dimitur", "Dimitrov", "d.dimitrov@gmail.com", "asdfg", new GregorianCalendar(1950, 3,27), false));
     }
 }
