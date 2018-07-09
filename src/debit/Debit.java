@@ -16,7 +16,7 @@ import webbanking.Currency;
 
 import java.util.List;
 
-public class Debit {
+public abstract class Debit {
     private static final double DEFAULT_DEBIT_PERCENT = 0.7d;
     private static final Integer BALANCE_ZERO = 0;
     private String iban;
@@ -53,7 +53,9 @@ public class Debit {
         if (card.getBalance() <= BALANCE_ZERO || card.getBalance() - amount < BALANCE_ZERO) {
             throw new NotEnoughMoneyInCardException();
         } else {
+            //System.out.println(card.getBalance());
             card.setBalance(card.getBalance() - amount);
+            //System.out.println(card.getBalance());
         }
     }
 
@@ -61,15 +63,23 @@ public class Debit {
         if (bill.getBalance() <= 0 || bill.getBalance() - amount < 0) {
             throw new NotEnoughMoneyInCardException();
         } else {
-            bill.setBalance(bill.getBalance() - amount);
+            bill.setBalance(bill.getBalance() + amount);
+            System.out.println(this.getBalance());
+            this.setBalance(this.getBalance() - amount);
+            System.out.println(this.getBalance());
         }
     }
 
     public void injectMoney(final Card card, final double amount, final Currency currency) {
+        //System.out.println(card.getBalance());
         card.setBalance(card.getBalance() + amount);
     }
 
     public void injectMoney(final Bill bill, final double amount, final Currency currency) {
-        bill.setBalance(bill.getBalance() + amount);
+        System.out.println(this.getBalance());
+        this.setBalance(this.getBalance() + amount);
+        System.out.println(this.getBalance());
+        bill.setBalance(bill.getBalance() - amount);
+
     }
 }

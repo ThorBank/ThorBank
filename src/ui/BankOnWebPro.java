@@ -4,7 +4,15 @@
 
 package ui;
 
+import javax.swing.border.*;
+import card.CardNumberFormatException;
+import card.CreditCardPaymentNetwork;
+import card.DebitCardPaymentNetwork;
+import card.NotEnoughMoneyInCardException;
 import client.Client;
+import db.GringottsBankDB;
+import debit.Debit;
+import webbanking.Bill;
 import webbanking.Currency;
 
 import javax.swing.*;
@@ -27,10 +35,102 @@ public class BankOnWebPro extends JFrame {
         applyingForABillCurrency.addItem(Currency.EUR);
         applyingForABillCurrency.addItem(Currency.NOK);
         applyingForABillCurrency.addItem(Currency.USD);
+        applyingForADebitCardPaymentNetwork.addItem(DebitCardPaymentNetwork.MAESTRO);
+        applyingForADebitCardPaymentNetwork.addItem(DebitCardPaymentNetwork.MASTER_CARD);
+        applyingForADebitCardPaymentNetwork.addItem(DebitCardPaymentNetwork.STAR);
+        applyingForADebitCardPaymentNetwork.addItem(DebitCardPaymentNetwork.VISA);
+        applyingForADebitCardCurrency.addItem(Currency.AUD);
+        applyingForADebitCardCurrency.addItem(Currency.BGN);
+        applyingForADebitCardCurrency.addItem(Currency.EUR);
+        applyingForADebitCardCurrency.addItem(Currency.NOK);
+        applyingForADebitCardCurrency.addItem(Currency.USD);
+        for (int i = 0; i < client.getBillList().size(); i++){
+            applyingForADebitCardBill.addItem(client.getBillList().get(i));
+            injectMoneyInDebitBill.addItem(client.getBillList().get(i));
+        }
+        applyForCreditCardPaymentNetwork.addItem(CreditCardPaymentNetwork.MASTER_CARD);
+        applyForCreditCardPaymentNetwork.addItem(CreditCardPaymentNetwork.VISA);
+        applyForCreditCardPaymentNetwork.addItem(CreditCardPaymentNetwork.AMERICAN_EXPRESS);
+        applyForCreditCardPaymentNetwork.addItem(CreditCardPaymentNetwork.DISCOVER);
+        applyForCreditCardPaymentNetwork.addItem(CreditCardPaymentNetwork.UNION_PAY);
+        applyForCreditCardCurrency.addItem(Currency.AUD);
+        applyForCreditCardCurrency.addItem(Currency.BGN);
+        applyForCreditCardCurrency.addItem(Currency.EUR);
+        applyForCreditCardCurrency.addItem(Currency.NOK);
+        applyForCreditCardCurrency.addItem(Currency.USD);
+        for (int i = 0; i < GringottsBankDB.getInstance().getClientList().size(); i++){
+            applyingForAConsumerCreditGuarantor.addItem(GringottsBankDB.getInstance().getClientList().get(i));
+        }
+        for (int i = 0; i < client.getDebitList().size(); i++){
+            withdrawMoneyFromDebitDebit.addItem(client.getDebitList().get(i));
+        }
+        for (int i = 0; i < client.getDebitList().size(); i++){
+            injectMoneyInDebitDebit.addItem(client.getDebitList().get(i));
+        }
     }
 
     private void applyingForABillBtnMouseClicked(MouseEvent e) {
         client.applyForAbill((Currency)applyingForABillCurrency.getSelectedItem(), Double.parseDouble(applyingForABillBalance.getText()));
+        applyingForADebitCardBill.removeAllItems();
+        withdrawMoneyFromDebitBill.removeAllItems();
+        injectMoneyInDebitBill.removeAllItems();
+        for (int i = 0; i < client.getBillList().size(); i++){
+            applyingForADebitCardBill.addItem(client.getBillList().get(i));
+            withdrawMoneyFromDebitBill.addItem(client.getBillList().get(i));
+            injectMoneyInDebitBill.addItem(client.getBillList().get(i));
+        }
+
+    }
+
+    private void applyingForADebitCardBtnMouseClicked(MouseEvent e) throws CardNumberFormatException {
+        client.applyForDebitCard((DebitCardPaymentNetwork)applyingForADebitCardPaymentNetwork.getSelectedItem(), Double.parseDouble(applyingForADebitCardBalance.getText()), (Currency)applyingForADebitCardCurrency.getSelectedItem(), (Bill)applyingForADebitCardBill.getSelectedItem());
+        System.out.println(client.getCardList().size());
+
+    }
+
+    private void applyForCreditCardBtnMouseClicked(MouseEvent e) throws CardNumberFormatException {
+        client.applyForCreditCard((CreditCardPaymentNetwork)applyForCreditCardPaymentNetwork.getSelectedItem(), Double.parseDouble(applyForCreditCardBalance.getText()), (Currency)applyForCreditCardCurrency.getSelectedItem());
+        System.out.println(client.getCardList().size());
+    }
+
+    private void applyingForAHousingCreditBtnMouseClicked(MouseEvent e) {
+        client.applyingForAHousingCredit(Double.parseDouble(applyingForAHousingCreditBalance.getText()), Integer.parseInt(applyingForAHousingCreditPeriodInMonths.getText()));
+        System.out.println(client.getCreditList().size());
+    }
+
+    private void applyingForAConsumerCreditBtnMouseClicked(MouseEvent e) {
+        client.applyingForAConsumerCredit((Client)applyingForAConsumerCreditGuarantor.getSelectedItem(), Double.parseDouble(applyingForAConsumerCreditBalance.getText()), Integer.parseInt(applyingForAConsumerCreditPeriodInMonths.getText()));
+        System.out.println(client.getCreditList().size());
+    }
+
+    private void applyingForATermDebitBtnMouseClicked(MouseEvent e) {
+        client.applyingForATermDebit(Double.parseDouble(applyingForATermDebitBalance.getText()), Integer.parseInt(applyingForATermDebitTimeInMOnths.getText()));
+        System.out.println(client.getDebitList().size());
+        withdrawMoneyFromDebitDebit.removeAllItems();
+        injectMoneyInDebitDebit.removeAllItems();
+        for (int i = 0; i < client.getDebitList().size(); i++){
+            withdrawMoneyFromDebitDebit.addItem(client.getDebitList().get(i));
+            injectMoneyInDebitDebit.addItem(client.getDebitList().get(i));
+        }
+    }
+
+    private void applyingForAIndefiniteDebitBtnMouseClicked(MouseEvent e) {
+        client.applyingForAIndefiniteDebit(Double.parseDouble(applyingForAIndefiniteDebitBalance.getText()));
+        withdrawMoneyFromDebitDebit.removeAllItems();
+        injectMoneyInDebitDebit.removeAllItems();
+        for (int i = 0; i < client.getDebitList().size(); i++){
+            withdrawMoneyFromDebitDebit.addItem(client.getDebitList().get(i));
+            injectMoneyInDebitDebit.addItem(client.getDebitList().get(i));
+        }
+    }
+
+    private void withdrawMoneyFromDebitBtnMouseClicked(MouseEvent e) throws NotEnoughMoneyInCardException {
+        client.withdrawMoneyFromDebit((Debit)withdrawMoneyFromDebitDebit.getSelectedItem(), (Bill)withdrawMoneyFromDebitBill.getSelectedItem(), Double.parseDouble(withdrawMoneyFromDebitAmount.getText()));
+        //System.out.println(client.getDebitList().size());
+    }
+
+    private void injectMoneyInDebitBtnMouseClicked(MouseEvent e) {
+        client.injectMoneyInDebit((Debit)injectMoneyInDebitDebit.getSelectedItem(), (Bill)injectMoneyInDebitBill.getSelectedItem(), Double.parseDouble(injectMoneyInDebitAmount.getText()));
     }
 
     private void initComponents() {
@@ -56,6 +156,35 @@ public class BankOnWebPro extends JFrame {
         applyingForABillCurrency = new JComboBox();
         applyingForABillBalance = new JTextField();
         applyingForABillBtn = new JButton();
+        applyingForADebitCardPaymentNetwork = new JComboBox();
+        applyingForADebitCardBalance = new JTextField();
+        applyingForADebitCardCurrency = new JComboBox();
+        applyingForADebitCardBill = new JComboBox();
+        applyingForADebitCardBtn = new JButton();
+        applyForCreditCardPaymentNetwork = new JComboBox();
+        applyForCreditCardBalance = new JTextField();
+        applyForCreditCardCurrency = new JComboBox();
+        applyForCreditCardBtn = new JButton();
+        applyingForAHousingCreditBalance = new JTextField();
+        applyingForAHousingCreditPeriodInMonths = new JTextField();
+        applyingForAHousingCreditBtn = new JButton();
+        applyingForAConsumerCreditGuarantor = new JComboBox();
+        applyingForAConsumerCreditBalance = new JTextField();
+        applyingForAConsumerCreditPeriodInMonths = new JTextField();
+        applyingForAConsumerCreditBtn = new JButton();
+        applyingForATermDebitBalance = new JTextField();
+        applyingForATermDebitTimeInMOnths = new JTextField();
+        applyingForATermDebitBtn = new JButton();
+        applyingForAIndefiniteDebitBalance = new JTextField();
+        applyingForAIndefiniteDebitBtn = new JButton();
+        withdrawMoneyFromDebitDebit = new JComboBox();
+        withdrawMoneyFromDebitBill = new JComboBox();
+        withdrawMoneyFromDebitAmount = new JTextField();
+        withdrawMoneyFromDebitBtn = new JButton();
+        injectMoneyInDebitDebit = new JComboBox();
+        injectMoneyInDebitBill = new JComboBox();
+        injectMoneyInDebitAmount = new JTextField();
+        injectMoneyInDebitBtn = new JButton();
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -65,6 +194,7 @@ public class BankOnWebPro extends JFrame {
         {
             panel1.setBackground(Color.white);
             panel1.setName("1\n2\n3\n4\n5");
+            panel1.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
 
             // JFormDesigner evaluation mark
             panel1.setBorder(new javax.swing.border.CompoundBorder(
@@ -137,59 +267,69 @@ public class BankOnWebPro extends JFrame {
             //---- payCreditLable ----
             payCreditLable.setText("Pay Credit");
             panel1.add(payCreditLable);
-            payCreditLable.setBounds(20, 145, 115, 40);
+            payCreditLable.setBounds(35, 150, 115, 40);
 
             //---- injectMoneyInDebitLable ----
             injectMoneyInDebitLable.setText("Inject Money In Debit");
             panel1.add(injectMoneyInDebitLable);
-            injectMoneyInDebitLable.setBounds(new Rectangle(new Point(20, 230), injectMoneyInDebitLable.getPreferredSize()));
+            injectMoneyInDebitLable.setBounds(new Rectangle(new Point(25, 225), injectMoneyInDebitLable.getPreferredSize()));
 
             //---- withdrawMoneyFromDebit ----
-            withdrawMoneyFromDebit.setText("withdrawMoneyFromDebit");
+            withdrawMoneyFromDebit.setText("Withdraw Money From Debit");
             panel1.add(withdrawMoneyFromDebit);
-            withdrawMoneyFromDebit.setBounds(new Rectangle(new Point(20, 285), withdrawMoneyFromDebit.getPreferredSize()));
+            withdrawMoneyFromDebit.setBounds(new Rectangle(new Point(20, 275), withdrawMoneyFromDebit.getPreferredSize()));
 
             //---- applyingForAIndefiniteDebit ----
-            applyingForAIndefiniteDebit.setText("applyingForAIndefiniteDebit");
+            applyingForAIndefiniteDebit.setText("Apply For an IndefiniteDebit");
             panel1.add(applyingForAIndefiniteDebit);
-            applyingForAIndefiniteDebit.setBounds(new Rectangle(new Point(15, 330), applyingForAIndefiniteDebit.getPreferredSize()));
+            applyingForAIndefiniteDebit.setBounds(new Rectangle(new Point(15, 335), applyingForAIndefiniteDebit.getPreferredSize()));
 
             //---- applyingForATermDebit ----
-            applyingForATermDebit.setText("applyingForATermDebit");
+            applyingForATermDebit.setText("Apply For an Term Debit");
             panel1.add(applyingForATermDebit);
-            applyingForATermDebit.setBounds(new Rectangle(new Point(25, 380), applyingForATermDebit.getPreferredSize()));
+            applyingForATermDebit.setBounds(new Rectangle(new Point(25, 385), applyingForATermDebit.getPreferredSize()));
 
             //---- applyingForAConsumerCredit ----
-            applyingForAConsumerCredit.setText("applyingForAConsumerCredit");
+            applyingForAConsumerCredit.setText("Apply For A Consumer Credit");
             panel1.add(applyingForAConsumerCredit);
-            applyingForAConsumerCredit.setBounds(new Rectangle(new Point(20, 430), applyingForAConsumerCredit.getPreferredSize()));
+            applyingForAConsumerCredit.setBounds(new Rectangle(new Point(20, 440), applyingForAConsumerCredit.getPreferredSize()));
 
             //---- applyingForAHousingCredit ----
-            applyingForAHousingCredit.setText("applyingForAHousingCredit");
+            applyingForAHousingCredit.setText("Apply For A Housing Credit");
             panel1.add(applyingForAHousingCredit);
-            applyingForAHousingCredit.setBounds(new Rectangle(new Point(20, 480), applyingForAHousingCredit.getPreferredSize()));
+            applyingForAHousingCredit.setBounds(new Rectangle(new Point(25, 490), applyingForAHousingCredit.getPreferredSize()));
 
             //---- applyForCreditCard ----
-            applyForCreditCard.setText("applyForCreditCard");
+            applyForCreditCard.setText("Apply For Credit Card");
             panel1.add(applyForCreditCard);
-            applyForCreditCard.setBounds(new Rectangle(new Point(30, 530), applyForCreditCard.getPreferredSize()));
+            applyForCreditCard.setBounds(new Rectangle(new Point(40, 545), applyForCreditCard.getPreferredSize()));
 
             //---- applyingForADebitCard ----
-            applyingForADebitCard.setText("applyingForADebitCard");
+            applyingForADebitCard.setText("Applying For A Debit Card");
             panel1.add(applyingForADebitCard);
-            applyingForADebitCard.setBounds(new Rectangle(new Point(25, 590), applyingForADebitCard.getPreferredSize()));
+            applyingForADebitCard.setBounds(new Rectangle(new Point(30, 600), applyingForADebitCard.getPreferredSize()));
 
             //---- applyingForABill ----
-            applyingForABill.setText("applyingForABill");
+            applyingForABill.setText("Apply For A Bill");
             panel1.add(applyingForABill);
-            applyingForABill.setBounds(new Rectangle(new Point(35, 650), applyingForABill.getPreferredSize()));
+            applyingForABill.setBounds(new Rectangle(new Point(45, 640), applyingForABill.getPreferredSize()));
+
+            //---- applyingForABillCurrency ----
+            applyingForABillCurrency.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForABillCurrency.setBackground(Color.white);
             panel1.add(applyingForABillCurrency);
-            applyingForABillCurrency.setBounds(165, 655, 165, applyingForABillCurrency.getPreferredSize().height);
+            applyingForABillCurrency.setBounds(190, 630, 165, applyingForABillCurrency.getPreferredSize().height);
+
+            //---- applyingForABillBalance ----
+            applyingForABillBalance.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForABillBalance.setBackground(Color.white);
             panel1.add(applyingForABillBalance);
-            applyingForABillBalance.setBounds(375, 655, 160, applyingForABillBalance.getPreferredSize().height);
+            applyingForABillBalance.setBounds(370, 630, 170, 30);
 
             //---- applyingForABillBtn ----
-            applyingForABillBtn.setText("CREATE");
+            applyingForABillBtn.setText("APPLY");
+            applyingForABillBtn.setBackground(new Color(102, 102, 102));
+            applyingForABillBtn.setBorder(null);
             applyingForABillBtn.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -197,7 +337,237 @@ public class BankOnWebPro extends JFrame {
                 }
             });
             panel1.add(applyingForABillBtn);
-            applyingForABillBtn.setBounds(new Rectangle(new Point(690, 665), applyingForABillBtn.getPreferredSize()));
+            applyingForABillBtn.setBounds(730, 630, 110, applyingForABillBtn.getPreferredSize().height);
+
+            //---- applyingForADebitCardPaymentNetwork ----
+            applyingForADebitCardPaymentNetwork.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForADebitCardPaymentNetwork.setBackground(Color.white);
+            panel1.add(applyingForADebitCardPaymentNetwork);
+            applyingForADebitCardPaymentNetwork.setBounds(195, 585, 125, applyingForADebitCardPaymentNetwork.getPreferredSize().height);
+
+            //---- applyingForADebitCardBalance ----
+            applyingForADebitCardBalance.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForADebitCardBalance.setBackground(Color.white);
+            panel1.add(applyingForADebitCardBalance);
+            applyingForADebitCardBalance.setBounds(330, 585, 115, 30);
+
+            //---- applyingForADebitCardCurrency ----
+            applyingForADebitCardCurrency.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForADebitCardCurrency.setBackground(Color.white);
+            panel1.add(applyingForADebitCardCurrency);
+            applyingForADebitCardCurrency.setBounds(455, 585, 115, applyingForADebitCardCurrency.getPreferredSize().height);
+
+            //---- applyingForADebitCardBill ----
+            applyingForADebitCardBill.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForADebitCardBill.setBackground(Color.white);
+            panel1.add(applyingForADebitCardBill);
+            applyingForADebitCardBill.setBounds(575, 585, 140, applyingForADebitCardBill.getPreferredSize().height);
+
+            //---- applyingForADebitCardBtn ----
+            applyingForADebitCardBtn.setText("APPLY");
+            applyingForADebitCardBtn.setBackground(new Color(102, 102, 102));
+            applyingForADebitCardBtn.setBorder(null);
+            applyingForADebitCardBtn.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    applyingForADebitCardBtnMouseClicked(e);
+                }
+            });
+            panel1.add(applyingForADebitCardBtn);
+            applyingForADebitCardBtn.setBounds(730, 585, 110, applyingForADebitCardBtn.getPreferredSize().height);
+
+            //---- applyForCreditCardPaymentNetwork ----
+            applyForCreditCardPaymentNetwork.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyForCreditCardPaymentNetwork.setBackground(Color.white);
+            panel1.add(applyForCreditCardPaymentNetwork);
+            applyForCreditCardPaymentNetwork.setBounds(190, 535, 145, applyForCreditCardPaymentNetwork.getPreferredSize().height);
+
+            //---- applyForCreditCardBalance ----
+            applyForCreditCardBalance.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyForCreditCardBalance.setBackground(Color.white);
+            panel1.add(applyForCreditCardBalance);
+            applyForCreditCardBalance.setBounds(365, 535, 175, applyForCreditCardBalance.getPreferredSize().height);
+
+            //---- applyForCreditCardCurrency ----
+            applyForCreditCardCurrency.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyForCreditCardCurrency.setBackground(Color.white);
+            panel1.add(applyForCreditCardCurrency);
+            applyForCreditCardCurrency.setBounds(575, 535, 135, applyForCreditCardCurrency.getPreferredSize().height);
+
+            //---- applyForCreditCardBtn ----
+            applyForCreditCardBtn.setText("APPLY");
+            applyForCreditCardBtn.setBackground(new Color(102, 102, 102));
+            applyForCreditCardBtn.setBorder(null);
+            applyForCreditCardBtn.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    applyForCreditCardBtnMouseClicked(e);
+                }
+            });
+            panel1.add(applyForCreditCardBtn);
+            applyForCreditCardBtn.setBounds(730, 535, 110, applyForCreditCardBtn.getPreferredSize().height);
+
+            //---- applyingForAHousingCreditBalance ----
+            applyingForAHousingCreditBalance.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForAHousingCreditBalance.setBackground(Color.white);
+            panel1.add(applyingForAHousingCreditBalance);
+            applyingForAHousingCreditBalance.setBounds(185, 480, 150, applyingForAHousingCreditBalance.getPreferredSize().height);
+
+            //---- applyingForAHousingCreditPeriodInMonths ----
+            applyingForAHousingCreditPeriodInMonths.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForAHousingCreditPeriodInMonths.setBackground(Color.white);
+            panel1.add(applyingForAHousingCreditPeriodInMonths);
+            applyingForAHousingCreditPeriodInMonths.setBounds(365, 480, 175, applyingForAHousingCreditPeriodInMonths.getPreferredSize().height);
+
+            //---- applyingForAHousingCreditBtn ----
+            applyingForAHousingCreditBtn.setText("APPLY");
+            applyingForAHousingCreditBtn.setBackground(new Color(102, 102, 102));
+            applyingForAHousingCreditBtn.setBorder(null);
+            applyingForAHousingCreditBtn.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    applyingForAHousingCreditBtnMouseClicked(e);
+                }
+            });
+            panel1.add(applyingForAHousingCreditBtn);
+            applyingForAHousingCreditBtn.setBounds(730, 485, 110, applyingForAHousingCreditBtn.getPreferredSize().height);
+
+            //---- applyingForAConsumerCreditGuarantor ----
+            applyingForAConsumerCreditGuarantor.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForAConsumerCreditGuarantor.setBackground(Color.white);
+            panel1.add(applyingForAConsumerCreditGuarantor);
+            applyingForAConsumerCreditGuarantor.setBounds(185, 430, 150, applyingForAConsumerCreditGuarantor.getPreferredSize().height);
+
+            //---- applyingForAConsumerCreditBalance ----
+            applyingForAConsumerCreditBalance.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForAConsumerCreditBalance.setBackground(Color.white);
+            panel1.add(applyingForAConsumerCreditBalance);
+            applyingForAConsumerCreditBalance.setBounds(365, 430, 175, applyingForAConsumerCreditBalance.getPreferredSize().height);
+
+            //---- applyingForAConsumerCreditPeriodInMonths ----
+            applyingForAConsumerCreditPeriodInMonths.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForAConsumerCreditPeriodInMonths.setBackground(Color.white);
+            panel1.add(applyingForAConsumerCreditPeriodInMonths);
+            applyingForAConsumerCreditPeriodInMonths.setBounds(560, 430, 145, applyingForAConsumerCreditPeriodInMonths.getPreferredSize().height);
+
+            //---- applyingForAConsumerCreditBtn ----
+            applyingForAConsumerCreditBtn.setText("APPLY");
+            applyingForAConsumerCreditBtn.setBackground(new Color(102, 102, 102));
+            applyingForAConsumerCreditBtn.setBorder(null);
+            applyingForAConsumerCreditBtn.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    applyingForAConsumerCreditBtnMouseClicked(e);
+                }
+            });
+            panel1.add(applyingForAConsumerCreditBtn);
+            applyingForAConsumerCreditBtn.setBounds(730, 430, 110, 30);
+
+            //---- applyingForATermDebitBalance ----
+            applyingForATermDebitBalance.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForATermDebitBalance.setBackground(Color.white);
+            panel1.add(applyingForATermDebitBalance);
+            applyingForATermDebitBalance.setBounds(185, 375, 145, applyingForATermDebitBalance.getPreferredSize().height);
+
+            //---- applyingForATermDebitTimeInMOnths ----
+            applyingForATermDebitTimeInMOnths.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForATermDebitTimeInMOnths.setBackground(Color.white);
+            panel1.add(applyingForATermDebitTimeInMOnths);
+            applyingForATermDebitTimeInMOnths.setBounds(365, 375, 170, applyingForATermDebitTimeInMOnths.getPreferredSize().height);
+
+            //---- applyingForATermDebitBtn ----
+            applyingForATermDebitBtn.setText("APPLY");
+            applyingForATermDebitBtn.setBackground(new Color(102, 102, 102));
+            applyingForATermDebitBtn.setBorder(null);
+            applyingForATermDebitBtn.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    applyingForATermDebitBtnMouseClicked(e);
+                }
+            });
+            panel1.add(applyingForATermDebitBtn);
+            applyingForATermDebitBtn.setBounds(730, 370, 110, applyingForATermDebitBtn.getPreferredSize().height);
+
+            //---- applyingForAIndefiniteDebitBalance ----
+            applyingForAIndefiniteDebitBalance.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            applyingForAIndefiniteDebitBalance.setBackground(Color.white);
+            panel1.add(applyingForAIndefiniteDebitBalance);
+            applyingForAIndefiniteDebitBalance.setBounds(185, 325, 145, applyingForAIndefiniteDebitBalance.getPreferredSize().height);
+
+            //---- applyingForAIndefiniteDebitBtn ----
+            applyingForAIndefiniteDebitBtn.setText("APPLY");
+            applyingForAIndefiniteDebitBtn.setBackground(new Color(102, 102, 102));
+            applyingForAIndefiniteDebitBtn.setBorder(null);
+            applyingForAIndefiniteDebitBtn.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    applyingForAIndefiniteDebitBtnMouseClicked(e);
+                }
+            });
+            panel1.add(applyingForAIndefiniteDebitBtn);
+            applyingForAIndefiniteDebitBtn.setBounds(730, 320, 110, applyingForAIndefiniteDebitBtn.getPreferredSize().height);
+
+            //---- withdrawMoneyFromDebitDebit ----
+            withdrawMoneyFromDebitDebit.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            withdrawMoneyFromDebitDebit.setBackground(Color.white);
+            panel1.add(withdrawMoneyFromDebitDebit);
+            withdrawMoneyFromDebitDebit.setBounds(185, 270, 150, withdrawMoneyFromDebitDebit.getPreferredSize().height);
+
+            //---- withdrawMoneyFromDebitBill ----
+            withdrawMoneyFromDebitBill.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            withdrawMoneyFromDebitBill.setBackground(Color.white);
+            panel1.add(withdrawMoneyFromDebitBill);
+            withdrawMoneyFromDebitBill.setBounds(370, 270, 165, withdrawMoneyFromDebitBill.getPreferredSize().height);
+
+            //---- withdrawMoneyFromDebitAmount ----
+            withdrawMoneyFromDebitAmount.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            withdrawMoneyFromDebitAmount.setBackground(Color.white);
+            panel1.add(withdrawMoneyFromDebitAmount);
+            withdrawMoneyFromDebitAmount.setBounds(555, 270, 155, withdrawMoneyFromDebitAmount.getPreferredSize().height);
+
+            //---- withdrawMoneyFromDebitBtn ----
+            withdrawMoneyFromDebitBtn.setText("WITHDRAW");
+            withdrawMoneyFromDebitBtn.setBackground(new Color(102, 102, 102));
+            withdrawMoneyFromDebitBtn.setBorder(null);
+            withdrawMoneyFromDebitBtn.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    withdrawMoneyFromDebitBtnMouseClicked(e);
+                }
+            });
+            panel1.add(withdrawMoneyFromDebitBtn);
+            withdrawMoneyFromDebitBtn.setBounds(730, 270, 110, 30);
+
+            //---- injectMoneyInDebitDebit ----
+            injectMoneyInDebitDebit.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            injectMoneyInDebitDebit.setBackground(Color.white);
+            panel1.add(injectMoneyInDebitDebit);
+            injectMoneyInDebitDebit.setBounds(185, 220, 150, injectMoneyInDebitDebit.getPreferredSize().height);
+
+            //---- injectMoneyInDebitBill ----
+            injectMoneyInDebitBill.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            injectMoneyInDebitBill.setBackground(Color.white);
+            panel1.add(injectMoneyInDebitBill);
+            injectMoneyInDebitBill.setBounds(370, 220, 165, injectMoneyInDebitBill.getPreferredSize().height);
+
+            //---- injectMoneyInDebitAmount ----
+            injectMoneyInDebitAmount.setBorder(new MatteBorder(1, 1, 1, 1, new Color(204, 0, 51)));
+            injectMoneyInDebitAmount.setBackground(Color.white);
+            panel1.add(injectMoneyInDebitAmount);
+            injectMoneyInDebitAmount.setBounds(555, 220, 155, injectMoneyInDebitAmount.getPreferredSize().height);
+
+            //---- injectMoneyInDebitBtn ----
+            injectMoneyInDebitBtn.setText("INJECT");
+            injectMoneyInDebitBtn.setBackground(new Color(102, 102, 102));
+            injectMoneyInDebitBtn.setBorder(null);
+            injectMoneyInDebitBtn.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    injectMoneyInDebitBtnMouseClicked(e);
+                }
+            });
+            panel1.add(injectMoneyInDebitBtn);
+            injectMoneyInDebitBtn.setBounds(730, 220, 110, injectMoneyInDebitBtn.getPreferredSize().height);
 
             { // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -256,5 +626,34 @@ public class BankOnWebPro extends JFrame {
     private JComboBox applyingForABillCurrency;
     private JTextField applyingForABillBalance;
     private JButton applyingForABillBtn;
+    private JComboBox applyingForADebitCardPaymentNetwork;
+    private JTextField applyingForADebitCardBalance;
+    private JComboBox applyingForADebitCardCurrency;
+    private JComboBox applyingForADebitCardBill;
+    private JButton applyingForADebitCardBtn;
+    private JComboBox applyForCreditCardPaymentNetwork;
+    private JTextField applyForCreditCardBalance;
+    private JComboBox applyForCreditCardCurrency;
+    private JButton applyForCreditCardBtn;
+    private JTextField applyingForAHousingCreditBalance;
+    private JTextField applyingForAHousingCreditPeriodInMonths;
+    private JButton applyingForAHousingCreditBtn;
+    private JComboBox applyingForAConsumerCreditGuarantor;
+    private JTextField applyingForAConsumerCreditBalance;
+    private JTextField applyingForAConsumerCreditPeriodInMonths;
+    private JButton applyingForAConsumerCreditBtn;
+    private JTextField applyingForATermDebitBalance;
+    private JTextField applyingForATermDebitTimeInMOnths;
+    private JButton applyingForATermDebitBtn;
+    private JTextField applyingForAIndefiniteDebitBalance;
+    private JButton applyingForAIndefiniteDebitBtn;
+    private JComboBox withdrawMoneyFromDebitDebit;
+    private JComboBox withdrawMoneyFromDebitBill;
+    private JTextField withdrawMoneyFromDebitAmount;
+    private JButton withdrawMoneyFromDebitBtn;
+    private JComboBox injectMoneyInDebitDebit;
+    private JComboBox injectMoneyInDebitBill;
+    private JTextField injectMoneyInDebitAmount;
+    private JButton injectMoneyInDebitBtn;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

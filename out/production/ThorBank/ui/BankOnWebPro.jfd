@@ -7,9 +7,8 @@ new FormModel {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 				name: "panel1"
-				"background": sfield java.awt.Color white
+				"background": new java.awt.Color( 255, 255, 255, 255 )
 				"name": "1\n2\n3\n4\n5"
-				"border": &MatteBorder0 new javax.swing.border.MatteBorder( 1, 1, 1, 1, new java.awt.Color( 204, 0, 51, 255 ) )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "panel3"
 					"background": new java.awt.Color( 204, 0, 51, 255 )
@@ -80,8 +79,8 @@ new FormModel {
 					name: "payCreditLable"
 					"text": "Pay Credit"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 35
-					"y": 150
+					"x": 20
+					"y": 145
 					"width": 115
 					"height": 40
 				} )
@@ -89,194 +88,161 @@ new FormModel {
 					name: "injectMoneyInDebitLable"
 					"text": "Inject Money In Debit"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 25
-					"y": 225
+					"x": 20
+					"y": 230
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "withdrawMoneyFromDebit"
-					"text": "Withdraw Money From Debit"
+					"text": "withdrawMoneyFromDebit"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 20
-					"y": 275
+					"y": 285
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "applyingForAIndefiniteDebit"
-					"text": "Apply For an IndefiniteDebit"
+					"text": "applyingForAIndefiniteDebit"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 15
-					"y": 335
+					"y": 330
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "applyingForATermDebit"
-					"text": "Apply For an Term Debit"
+					"text": "applyingForATermDebit"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 25
-					"y": 385
+					"y": 380
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "applyingForAConsumerCredit"
-					"text": "Apply For A Consumer Credit"
+					"text": "applyingForAConsumerCredit"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 20
-					"y": 440
+					"y": 430
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "applyingForAHousingCredit"
-					"text": "Apply For A Housing Credit"
+					"text": "applyingForAHousingCredit"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 25
-					"y": 490
+					"x": 20
+					"y": 480
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "applyForCreditCard"
-					"text": "Apply For Credit Card"
+					"text": "applyForCreditCard"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 40
-					"y": 545
+					"x": 30
+					"y": 530
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "applyingForADebitCard"
-					"text": "Applying For A Debit Card"
+					"text": "applyingForADebitCard"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 30
-					"y": 600
+					"x": 25
+					"y": 590
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "applyingForABill"
-					"text": "Apply For A Bill"
+					"text": "applyingForABill"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 45
-					"y": 640
+					"x": 35
+					"y": 650
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "applyingForABillCurrency"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 190
-					"y": 630
+					"x": 165
+					"y": 655
 					"width": 165
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "applyingForABillBalance"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 370
-					"y": 630
-					"width": 170
-					"height": 30
+					"x": 375
+					"y": 655
+					"width": 160
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "applyingForABillBtn"
 					"text": "APPLY"
-					"background": &Color2 new java.awt.Color( 102, 102, 102, 255 )
-					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "applyingForABillBtnMouseClicked", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 730
-					"y": 630
-					"width": 110
+					"x": 690
+					"y": 665
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "applyingForADebitCardPaymentNetwork"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 195
-					"y": 585
+					"x": 190
+					"y": 590
 					"width": 125
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "applyingForADebitCardBalance"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 330
-					"y": 585
+					"x": 335
+					"y": 595
 					"width": 115
-					"height": 30
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "applyingForADebitCardCurrency"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 455
-					"y": 585
+					"x": 475
+					"y": 600
 					"width": 115
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "applyingForADebitCardBill"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 575
-					"y": 585
+					"x": 615
+					"y": 605
 					"width": 140
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "applyingForADebitCardBtn"
 					"text": "APPLY"
-					"background": #Color2
-					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "applyingForADebitCardBtnMouseClicked", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 730
-					"y": 585
-					"width": 110
+					"x": 790
+					"y": 605
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "applyForCreditCardPaymentNetwork"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 190
-					"y": 535
-					"width": 145
+					"x": 200
+					"y": 530
+					"width": 105
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "applyForCreditCardBalance"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 365
+					"x": 335
 					"y": 535
-					"width": 175
+					"width": 120
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "applyForCreditCardCurrency"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 575
-					"y": 535
-					"width": 135
+					"x": 470
+					"y": 540
+					"width": 125
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "applyForCreditCardBtn"
 					"text": "APPLY"
-					"background": #Color2
-					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "applyForCreditCardBtnMouseClicked", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 730
-					"y": 535
-					"width": 110
+					"x": 725
+					"y": 540
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "applyingForAHousingCreditBalance"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 185
+					"x": 195
 					"y": 480
-					"width": 150
+					"width": 115
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "applyingForAHousingCreditPeriodInMonths"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 365
 					"y": 480
@@ -285,106 +251,81 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "applyingForAHousingCreditBtn"
 					"text": "APPLY"
-					"background": #Color2
-					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "applyingForAHousingCreditBtnMouseClicked", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 730
+					"x": 725
 					"y": 485
 					"width": 110
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "applyingForAConsumerCreditGuarantor"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 185
-					"y": 430
-					"width": 150
+					"x": 200
+					"y": 435
+					"width": 240
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "applyingForAConsumerCreditBalance"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 365
-					"y": 430
-					"width": 175
+					"x": 465
+					"y": 440
+					"width": 135
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "applyingForAConsumerCreditPeriodInMonths"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 560
-					"y": 430
-					"width": 145
+					"x": 625
+					"y": 445
+					"width": 85
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "applyingForAConsumerCreditBtn"
 					"text": "APPLY"
-					"background": #Color2
-					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "applyingForAConsumerCreditBtnMouseClicked", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 730
-					"y": 430
-					"width": 110
-					"height": 30
+					"x": 740
+					"y": 445
+					"width": 95
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "applyingForATermDebitBalance"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 185
-					"y": 375
-					"width": 145
+					"x": 215
+					"y": 380
+					"width": 130
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "applyingForATermDebitTimeInMOnths"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 365
-					"y": 375
-					"width": 170
+					"x": 380
+					"y": 380
+					"width": 155
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "applyingForATermDebitBtn"
 					"text": "APPLY"
-					"background": #Color2
-					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "applyingForATermDebitBtnMouseClicked", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 730
-					"y": 370
-					"width": 110
+					"x": 720
+					"y": 385
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "applyingForAIndefiniteDebitBalance"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 185
+					"x": 200
 					"y": 325
 					"width": 145
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "applyingForAIndefiniteDebitBtn"
 					"text": "APPLY"
-					"background": #Color2
-					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "applyingForAIndefiniteDebitBtnMouseClicked", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 730
+					"x": 715
 					"y": 320
-					"width": 110
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "withdrawMoneyFromDebitDebit"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 185
 					"y": 270
@@ -392,17 +333,13 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "withdrawMoneyFromDebitBill"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 370
-					"y": 270
-					"width": 165
+					"x": 375
+					"y": 265
+					"width": 150
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "withdrawMoneyFromDebitAmount"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 555
 					"y": 270
@@ -410,53 +347,41 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "withdrawMoneyFromDebitBtn"
-					"text": "WITHDRAW"
-					"background": #Color2
-					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					"text": "APPLY"
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "withdrawMoneyFromDebitBtnMouseClicked", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 730
+					"x": 720
 					"y": 270
-					"width": 110
-					"height": 30
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "injectMoneyInDebitDebit"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 185
-					"y": 220
-					"width": 150
+					"x": 155
+					"y": 225
+					"width": 140
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "injectMoneyInDebitBill"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 370
-					"y": 220
+					"x": 325
+					"y": 230
 					"width": 165
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "injectMoneyInDebitAmount"
-					"border": #MatteBorder0
-					"background": sfield java.awt.Color white
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 555
-					"y": 220
-					"width": 155
+					"x": 550
+					"y": 230
+					"width": 120
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "injectMoneyInDebitBtn"
 					"text": "INJECT"
-					"background": #Color2
-					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "injectMoneyInDebitBtnMouseClicked", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 730
-					"y": 220
-					"width": 110
+					"x": 695
+					"y": 235
+					"width": 120
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 860

@@ -115,10 +115,12 @@ public final class GringottsBank implements Sender, Bank {
     }
 
     public void createCreditCard(final Client client, final CreditCardPaymentNetwork creditCardPaymentNetwork, final double balance, final Currency currency) throws CardNumberFormatException {
+        System.out.println(approveCreditCard(client));
         if (approveCreditCard(client)) {
             String numberCreditCard = randomNDigitString(CARD_NUMBER_LENGTH);
             String cVV = randomNDigitString(CARD_CVV_LENGTH);
             client.getCardList().add(new CreditCard(client, numberCreditCard, cVV, balance, currency, creditCardPaymentNetwork));
+            System.out.println("size" + client.getCardList().size());
         }
     }
 

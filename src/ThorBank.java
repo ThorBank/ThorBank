@@ -1,11 +1,15 @@
 import client.IndividualClient;
+import db.GringottsBankDB;
 
 import java.util.GregorianCalendar;
 
 public class ThorBank {
     public static void main(String[] args) {
 //        new Register();
-        new ui.BankOnWebPro(new IndividualClient("Borislav", "Bohosyan", "b.bohosyan@gmail.com", "123", new GregorianCalendar(27, 5, 1996), false)).setVisible(true);
+        GringottsBankDB.getInstance().getClientList().add(new IndividualClient("Borislav", "Bohosyan", "b.bohosyan@gmail.com", "123", new GregorianCalendar(1990, 5, 23), true));
+        GringottsBankDB.getInstance().getClientList().add(new IndividualClient("Tsveta", "Getova", "t.getova@gmail.com", "123", new GregorianCalendar(1987, 5, 23), true));
+        GringottsBankDB.getInstance().getClientList().add(new IndividualClient("Bill", "Gates", "b.gates@gmail.com", "123", new GregorianCalendar(1960, 5, 23), true));
+        new ui.BankOnWebPro(new IndividualClient("Borislav", "Bohosyan", "b.bohosyan@gmail.com", "123", new GregorianCalendar(1990, 5, 23), true)).setVisible(true);
         //new Test(new IndividualClient("Borislav", "Bohosyan", "b.bohosyan@gmail.com", "123", new GregorianCalendar(27, 5, 1996), false)).setVisible(true);
 //        Welcome welcome = new Welcome();
 //        welcome.setVisible(true);

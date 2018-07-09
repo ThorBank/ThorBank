@@ -33,6 +33,10 @@ public class BankOnWeb {
     private Client client;
     private List<Message> messagesWithGringottsBank;
 
+    public List<Transaction> getTransactionList() {
+        return this.transactionList;
+    }
+
     public List<Message> getMessagesWithTheBank() {
         return messagesWithTheBank;
     }

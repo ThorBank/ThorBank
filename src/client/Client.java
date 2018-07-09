@@ -26,11 +26,12 @@ import debit.DebitInjectableWithdrawable;
 import message.Sender;
 import webbanking.*;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.LinkedList;
 
-public class Client implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable, AppliableForANewCard, Sender, BillAppliable {
+public abstract class Client implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable, AppliableForANewCard, Sender, BillAppliable {
     private static final int MAX_CREDITS_PER_CLIENT = 3;
     private String firstName;
     private String lastName;
@@ -193,37 +194,45 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     public void payCredit(final Credit credit, final Bill bill) {
         bill.setBalance(bill.getBalance() - credit.getMonthlyPayment());
         credit.payedCreditInstallment(credit.getMonthlyPayment());
+        this.getBankOnWeb().getTransactionList().add(new Transaction(new Date(), credit.getMonthlyPayment(), this.getEmail()));
     }
 
     @Override
     public void payCredit(final Credit credit, final Card card) {
         card.setBalance(card.getBalance() - credit.getMonthlyPayment());
         credit.payedCreditInstallment(credit.getMonthlyPayment());
+        this.getBankOnWeb().getTransactionList().add(new Transaction(new Date(), credit.getMonthlyPayment(), this.getEmail()));
     }
 
 
     @Override
     public void injectMoneyInDebit(final Debit debit, final Bill bill, final double amount) {
+        System.out.println(bill.getBalance());
         bill.setBalance(bill.getBalance() - amount);
+        System.out.println(bill.getBalance());
         debit.injectMoney(bill, amount, bill.getCurrency());
+        this.getBankOnWeb().getTransactionList().add(new Transaction(new Date(), amount, this.getEmail()));
     }
 
     @Override
     public void injectMoneyInDebit(final Debit debit, final Card card, final double amount) {
         card.setBalance(card.getBalance() - amount);
         debit.injectMoney(card, amount, card.getCurrency());
+        this.getBankOnWeb().getTransactionList().add(new Transaction(new Date(), amount, this.getEmail()));
     }
 
     @Override
     public void withdrawMoneyFromDebit(final Debit debit, final Bill bill, final double amount) throws NotEnoughMoneyInCardException {
         bill.setBalance(bill.getBalance() - amount);
         debit.withdrawMoney(bill, amount, bill.getCurrency());
+        this.getBankOnWeb().getTransactionList().add(new Transaction(new Date(), amount, this.getEmail()));
     }
 
     @Override
     public void withdrawMoneyFromDebit(final Debit debit, final Card card, final double amount) throws NotEnoughMoneyInCardException {
         card.setBalance(card.getBalance() - amount);
         debit.withdrawMoney(card, amount, card.getCurrency());
+        this.getBankOnWeb().getTransactionList().add(new Transaction(new Date(), amount, this.getEmail()));
     }
 
     @Override
@@ -247,7 +256,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     }
 
     @Override
-    public void applyForCreditCard(final CreditCardPaymentNetwork creditCardPaymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
+    public void applyForCreditCard(final CreditCardPaymentNetwork creditCardPaymentNetwork, final double balance, final Currency currency) throws CardNumberFormatException {
         GringottsBank.getInstance().createCreditCard(this, creditCardPaymentNetwork, balance, currency);
     }
 

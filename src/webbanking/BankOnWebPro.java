@@ -21,6 +21,8 @@ import debit.Debit;
 import debit.DebitAppliable;
 import debit.DebitInjectableWithdrawable;
 
+import java.util.Date;
+
 public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable, BillAppliable {
     private static final double BONUS_DEBIT_WHEN_THROUGH_BANK_ON_WEB = 0.2d;
     private static final double DISCOUNT_CREDIT_WHEN_THROUGH_BANK_ON_WEB = 0.8d;
@@ -48,36 +50,42 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
     public void payCredit(final Credit credit, final Bill bill) {
         bill.setBalance(bill.getBalance() - credit.getMonthlyPayment() + (GringottsBank.getInstance().getOnlineDiscountPercent()/ CONVERT_TO_PERCENT_DIVIDER)* credit.getMonthlyPayment());
         credit.payedCreditInstallment(credit.getMonthlyPayment() - (GringottsBank.getInstance().getOnlineDiscountPercent()/ CONVERT_TO_PERCENT_DIVIDER)* credit.getMonthlyPayment());
+        this.getTransactionList().add(new Transaction(new Date(), credit.getMonthlyPayment(), this.getClient().getEmail()));
     }
 
     @Override
     public void payCredit(final Credit credit, final Card card) {
         card.setBalance(card.getBalance() - credit.getMonthlyPayment() + (GringottsBank.getInstance().getOnlineDiscountPercent()/ CONVERT_TO_PERCENT_DIVIDER)* credit.getMonthlyPayment());
         credit.payedCreditInstallment(credit.getMonthlyPayment() - (GringottsBank.getInstance().getOnlineDiscountPercent()/ CONVERT_TO_PERCENT_DIVIDER)* credit.getMonthlyPayment());
+        this.getTransactionList().add(new Transaction(new Date(), credit.getMonthlyPayment(), this.getClient().getEmail()));
     }
 
     @Override
     public void injectMoneyInDebit(final Debit debit, final Bill bill, final double amount) {
         bill.setBalance(bill.getBalance() - amount);
         debit.injectMoney(bill, amount, bill.getCurrency());
+        this.getTransactionList().add(new Transaction(new Date(), amount, this.getClient().getEmail()));
     }
 
     @Override
     public void injectMoneyInDebit(final Debit debit, final Card card, final double amount) {
         card.setBalance(card.getBalance() - amount);
         debit.injectMoney(card, amount, card.getCurrency());
+        this.getTransactionList().add(new Transaction(new Date(), amount, this.getClient().getEmail()));
     }
 
     @Override
     public void withdrawMoneyFromDebit(final Debit debit, final Bill bill, final double amount) throws NotEnoughMoneyInCardException {
         bill.setBalance(bill.getBalance() - amount);
         debit.withdrawMoney(bill, amount, bill.getCurrency());
+        this.getTransactionList().add(new Transaction(new Date(), amount, this.getClient().getEmail()));
     }
 
     @Override
     public void withdrawMoneyFromDebit(final Debit debit, final Card card, final double amount) throws NotEnoughMoneyInCardException {
         card.setBalance(card.getBalance() - amount);
         debit.withdrawMoney(card, amount, card.getCurrency());
+        this.getTransactionList().add(new Transaction(new Date(), amount, this.getClient().getEmail()));
     }
 
     @Override
