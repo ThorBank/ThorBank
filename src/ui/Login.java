@@ -68,15 +68,10 @@ public class Login extends JFrame {
 
             // JFormDesigner evaluation mark
             loginPanel.setBorder(new javax.swing.border.CompoundBorder(
-                    new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                            "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                            javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                            java.awt.Color.red), loginPanel.getBorder()));
-            loginPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-                public void propertyChange(java.beans.PropertyChangeEvent e) {
-                    if ("border".equals(e.getPropertyName())) throw new RuntimeException();
-                }
-            });
+                new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                    "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                    javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                    java.awt.Color.red), loginPanel.getBorder())); loginPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
             loginPanel.setLayout(null);
 
@@ -86,9 +81,9 @@ public class Login extends JFrame {
                 second_login_panel.setLayout(null);
 
                 //---- icon ----
-                icon.setIcon(new ImageIcon(getClass().getResource("/resources/7234-256x256x32resize.png")));
+                icon.setIcon(new ImageIcon("D:\\Telerik\\Telerik\\SwingUi\\demoUi\\src\\resources\\7234-256x256x32resize.png"));
                 second_login_panel.add(icon);
-                icon.setBounds(new Rectangle(new Point(55, 80), icon.getPreferredSize()));
+                icon.setBounds(new Rectangle(new Point(75, 80), icon.getPreferredSize()));
 
                 //---- label1 ----
                 label1.setText("Thor Bank");
@@ -154,7 +149,7 @@ public class Login extends JFrame {
 
                 { // compute preferred size
                     Dimension preferredSize = new Dimension();
-                    for (int i = 0; i < second_login_panel.getComponentCount(); i++) {
+                    for(int i = 0; i < second_login_panel.getComponentCount(); i++) {
                         Rectangle bounds = second_login_panel.getComponent(i).getBounds();
                         preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                         preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -236,7 +231,7 @@ public class Login extends JFrame {
 
                 { // compute preferred size
                     Dimension preferredSize = new Dimension();
-                    for (int i = 0; i < second_login_panel2.getComponentCount(); i++) {
+                    for(int i = 0; i < second_login_panel2.getComponentCount(); i++) {
                         Rectangle bounds = second_login_panel2.getComponent(i).getBounds();
                         preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                         preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -253,7 +248,7 @@ public class Login extends JFrame {
 
             { // compute preferred size
                 Dimension preferredSize = new Dimension();
-                for (int i = 0; i < loginPanel.getComponentCount(); i++) {
+                for(int i = 0; i < loginPanel.getComponentCount(); i++) {
                     Rectangle bounds = loginPanel.getComponent(i).getBounds();
                     preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                     preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -270,7 +265,7 @@ public class Login extends JFrame {
 
         { // compute preferred size
             Dimension preferredSize = new Dimension();
-            for (int i = 0; i < contentPane.getComponentCount(); i++) {
+            for(int i = 0; i < contentPane.getComponentCount(); i++) {
                 Rectangle bounds = contentPane.getComponent(i).getBounds();
                 preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                 preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);

@@ -9,22 +9,12 @@ new FormModel {
 				name: "panel1"
 				"background": new java.awt.Color( 255, 255, 255, 255 )
 				"name": "1\n2\n3\n4\n5"
-				add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
-					name: "menuBar1"
-					"background": new java.awt.Color( 228, 228, 228, 255 )
-					"foreground": new java.awt.Color( 102, 102, 102, 255 )
-				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 10
-					"y": 120
-					"width": 720
-					"height": 60
-				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "panel2"
 					"background": new java.awt.Color( 204, 0, 51, 255 )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "icon"
-						"icon": new com.jformdesigner.model.SwingIcon( 0, "/resources/7234-256x256x32resize.png" )
+						"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\Telerik\\Telerik\\SwingUi\\demoUi\\src\\resources\\7234-256x256x32resize.png" )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 15
 						"y": 35
@@ -115,7 +105,33 @@ new FormModel {
 					"width": 160
 					"height": 30
 					"x": 45
-					"y": 440
+					"y": 300
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "bankOnWebUpdate"
+					"text": "Create BankOnWeb"
+					"font": new java.awt.Font( "Segoe UI Emoji", 0, 14 )
+					"background": &Color2 new java.awt.Color( 102, 102, 102, 255 )
+					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "bankOnWebUpdateMouseClicked", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 535
+					"y": 240
+					"height": 55
+					"width": 170
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "bankOnWeb"
+					"text": "Create BankOnWeb"
+					"font": new java.awt.Font( "Segoe UI Emoji", 0, 14 )
+					"background": #Color2
+					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "bankOnWebMouseClicked", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 170
+					"height": 55
+					"x": 535
+					"y": 310
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 735

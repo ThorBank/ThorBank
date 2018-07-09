@@ -1,5 +1,5 @@
 /*
- * BankOnWebPro
+ * BankOnWeb
  *
  * version 1.0
  *
@@ -21,7 +21,7 @@ import debit.Debit;
 import debit.DebitAppliable;
 import debit.DebitInjectableWithdrawable;
 
-public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable {
+public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable, BillAppliable {
     private static final double BONUS_DEBIT_WHEN_THROUGH_BANK_ON_WEB = 0.2d;
     private static final double DISCOUNT_CREDIT_WHEN_THROUGH_BANK_ON_WEB = 0.8d;
     private static final Integer CONVERT_TO_PERCENT_DIVIDER = 100;
@@ -33,15 +33,15 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
     public void transactionBetweenBills(final Client client, final Bill sender, final Bill receiver, final double amount) throws BillDoesNotMatchExceptions, NotEnoughMoneyInYourBill, BillNotFromGringottsBankException {
         if (!this.getClient().getBillList().contains(sender) || !client.getBillList().contains(receiver)) {
             throw new BillDoesNotMatchExceptions();
-        } else  if (sender.getAvailability() < amount) {
+        } else  if (sender.getBalance() < amount) {
             throw new NotEnoughMoneyInYourBill();
         }
         else if (!sender.getBank().equals(GringottsBank.getInstance())) {
             throw new BillNotFromGringottsBankException();
         }
 
-        sender.setAvailability(sender.getAvailability()- amount);
-        receiver.setAvailability(receiver.getAvailability()+ amount);
+        sender.setBalance(sender.getBalance()- amount);
+        receiver.setBalance(receiver.getBalance()+ amount);
     }
 
     @Override
@@ -98,5 +98,10 @@ public class BankOnWebPro extends BankOnWeb implements CreditAppliable, CreditPa
     @Override
     public void applyingForATermDebit(final double balance, final int timeInMonths) {
         GringottsBank.getInstance().createTermDebit(this.getClient(), balance, timeInMonths, BONUS_DEBIT_WHEN_THROUGH_BANK_ON_WEB);
+    }
+
+    @Override
+    public void applyForAbill(Currency currency, double balance) {
+        GringottsBank.getInstance().createBill(this.getClient(), currency, balance);
     }
 }

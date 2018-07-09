@@ -1,5 +1,5 @@
 /*
- * BankOnWeb
+ * BankOnWebPro
  *
  * version 1.0
  *

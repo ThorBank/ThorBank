@@ -61,7 +61,7 @@ public abstract class Card {
 
     public void setNumber(final String number) throws CardNumberFormatException {
         if (!number.matches(NUMBER_CARD_REGEX)){
-            throw new CardNumberFormatException();
+                throw new CardNumberFormatException();
         }
         this.number = number;
     }

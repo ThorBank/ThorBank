@@ -92,66 +92,66 @@ public class Register extends JFrame {
 
     private void monthOfBirthActionPerformed(ActionEvent e) {
         if (Integer.parseInt(monthOfBirth.getSelectedItem().toString())%2 != 0){
-                    dayOfBirth.removeAllItems();
-                    for (int i = 1; i <= 31; i++){
-                        dayOfBirth.addItem(i);
-                    }
+            dayOfBirth.removeAllItems();
+            for (int i = 1; i <= 31; i++){
+                dayOfBirth.addItem(i);
+            }
+        }
+        else if (Integer.parseInt(monthOfBirth.getSelectedItem().toString()) == 2){
+            if (isLeapYear(Integer.parseInt(yearOfBirth.getSelectedItem().toString()))){
+                dayOfBirth.removeAllItems();
+                for (int i = 1; i <= 29; i++){
+                    dayOfBirth.addItem(i);
                 }
-                else if (Integer.parseInt(monthOfBirth.getSelectedItem().toString()) == 2){
-                    if (isLeapYear(Integer.parseInt(yearOfBirth.getSelectedItem().toString()))){
-                        dayOfBirth.removeAllItems();
-                        for (int i = 1; i <= 29; i++){
-                            dayOfBirth.addItem(i);
-                        }
-                    }
-                    else {
-                        dayOfBirth.removeAllItems();
-                        for (int i = 1; i <= 28; i++){
-                            dayOfBirth.addItem(i);
-                        }
-                    }
+            }
+            else {
+                dayOfBirth.removeAllItems();
+                for (int i = 1; i <= 28; i++){
+                    dayOfBirth.addItem(i);
                 }
-                else {
-                    dayOfBirth.removeAllItems();
-                    for (int i = 1; i <= 30; i++){
-                        dayOfBirth.addItem(i);
-                    }
-                }
+            }
+        }
+        else {
+            dayOfBirth.removeAllItems();
+            for (int i = 1; i <= 30; i++){
+                dayOfBirth.addItem(i);
+            }
+        }
     }
 
     private void yearOfBirthActionPerformed(ActionEvent e) {
         if (monthOfBirth.getSelectedItem().toString() == "1"
-                        || monthOfBirth.getSelectedItem().toString() == "3"
-                        || monthOfBirth.getSelectedItem().toString() == "5"
-                        || monthOfBirth.getSelectedItem().toString() == "7"
-                        || monthOfBirth.getSelectedItem().toString() == "8"
-                        || monthOfBirth.getSelectedItem().toString() == "10"
-                        || monthOfBirth.getSelectedItem().toString() == "12"){
-                    dayOfBirth.removeAllItems();
-                    for (int i = 1; i <= 31; i++){
-                        dayOfBirth.addItem(i);
-                    }
+                || monthOfBirth.getSelectedItem().toString() == "3"
+                || monthOfBirth.getSelectedItem().toString() == "5"
+                || monthOfBirth.getSelectedItem().toString() == "7"
+                || monthOfBirth.getSelectedItem().toString() == "8"
+                || monthOfBirth.getSelectedItem().toString() == "10"
+                || monthOfBirth.getSelectedItem().toString() == "12"){
+            dayOfBirth.removeAllItems();
+            for (int i = 1; i <= 31; i++){
+                dayOfBirth.addItem(i);
+            }
+        }
+        else if (monthOfBirth.getSelectedItem().toString().equals("2")){
+            if (isLeapYear(Integer.parseInt(yearOfBirth.getSelectedItem().toString()))){
+                dayOfBirth.removeAllItems();
+                for (int i = 1; i <= 29; i++){
+                    dayOfBirth.addItem(i);
                 }
-                else if (monthOfBirth.getSelectedItem().toString().equals("2")){
-                    if (isLeapYear(Integer.parseInt(yearOfBirth.getSelectedItem().toString()))){
-                        dayOfBirth.removeAllItems();
-                        for (int i = 1; i <= 29; i++){
-                            dayOfBirth.addItem(i);
-                        }
-                    }
-                    else {
-                        dayOfBirth.removeAllItems();
-                        for (int i = 1; i <= 28; i++){
-                            dayOfBirth.addItem(i);
-                        }
-                    }
+            }
+            else {
+                dayOfBirth.removeAllItems();
+                for (int i = 1; i <= 28; i++){
+                    dayOfBirth.addItem(i);
                 }
-                else {
-                    dayOfBirth.removeAllItems();
-                    for (int i = 1; i <= 30; i++){
-                        dayOfBirth.addItem(i);
-                    }
-                }
+            }
+        }
+        else {
+            dayOfBirth.removeAllItems();
+            for (int i = 1; i <= 30; i++){
+                dayOfBirth.addItem(i);
+            }
+        }
     }
 
     private void individualMouseClicked(MouseEvent e) {
@@ -217,10 +217,10 @@ public class Register extends JFrame {
 
             // JFormDesigner evaluation mark
             panel1.setBorder(new javax.swing.border.CompoundBorder(
-                new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                    "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-                    javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-                    java.awt.Color.red), panel1.getBorder())); panel1.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+                    new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                            "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                            javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                            java.awt.Color.red), panel1.getBorder())); panel1.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
             panel1.setLayout(null);
 

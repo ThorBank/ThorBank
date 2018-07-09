@@ -53,6 +53,7 @@ public class WelcomeHome extends JFrame {
         {
             panel1.setBackground(Color.white);
             panel1.setName("1\n2\n3\n4\n5");
+            panel1.setBorder(null);
 
             // JFormDesigner evaluation mark
             panel1.setBorder(new javax.swing.border.CompoundBorder(
@@ -69,9 +70,9 @@ public class WelcomeHome extends JFrame {
                 panel2.setLayout(null);
 
                 //---- icon ----
-                icon.setIcon(new ImageIcon(getClass().getResource("/resources/7234-256x256x32resize.png")));
+                icon.setIcon(new ImageIcon("D:\\Telerik\\Telerik\\SwingUi\\demoUi\\src\\resources\\7234-256x256x32resize.png"));
                 panel2.add(icon);
-                icon.setBounds(15, 35, 80, 80);
+                icon.setBounds(25, 35, 80, 80);
 
                 //---- ThorBankLabel ----
                 ThorBankLabel.setText("Thor Bank");
@@ -80,14 +81,14 @@ public class WelcomeHome extends JFrame {
                 ThorBankLabel.setRequestFocusEnabled(false);
                 ThorBankLabel.setHorizontalAlignment(SwingConstants.LEFT);
                 panel2.add(ThorBankLabel);
-                ThorBankLabel.setBounds(105, 45, 185, 55);
+                ThorBankLabel.setBounds(115, 45, 185, 55);
 
                 //---- separator1 ----
                 separator1.setBackground(Color.white);
                 separator1.setForeground(Color.white);
                 separator1.setFont(new Font("FrankRuehl", Font.BOLD, 36));
                 panel2.add(separator1);
-                separator1.setBounds(105, 85, 140, 25);
+                separator1.setBounds(115, 85, 140, 25);
 
                 //---- home ----
                 home.setText("Home Page  ");
@@ -96,14 +97,14 @@ public class WelcomeHome extends JFrame {
                 home.setHorizontalAlignment(SwingConstants.RIGHT);
                 home.setFont(new Font("FrankRuehl", Font.BOLD, 30));
                 panel2.add(home);
-                home.setBounds(505, 50, 225, 40);
+                home.setBounds(500, 50, 225, 40);
 
                 //---- separator2 ----
                 separator2.setBackground(Color.white);
                 separator2.setForeground(Color.white);
                 separator2.setFont(new Font("FrankRuehl", Font.BOLD, 36));
                 panel2.add(separator2);
-                separator2.setBounds(565, 85, 155, 30);
+                separator2.setBounds(560, 85, 155, 30);
 
                 { // compute preferred size
                     Dimension preferredSize = new Dimension();
@@ -124,7 +125,9 @@ public class WelcomeHome extends JFrame {
 
             //---- login ----
             login.setText("LOGIN");
-            login.setFont(new Font("FrankRuehl", Font.BOLD, 20));
+            login.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+            login.setBackground(new Color(102, 102, 102));
+            login.setBorder(null);
             login.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -136,7 +139,9 @@ public class WelcomeHome extends JFrame {
 
             //---- register ----
             register.setText("REGISTER");
-            register.setFont(new Font("FrankRuehl", Font.BOLD, 20));
+            register.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+            register.setBackground(new Color(102, 102, 102));
+            register.setBorder(null);
             register.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {

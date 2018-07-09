@@ -15,9 +15,9 @@ new FormModel {
 					"background": new java.awt.Color( 204, 0, 51, 255 )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "icon"
-						"icon": new com.jformdesigner.model.SwingIcon( 0, "/resources/7234-256x256x32resize.png" )
+						"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\Telerik\\Telerik\\SwingUi\\demoUi\\src\\resources\\7234-256x256x32resize.png" )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 55
+						"x": 75
 						"y": 80
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {

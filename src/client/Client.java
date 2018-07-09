@@ -24,15 +24,13 @@ import debit.Debit;
 import debit.DebitAppliable;
 import debit.DebitInjectableWithdrawable;
 import message.Sender;
-import webbanking.BankOnWeb;
-import webbanking.Bill;
-import webbanking.Currency;
+import webbanking.*;
 
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.LinkedList;
 
-public class Client implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable, AppliableForANewCard, Sender {
+public class Client implements CreditAppliable, CreditPayable, DebitAppliable, DebitInjectableWithdrawable, AppliableForANewCard, Sender, BillAppliable {
     private static final int MAX_CREDITS_PER_CLIENT = 3;
     private String firstName;
     private String lastName;
@@ -46,6 +44,7 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     private List<Credit> creditList;
     private List<Debit> debitList;
     private BankOnWeb bankOnWeb;
+    private BankOnWebPro bankOnWebPro;
 
     public Client(final String firstName, final String lastName, final String email, final String password, final GregorianCalendar dateofBirth, final boolean isWorking) {
         setFirstName(firstName);
@@ -57,6 +56,21 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         setBillList(new LinkedList<>());
         setCardList(new LinkedList<>());
         setDebitList(new LinkedList<>());
+        setBankOnWeb(null);
+        setBankOnWebPro(null);
+        setCreditList(new LinkedList<>());
+    }
+
+    public void setBankOnWeb(BankOnWeb bankOnWeb) {
+        this.bankOnWeb = bankOnWeb;
+    }
+
+    public BankOnWebPro getBankOnWebPro() {
+        return this.bankOnWebPro;
+    }
+
+    public void setBankOnWebPro(BankOnWebPro bankOnWebPro) {
+        this.bankOnWebPro = bankOnWebPro;
     }
 
     public String getPassword() {
@@ -155,13 +169,21 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
         }
     }
 
-    public void changePaySalaryBill(final Bill bill){
+    public void createBankOnWebPro() throws BankOnWebAlreadyExistsException {
+        if (bankOnWebPro == null) {
+            bankOnWebPro = new BankOnWebPro(this);
+        } else {
+            throw new BankOnWebAlreadyExistsException();
+        }
+    }
+
+    public void changePaySalaryBill(final Bill bill) {
         paySalaryBill = bill;
     }
 
 
-    public boolean doesHaveGoodBankHistory(){
-        if (this.getCreditList().size() >= MAX_CREDITS_PER_CLIENT){
+    public boolean doesHaveGoodBankHistory() {
+        if (this.getCreditList().size() >= MAX_CREDITS_PER_CLIENT) {
             return false;
         }
         return true;
@@ -232,5 +254,10 @@ public class Client implements CreditAppliable, CreditPayable, DebitAppliable, D
     @Override
     public void applyForDebitCard(final DebitCardPaymentNetwork debitCardPaymentNetwork, final double balance, final Currency currency, final Bill bill) throws CardNumberFormatException {
         GringottsBank.getInstance().createDebitCard(this, debitCardPaymentNetwork, balance, currency, bill);
+    }
+
+    @Override
+    public void applyForAbill(Currency currency, double balance) {
+        GringottsBank.getInstance().createBill(this, currency, balance);
     }
 }

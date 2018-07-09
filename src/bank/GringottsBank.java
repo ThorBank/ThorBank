@@ -59,8 +59,10 @@ public final class GringottsBank implements Sender, Bank {
      * Only one instance.
      */
     private static final GringottsBank INSTANCE = new GringottsBank();
+
     private GringottsBank() {
     }
+
     public static synchronized GringottsBank getInstance() {
         return INSTANCE;
     }
@@ -216,16 +218,18 @@ public final class GringottsBank implements Sender, Bank {
     }
 
     /**
-     *  Only Client BankOnWeb can send messages one to another
+     * Only Client BankOnWebPro can send messages one to another
+     *
      * @param client
      * @param message
      */
-    public void sendMessageToClient(final Client client, final Message message){
+    public void sendMessageToClient(final Client client, final Message message) {
         client.getBankOnWeb().getMessagesWithTheBank().add(message);
     }
 
     /**
      * Generates digit string for creation of CVV and Number of the cards.
+     *
      * @param n
      * @return
      */
@@ -234,5 +238,15 @@ public final class GringottsBank implements Sender, Bank {
         char[] v = new char[n];
         for (int j = 0; j < n; j++) v[j] = (char) (r.nextDouble() * 10 + 48);
         return new String(v);
+    }
+
+    private boolean approveBill(Client client) {
+        return client.doesHaveGoodBankHistory();
+    }
+
+    public void createBill(Client client, Currency currency, double amount) {
+        if (client.doesHaveGoodBankHistory()) {
+            client.getBillList().add(new Bill(randomNDigitString(20), currency, amount));
+        }
     }
 }

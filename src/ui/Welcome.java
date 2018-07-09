@@ -39,14 +39,14 @@ public class Welcome extends JFrame {
             // JFormDesigner evaluation mark
             welcomePanel.setBorder(new javax.swing.border.CompoundBorder(
                 new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-                    " ", javax.swing.border.TitledBorder.CENTER,
-                    javax.swing.border.TitledBorder.BOTTOM, new Font("Dialog", Font.BOLD, 12),
-                    Color.red), welcomePanel.getBorder())); welcomePanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+                    "", javax.swing.border.TitledBorder.CENTER,
+                    javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                    java.awt.Color.red), welcomePanel.getBorder())); welcomePanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
             welcomePanel.setLayout(null);
 
             //---- icon ----
-            icon.setIcon(new ImageIcon(getClass().getResource("/resources/7234-256x256x32.png")));
+            icon.setIcon(new ImageIcon("D:\\Telerik\\Telerik\\SwingUi\\demoUi\\src\\resources\\7234-256x256x32.png"));
             welcomePanel.add(icon);
             icon.setBounds(new Rectangle(new Point(100, 80), icon.getPreferredSize()));
 

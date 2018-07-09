@@ -10,6 +10,7 @@
 package webbanking;
 
 import bank.Bank;
+import bank.GringottsBank;
 
 public class Bill {
     private String iban;
@@ -18,11 +19,11 @@ public class Bill {
     private double availability;
     private Bank bank;
 
-    public Bill(final Bank bank, final String iban, final Currency currency, final double balance, final double availability) {
+    public Bill(final String iban, final Currency currency, final double balance) {
+        setBank(GringottsBank.getInstance());
         setIban(iban);
         setCurrency(currency);
         setBalance(balance);
-        setAvailability(availability);
         setBank(bank);
     }
 
@@ -56,13 +57,5 @@ public class Bill {
 
     public void setBalance(final double balance) {
         this.balance = balance;
-    }
-
-    public double getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(final double availability) {
-        this.availability = availability;
     }
 }

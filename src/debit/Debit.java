@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Debit {
     private static final double DEFAULT_DEBIT_PERCENT = 0.7d;
-    private static final Integer  BALANCE_ZERO = 0;
+    private static final Integer BALANCE_ZERO = 0;
     private String iban;
     private List<Card> card;
     private double balance;
@@ -50,19 +50,17 @@ public class Debit {
     }
 
     public void withdrawMoney(final Card card, final double amount, final Currency currency) throws NotEnoughMoneyInCardException {
-        if (card.getBalance() <= BALANCE_ZERO || card.getBalance() - amount < BALANCE_ZERO){
+        if (card.getBalance() <= BALANCE_ZERO || card.getBalance() - amount < BALANCE_ZERO) {
             throw new NotEnoughMoneyInCardException();
-        }
-        else {
+        } else {
             card.setBalance(card.getBalance() - amount);
         }
     }
 
     public void withdrawMoney(final Bill bill, final double amount, final Currency currency) throws NotEnoughMoneyInCardException {
-        if (bill.getBalance() <= 0 || bill.getBalance() - amount < 0){
+        if (bill.getBalance() <= 0 || bill.getBalance() - amount < 0) {
             throw new NotEnoughMoneyInCardException();
-        }
-        else {
+        } else {
             bill.setBalance(bill.getBalance() - amount);
         }
     }

@@ -1,27 +1,29 @@
-import ui.Welcome;
-import ui.WelcomeHome;
+import client.IndividualClient;
+
+import java.util.GregorianCalendar;
 
 public class ThorBank {
     public static void main(String[] args) {
 //        new Register();
-
-        Welcome welcome = new Welcome();
-        welcome.setVisible(true);
-        WelcomeHome welcomeHome = new WelcomeHome();
-
-        try {
-            for (int i = 0; i <= 100; i++) {
-                Thread.sleep(40);
-
-                welcome.num_loading.setText(Integer.toString(i) + "%");
-                if (i==100) {
-                    welcome.setVisible(false);
-                    welcomeHome.setVisible(true);
-                }
-            }
-        } catch (Exception e) {
-
-        }
+        new ui.BankOnWebPro(new IndividualClient("Borislav", "Bohosyan", "b.bohosyan@gmail.com", "123", new GregorianCalendar(27, 5, 1996), false)).setVisible(true);
+        //new Test(new IndividualClient("Borislav", "Bohosyan", "b.bohosyan@gmail.com", "123", new GregorianCalendar(27, 5, 1996), false)).setVisible(true);
+//        Welcome welcome = new Welcome();
+//        welcome.setVisible(true);
+//        WelcomeHome welcomeHome = new WelcomeHome();
+//
+//        try {
+//            for (int i = 0; i <= 100; i++) {
+//                Thread.sleep(40);
+//
+//                welcome.num_loading.setText(Integer.toString(i) + "%");
+//                if (i==100) {
+//                    welcome.setVisible(false);
+//                    welcomeHome.setVisible(true);
+//                }
+//            }
+//        } catch (Exception e) {
+//
+//        }
     }
 }
 
